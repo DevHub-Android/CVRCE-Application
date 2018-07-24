@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.models.UserModel;
@@ -20,7 +21,8 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     EditText password,regId;
-    Button login,register;
+    Button login;
+    TextView register;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         regId = (EditText)findViewById(R.id.regId);
         password = (EditText)findViewById(R.id.pass);
         login = (Button)findViewById(R.id.login);
-        register = (Button)findViewById(R.id.register);
+        register = findViewById(R.id.register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
