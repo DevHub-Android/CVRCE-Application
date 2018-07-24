@@ -85,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject userJson = jsonObject.getJSONObject("user");
                         UserModel user = new UserModel(
                                 userJson.getString("reg_id"),
-                                userJson.getString("username")
+                                userJson.getString("username"),
+                                userJson.getString("branch"),
+                                userJson.getString("hostel")
                         );
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         finish();

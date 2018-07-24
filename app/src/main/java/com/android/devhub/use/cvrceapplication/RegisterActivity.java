@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
     LinearLayout linearLayout;
-    boolean livesInHostel;
+    String livesInHostel;
 
     //userType may be of student-type,teacher-type,parent-type
      String userType;
@@ -161,14 +161,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 {
                     //lives in hostel
 
-                    livesInHostel =true;
+                    livesInHostel ="yes";
 
 
                 }
                 else
                 {
                     //doesn't live in hostel
-                    livesInHostel=false;
+                    livesInHostel="no";
 
                 }
 
@@ -216,6 +216,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 params.put("reg_id",regId);
                 params.put("username",uname);
                 params.put("password",pass);
+                params.put("branch",mBranch);
+                params.put("hostel",livesInHostel);
                 return requestHandler.sendPostRequest(URLs.URL_REGISTER,params);
             }
 
@@ -237,7 +239,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     {
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
-                        UserModel user = new UserModel(userJson.getString("reg_id"),userJson.getString("username"));
+                        UserModel user = new UserModel(userJson.getString("reg_id"),userJson.getString("username"),userJson.getString("branch"),userJson.getString("hostel"));
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         finish();
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));

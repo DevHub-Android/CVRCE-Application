@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.android.devhub.use.cvrceapplication.models.UserModel;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView regId,uname;
+    TextView regId,uname,branch,hostel;
     Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +24,14 @@ public class ProfileActivity extends AppCompatActivity {
         }
         regId = findViewById(R.id.reg);
         uname = findViewById(R.id.uname);
+        branch=findViewById(R.id.branch);
+        hostel=findViewById(R.id.hostel);
         logout = findViewById(R.id.logout);
         UserModel user = SharedPrefManager.getInstance(this).getUser();
         regId.setText("REGISTRATION ID : "+String.valueOf(user.getRegid()));
         uname.setText("USERNAME : "+String.valueOf(user.getUsername()));
+        branch.setText("BRANCH : "+String.valueOf(user.getBranch()));
+        hostel.setText("HOSTEL : "+String.valueOf(user.getHostel()));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
