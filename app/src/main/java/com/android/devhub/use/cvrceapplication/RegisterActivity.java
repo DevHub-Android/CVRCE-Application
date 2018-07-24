@@ -206,7 +206,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             editcnfPass.requestFocus();
             return;
 
-        }
+        }//
         class RegistetUser extends AsyncTask<Void,Void,String>{
 
             @Override
