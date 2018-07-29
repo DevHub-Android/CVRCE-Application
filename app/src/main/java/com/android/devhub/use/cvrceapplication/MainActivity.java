@@ -1,6 +1,8 @@
 package com.android.devhub.use.cvrceapplication;
 
 import android.app.ProgressDialog;
+import android.app.VoiceInteractor;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.models.UserModel;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
@@ -24,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     TextView register;
     ProgressDialog progressDialog;
+    Globals global;
+    static String serverAddress;
+    static RequestQueue myQueue;
+    JSONObject userComplains,hostelComplains,instiComplains,notificationData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.pass);
         login = (Button)findViewById(R.id.login);
         register = findViewById(R.id.register);
+
+        global = ((Globals) this.getApplication());
+
+        global.setServerAddress("http://192.168.43.226/cvrce");
+
+        serverAddress = global.getServerAddress();
+
+        myQueue = global.getVolleyQueue();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,9 +73,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void login(final String regid,final String pass){
+        final Context context = getApplicationContext();
+        final int duration = Toast.LENGTH_LONG;
         if(TextUtils.isEmpty(regId.getText())){
             regId.setError("Enter Registration ID");
             regId.requestFocus();
+
             return;
         }
         if(TextUtils.isEmpty(password.getText()))
@@ -91,12 +115,87 @@ public class MainActivity extends AppCompatActivity {
                         );
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         finish();
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+
+                        String url_notification = serverAddress.concat("/public/notifications.php");
+                        String url_user_complaints = serverAddress.concat("/public/user_complaints.php");
+                        String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php");
+                        String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php");
+
+                        final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                instiComplains = response;
+                                successCallback();
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
+
+
+
+                        final JsonObjectRequest request3 = new JsonObjectRequest(Request.Method.GET,url_hostel_complaints,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                hostelComplains = response;
+                                myQueue.add(request4 );
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
+
+
+                        final JsonObjectRequest request2 = new JsonObjectRequest(Request.Method.GET,url_user_complaints,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                userComplains = response;
+                                myQueue.add(request3 );
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
+
+                        final JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,url_notification,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                notificationData = response;
+                                myQueue.add(request2);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
+                        myQueue.add(request1);
+
+
                     }
                 }catch (Exception e)
                 {
                     e.printStackTrace();
                 }
+
             }
 
             @Override
@@ -108,5 +207,22 @@ public class MainActivity extends AppCompatActivity {
         }
         UserLogin ul = new UserLogin();
         ul.execute();
+    }
+    public void successCallback() {
+        Intent intent = new Intent(this,HomeActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("NotificationList", notificationData.toString());
+        bundle.putString("UserComplains",userComplains.toString());
+        bundle.putString("HostelComplains",hostelComplains.toString());
+        bundle.putString("InstiComplains",instiComplains.toString());
+
+
+        //hide progressBar here
+        progressDialog.hide();
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+        finish();
+
     }
 }

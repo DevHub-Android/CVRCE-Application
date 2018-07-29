@@ -5,7 +5,7 @@ package com.android.devhub.use.cvrceapplication;
  */
 
 public class URLs {
-    public static final String ROOT_URL = "http://172.29.12.249:82/www/api.php?apicall=";
+    public static final String ROOT_URL = "http://192.168.43.226:8080/cvrce/api.php?apicall=";
     public static final String URL_REGISTER=ROOT_URL+"signup";
     public  static final String URL_LOGIN=ROOT_URL+"login";
 }
