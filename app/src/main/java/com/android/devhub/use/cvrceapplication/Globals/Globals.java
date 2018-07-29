@@ -5,9 +5,7 @@ import android.app.Application;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-/**
- * Created by hd on 27/3/16.
- */
+
 public class Globals extends Application {
 
     private String serverAddress;

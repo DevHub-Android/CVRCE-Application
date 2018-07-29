@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -36,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     static String serverAddress;
     static RequestQueue myQueue;
     JSONObject userComplains,hostelComplains,instiComplains,notificationData;
+    String first_name;
+    String last_name;
+    String hostel;
+    String email;
+    int usertype;
+    static boolean proceed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         login = (Button)findViewById(R.id.login);
         register = findViewById(R.id.register);
 
-        global = ((Globals) this.getApplication());
+        global = (Globals)this.getApplication();
 
-        global.setServerAddress("http://192.168.43.226/cvrce");
+        global.setServerAddress("http://192.168.43.226:8080/cvrce");
 
         serverAddress = global.getServerAddress();
 
@@ -116,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         finish();
 
+
+                        String url_login = serverAddress.concat("/public/login.php?userid=");
+                        url_login = url_login.concat(regid).concat("&password=").concat(pass);
                         String url_notification = serverAddress.concat("/public/notifications.php");
                         String url_user_complaints = serverAddress.concat("/public/user_complaints.php");
                         String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php");
@@ -131,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -149,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -162,11 +173,13 @@ public class MainActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 userComplains = response;
                                 myQueue.add(request3 );
+
+
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                Toast toast = Toast.makeText(context, "user Error", duration);
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -176,18 +189,66 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onResponse(JSONObject response) {
+
                                 notificationData = response;
                                 myQueue.add(request2);
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, "Network Error", duration);
+                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
                                 progressDialog.hide();
                                 toast.show();
                             }
                         }) ;
-                        myQueue.add(request1);
+
+                        JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_login,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                try {
+                                    proceed = true;
+                                    if(!proceed){
+                                        Toast toast = Toast.makeText(context, "Invalid Username or Password", duration);
+                                        progressDialog.hide();
+                                        toast.show();
+                                    }
+                                    else if(proceed){
+                                        JSONObject details;
+                                        //Get the user details from the server response
+                                        details = response.getJSONObject("users");
+                                        first_name = details.getString("first_name");
+                                        last_name = details.getString("last_name");
+                                        email = details.getString("email");
+//                                        usertype = details.getInt("usertype");
+//                                        hostel = details.getString("hostel");
+                                        //After getting the user details, set the global variables in app for this session
+                                        global.setName(first_name.concat(" ").concat(last_name));
+                                        global.setEmail(email);
+                                        global.setHostel("boys");
+                                        global.setUser_type(1);
+                                        global.setIs_loggedin(true);
+                                        Log.d("hello", "onResponse: " + details);
+                                        //add the next request in the queue
+                                        myQueue.add(request1);
+
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, "login details Error", duration);
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
+                        //Add the first request in the queue
+                        myQueue.add(request0);
 
 
                     }
