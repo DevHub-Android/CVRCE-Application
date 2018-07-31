@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
             notificationData = new JSONObject(intent.getStringExtra("NotificationList"));
         }
         catch (JSONException e){
-
+            Toast.makeText(global, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

@@ -50,6 +50,7 @@ public class Adapter_Notifications extends RecyclerView.Adapter<Adapter_Notifica
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.d("size", "Adapter_Notifications: " + ndata1.length());
         notificationsData = Data_Model_Notifications.fromJson(ndata1);
         context = c;
         global = ((Globals) a.getApplication());

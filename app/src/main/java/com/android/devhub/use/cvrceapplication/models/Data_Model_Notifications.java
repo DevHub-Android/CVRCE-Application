@@ -1,5 +1,7 @@
 package com.android.devhub.use.cvrceapplication.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,9 +35,11 @@ public class Data_Model_Notifications {
 
 
     public Data_Model_Notifications(JSONObject object) {
-
+        Log.d("Laudu", "Data_Model_Notifications: " + "Fuck that shit");
 
         try {
+//            JSONObject object;
+//            object = notify.getJSONObject("notifications");
             String created = object.getString("created_at");
             String description = object.getString("description");
             String complaint_id = object.getString("complaint_id");
@@ -43,8 +47,8 @@ public class Data_Model_Notifications {
             String title = object.getString("title");
             int is_seen = object.getInt("is_seen");
             Document doc = Jsoup.parse(description);
-            org.jsoup.select.Elements links = doc.select("a");
-            String name = links.get(0).text();
+//            org.jsoup.select.Elements links = doc.select("a");
+            String name = "Aakash Kumar";
             this.postedBy = name;
             this.description = doc.text();
             this.created_at = created;
@@ -63,6 +67,7 @@ public class Data_Model_Notifications {
     public static ArrayList<Data_Model_Notifications> fromJson(JSONArray jsonObjects) {
 
         ArrayList<Data_Model_Notifications> gradesData = new ArrayList<>();
+        Log.d("bhenchod", "fromJson: " + jsonObjects.length());
         for (int i = 0; i < jsonObjects.length(); i++) {
             try {
                 gradesData.add(new Data_Model_Notifications(jsonObjects.getJSONObject(jsonObjects.length()-i-1)));
