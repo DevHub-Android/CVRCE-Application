@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String last_name;
     String hostel;
     String email;
+    String reg_id;
     int usertype;
     static boolean proceed;
 
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onResponse(JSONObject response) {
+
                                 userComplains = response;
                                 myQueue.add(request3 );
 
@@ -179,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, "user Error", duration);
+                                Toast toast = Toast.makeText(context, error.getMessage() , duration);
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -221,6 +223,8 @@ public class MainActivity extends AppCompatActivity {
                                         first_name = details.getString("first_name");
                                         last_name = details.getString("last_name");
                                         email = details.getString("email");
+//                                        reg_id = details.getString("REGID");
+//                                        Toast.makeText(context, reg_id, Toast.LENGTH_LONG).show();
 //                                        usertype = details.getInt("usertype");
 //                                        hostel = details.getString("hostel");
                                         //After getting the user details, set the global variables in app for this session

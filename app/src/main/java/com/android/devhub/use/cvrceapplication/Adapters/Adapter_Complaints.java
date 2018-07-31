@@ -52,8 +52,10 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         JSONArray object1 = null;
         JSONArray object2 = null;
         try {
-            object1 = ndata.getJSONArray("complaints");
-            object2 = ndata.getJSONArray("users");
+            Log.d("this fucking shit", "Adapter_Complaints: " + ndata.getJSONObject("root").getJSONArray("complaints"));
+            Log.d("this fucking bullshit", "Adapter_Complaints: " + ndata.getJSONObject("root").getJSONArray("users"));
+            object1 = ndata.getJSONObject("root").getJSONArray("complaints");
+            object2 = ndata.getJSONObject("root").getJSONArray("users");
 
         }catch (JSONException e) {
             e.printStackTrace();
@@ -155,7 +157,6 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                             //holder.upvote.setClickable(false);
 
                             String url_upvote = serverAddress.concat("/complaint/up_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
-
                             JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_upvote,null, new Response.Listener<JSONObject>() {
 
                                 @Override
