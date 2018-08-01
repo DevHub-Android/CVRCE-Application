@@ -59,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         global = (Globals)this.getApplication();
 
+<<<<<<< HEAD
         global.setServerAddress("http://192.168.43.62:82/www");
+=======
+        global.setServerAddress("http://192.168.43.226:8080/cvrce");
+>>>>>>> bdc51a75611d8487f9ad4dde0491efd5e26f8c47
 
         serverAddress = global.getServerAddress();
 

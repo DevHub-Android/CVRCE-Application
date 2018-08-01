@@ -118,7 +118,7 @@ public class Adapter_Notifications extends RecyclerView.Adapter<Adapter_Notifica
                 item.is_seen = 1;
                 holder.isseen.setChecked(true);
                 int notification_id = Integer.parseInt(item.notification_id);
-                String url_upvote = serverAddress.concat("/default/is_seen.json?notification_id=").concat(String.valueOf(notification_id));
+                String url_upvote = serverAddress.concat("/public/is_seen.php?notification_id=").concat(String.valueOf(notification_id));
                 Log.i("haggax",url_upvote);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_upvote, null, new Response.Listener<JSONObject>() {
 
@@ -147,7 +147,7 @@ public class Adapter_Notifications extends RecyclerView.Adapter<Adapter_Notifica
             public void onClick(final View v) {
 
                 Log.i("haggaxx","getting here3");
-                String url_complaints_detail = serverAddress.concat("/complaint/complaint_data.json?complaint_id=").
+                String url_complaints_detail = serverAddress.concat("/complaint/complaint_data.php?complaint_id=").
                         concat(String.valueOf(complaint_id));
 
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_complaints_detail,
