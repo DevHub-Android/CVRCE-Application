@@ -32,7 +32,7 @@ public class ComplaintsActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     JSONObject complaintDetails;
-    String  postedBy, createdAt, upvote, downvote,title,description,id;
+    String  postedBy, createdAt, upvote, downvote,title,description,id,user_id;
     Globals global;
     static String serverAddress;
     static RequestQueue myQueue;
@@ -53,6 +53,7 @@ public class ComplaintsActivity extends AppCompatActivity {
             Log.i("hagga","here1");
             complaintDetails = new JSONObject(intent.getStringExtra("complaint_details"));
             postedBy = intent.getStringExtra("postedBy");
+            user_id = intent.getStringExtra("user_id");
             title = intent.getStringExtra("title");
             createdAt = intent.getStringExtra("created_at");
             description =  intent.getStringExtra("description");
@@ -219,7 +220,9 @@ public class ComplaintsActivity extends AppCompatActivity {
         //TODO EDIT the send complaints url here
         //TODO ALso add the complaint in the view
         String url_add_comment = serverAddress.concat("/complaint/post_comment.php?complaint_id=").
-                concat(String.valueOf(id)).concat("&comment=").concat(inputText);
+                concat(String.valueOf(id)).concat("&comment=").concat(inputText)
+                .concat("&user_id=")
+                .concat(user_id);
         url_add_comment = url_add_comment.replaceAll("\\s+","%20");
 
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_add_comment,null, new Response.Listener<JSONObject>() {

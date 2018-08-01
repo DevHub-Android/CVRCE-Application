@@ -271,6 +271,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                         bundle.putString("complaint_details", complaint_details.toString());
                         bundle.putString("title",item.title);
                         bundle.putString("postedBy",item.name);
+                        bundle.putString("user_id",item.reg_id);
                         bundle.putString("created_at",item.date);
                         bundle.putString("description",item.description);
                         bundle.putString("upvote", String.valueOf(item.up_vote));
