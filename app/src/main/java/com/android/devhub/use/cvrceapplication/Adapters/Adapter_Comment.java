@@ -2,10 +2,12 @@ package com.android.devhub.use.cvrceapplication.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.models.Data_Model_Comment;
@@ -20,7 +22,11 @@ public class Adapter_Comment extends RecyclerView.Adapter<Adapter_Comment.ViewHo
     Context context;
 
     public Adapter_Comment(JSONObject ndata) {
-        CommentsData = Data_Model_Comment.fromJson(ndata);
+        try {
+            CommentsData = Data_Model_Comment.fromJson(ndata.getJSONObject("root"));
+        }catch(Exception e){
+            Log.d("comment_error", "Adapter_Comment: " + e.getMessage());
+        }
     }
 
 

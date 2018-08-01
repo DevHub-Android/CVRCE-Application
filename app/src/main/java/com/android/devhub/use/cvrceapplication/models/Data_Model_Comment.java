@@ -45,10 +45,9 @@ public class Data_Model_Comment {
         ArrayList<Data_Model_Comment> gradesData = new ArrayList<Data_Model_Comment>();
         JSONArray object1 = null;
         JSONArray object2 = null;
-        JSONArray object3 = null;
         try {
             object1 = jsonObjects.getJSONArray("comments");
-            object2 = jsonObjects.getJSONArray("comment_users");
+            object2 = jsonObjects.getJSONArray("users");
         } catch (JSONException e) {
             e.printStackTrace();
         }
