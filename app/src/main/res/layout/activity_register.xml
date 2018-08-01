@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.android.devhub.use.cvrceapplication.MainActivity"
     android:theme="@style/CustomAppTheme"
-    android:background="#375c73">
+    android:background="#375c73"
+    >
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
 
     <TextView
         android:layout_marginTop="5dp"
@@ -157,6 +162,39 @@
             android:drawableLeft="@drawable/icon_username"
             android:hint=" Username"
             android:inputType="text" />
+        <EditText
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:id="@+id/fname"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:textColorHint="@android:color/white"
+            android:background="@drawable/border_fields"
+            android:drawableLeft="@drawable/icon_username"
+            android:hint=" Firstname"
+            android:inputType="text" />
+        <EditText
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:id="@+id/lname"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:textColorHint="@android:color/white"
+            android:background="@drawable/border_fields"
+            android:drawableLeft="@drawable/icon_username"
+            android:hint=" Lastname"
+            android:inputType="text" />
+        <EditText
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:id="@+id/email"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:textColorHint="@android:color/white"
+            android:background="@drawable/border_fields"
+            android:drawableLeft="@drawable/icon_username"
+            android:hint=" Email"
+            android:inputType="textEmailAddress" />
 
           <EditText
             android:drawableLeft="@drawable/icon_password"
@@ -262,6 +300,5 @@
 
 
 
-
-
 </RelativeLayout>
+</ScrollView>

@@ -15,6 +15,9 @@ public class SharedPrefManager {
     private static  final String SHARED_PREF_NAME="cvrceapplicationref";
     private static final String KEY_USERNAME="keyuser";
     private static final String KEY_REGID="keyregid";
+    private static final String KEY_FIRSTNAME="keyfirstname";
+    private static final String KEY_LASTNAME="keylastname";
+    private static final String KEY_EMAIL="keyemail";
     private static final String KEY_BRANCH="keybranch";
     private static final String KEY_HOSTEL="keyhostel";
     private static SharedPrefManager mInstance;
@@ -34,6 +37,9 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_REGID,user.getRegid());
         editor.putString(KEY_USERNAME,user.getUsername());
+        editor.putString(KEY_FIRSTNAME,user.getFirst_name());
+        editor.putString(KEY_LASTNAME,user.getLast_name());
+        editor.putString(KEY_EMAIL,user.getEmail());
         editor.putString(KEY_BRANCH,user.getBranch());
         editor.putString(KEY_HOSTEL,user.getHostel());
         editor.apply();
@@ -48,6 +54,9 @@ public class SharedPrefManager {
         return new UserModel(
                 sharedPreferences.getString(KEY_REGID,null),
                 sharedPreferences.getString(KEY_USERNAME,null),
+                sharedPreferences.getString(KEY_FIRSTNAME,null),
+                sharedPreferences.getString(KEY_LASTNAME,null),
+                sharedPreferences.getString(KEY_EMAIL,null),
                 sharedPreferences.getString(KEY_BRANCH,null),
                 sharedPreferences.getString(KEY_HOSTEL,null)
         );

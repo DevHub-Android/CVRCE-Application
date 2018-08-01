@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +8,12 @@
     android:background="#375c73"
     android:theme="@style/CustomAppTheme">
 
-
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:isScrollContainer="true">
         <TextView
             android:layout_marginTop="55dp"
             android:textColor="#FFFAFAFA"
@@ -35,7 +34,7 @@
             android:layout_height="50dp"
             android:textColorHint="@android:color/white"
             android:background="@drawable/border_fields"
-            android:hint=" User/Regd  ID"
+            android:hint="Regd  ID"
             android:drawableLeft="@drawable/icon_uid"
             android:inputType="text" />
 
@@ -94,6 +93,5 @@
 
     </LinearLayout>
 
+</ScrollView>
 
-
-</RelativeLayout>

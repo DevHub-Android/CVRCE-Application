@@ -31,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText editregId,edituname,editpass,editcnfPass;
+    EditText editregId,edituname,editpass,editcnfPass,editfname,editlname,editemail;
     private ProgressDialog progressDialog;
     Button regBtn;
 
@@ -78,6 +78,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         editregId = (EditText)findViewById(R.id.regId);
         edituname = (EditText)findViewById(R.id.uname);
+        editfname = (EditText)findViewById(R.id.fname);
+        editlname = (EditText)findViewById(R.id.lname);
+        editemail = (EditText)findViewById(R.id.email);
         editpass = (EditText)findViewById(R.id.pass);
         editcnfPass = (EditText)findViewById(R.id.cnfpass);
         regBtn = (Button)findViewById(R.id.register);
@@ -176,13 +179,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
 
-                register(editregId.getText().toString(),edituname.getText().toString(),
+                register(editregId.getText().toString(),edituname.getText().toString(),editfname.getText().toString(),editlname.getText().toString(),editemail.getText().toString(),
                         editpass.getText().toString(),editcnfPass.getText().toString());
             }
         });
 
     }
-    public void register(final String regId, final String uname,final String pass, String cnfPass){
+    public void register(final String regId, final String uname, final String fname, final String lname, final String email , final String pass, String cnfPass){
        if(TextUtils.isEmpty(regId)){
         editregId.setError("Enter Registration ID");
         editregId.requestFocus();
@@ -215,6 +218,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 HashMap<String,String> params = new HashMap<>();
                 params.put("reg_id",regId);
                 params.put("username",uname);
+                params.put("firstname",fname);
+                params.put("lastname",lname);
+                params.put("email",email);
                 params.put("password",pass);
                 params.put("branch",mBranch);
                 params.put("hostel",livesInHostel);
@@ -239,7 +245,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     {
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
-                        UserModel user = new UserModel(userJson.getString("reg_id"),userJson.getString("username"),userJson.getString("branch"),userJson.getString("hostel"));
+                        UserModel user = new UserModel(userJson.getString("reg_id"),userJson.getString("username"),userJson.getString("first_name"),userJson.getString("last_name"),userJson.getString("email"),userJson.getString("branch"),userJson.getString("hostel"));
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         finish();
                         startActivity(new Intent(getApplicationContext(),ProfileActivity.class));

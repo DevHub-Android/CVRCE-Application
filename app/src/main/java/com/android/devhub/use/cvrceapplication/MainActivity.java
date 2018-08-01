@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         global = (Globals)this.getApplication();
 
-        global.setServerAddress("http://192.168.1.4/www");
+        global.setServerAddress("http://192.168.43.62:82/www");
 
         serverAddress = global.getServerAddress();
 
@@ -119,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
                         UserModel user = new UserModel(
                                 userJson.getString("reg_id"),
                                 userJson.getString("username"),
+                                userJson.getString("firstname"),
+                                userJson.getString("lastname"),
+                                userJson.getString("email"),
                                 userJson.getString("branch"),
                                 userJson.getString("hostel")
                         );
