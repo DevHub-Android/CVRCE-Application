@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.SectionsPagerAdapter;
@@ -52,9 +53,17 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         //Get the data from the intent
         Intent intent = getIntent();
+//        if(!SharedPrefManager.getInstance(this).isLoggedIn())
+//        {
+//            finish();
+//            Intent intentX = new Intent(this,MainActivity.class);
+//            startActivity(intentX);
+//        }
+
         try{
             userComplains = new JSONObject(intent.getStringExtra("UserComplains"));
             hostelComplains = new JSONObject(intent.getStringExtra("HostelComplains"));
@@ -62,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
             notificationData = new JSONObject(intent.getStringExtra("NotificationList"));
         }
         catch (JSONException e){
-            Toast.makeText(global, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(global, "here", Toast.LENGTH_SHORT).show();
         }
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -81,13 +90,28 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    public void logout_method(MenuItem item){
+        finish();
+        SharedPrefManager.getInstance(getApplicationContext()).logout();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
+    }
+    public void call_resolve(MenuItem item)
+    {
+
+    }
+    public void add_complaint(MenuItem item)
+    {
+        Intent intent = new Intent(HomeActivity.this,AddComplaint.class);
+        startActivity(intent);
+    }
+    //commit trying again
     //Click Listener for logout
 //    public void logout_method(MenuItem item) {
 //

@@ -1,9 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddComplaint">
+    tools:context="com.android.devhub.use.cvrceapplication.MainActivity"
+    android:theme="@style/CustomAppTheme"
+    android:background="#375c73">
 
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/entTittle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter Tittle"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/entDes"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Enter Description"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/typeOfComplaint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Type of Complaint"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <Spinner
+                android:id="@+id/type"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+
+                android:textColorHint="@color/white"
+                android:backgroundTint="@color/white"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Post To"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/postTo"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/radio_term1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student"
+                    android:checked="true"
+
+                    />
+                <RadioButton android:id="@+id/radio_term2"
+                    android:textColor="#FFFFFF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Faculty"
+                    android:tag="2"
+                    />
+
+            </RadioGroup>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <Button
+
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="30dp"
+                android:id="@+id/addComplaints"
+                android:layout_width="200dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:text="ADD COMPLAINT"
+                android:layout_height="45dp"
+                android:background="@drawable/button_background"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

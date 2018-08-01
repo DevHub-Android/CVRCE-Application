@@ -52,8 +52,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         JSONArray object1 = null;
         JSONArray object2 = null;
         try {
-            Log.d("this fucking shit", "Adapter_Complaints: " + ndata.getJSONObject("root").getJSONArray("complaints"));
-            Log.d("this fucking bullshit", "Adapter_Complaints: " + ndata.getJSONObject("root").getJSONArray("users"));
+
             object1 = ndata.getJSONObject("root").getJSONArray("complaints");
             object2 = ndata.getJSONObject("root").getJSONArray("users");
 
@@ -136,7 +135,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             @Override
             public void onClick(View v) {
 
-                String url_check_upvote = serverAddress.concat("/complaint/check_if_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
+                String url_check_upvote = serverAddress.concat("/public/check_if_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
                 JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,url_check_upvote,null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -156,7 +155,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                             holder.upvote.setText(upvote);
                             //holder.upvote.setClickable(false);
 
-                            String url_upvote = serverAddress.concat("/complaint/up_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
+                            String url_upvote = serverAddress.concat("/public/up_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
                             JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_upvote,null, new Response.Listener<JSONObject>() {
 
                                 @Override
@@ -194,7 +193,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         holder.downvote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url_check_upvote = serverAddress.concat("/complaint/check_if_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
+                String url_check_upvote = serverAddress.concat("/public/check_if_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
                 JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,url_check_upvote,null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -213,7 +212,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                             String downvote = String.valueOf(Integer.parseInt(holder.downvote.getText().toString()) + 1);
                             holder.downvote.setText(downvote);
                             //holder.downvote.setClickable(false);
-                            String url_downvote = serverAddress.concat("/complaint/down_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
+                            String url_downvote = serverAddress.concat("/public/down_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
 
                             JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_downvote,null, new Response.Listener<JSONObject>() {
 
@@ -254,7 +253,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             public void onClick(final View v) {
 
                 Log.i("haggaxx","getting here1");
-                String url_complaints_detail = serverAddress.concat("/complaint/complaint_data.php?complaint_id=").
+                String url_complaints_detail = serverAddress.concat("/public/complaint_data.php?complaint_id=").
                         concat(String.valueOf(complaint_id));
 
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_complaints_detail,
