@@ -257,7 +257,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             public void onClick(final View v) {
 
                 Log.i("haggaxx","getting here1");
-                String url_complaints_detail = serverAddress.concat("/public/complaint_data.php?complaint_id=").
+                String url_complaints_detail = serverAddress.concat("/public/comment_details.php?complaint_id=").
                         concat(String.valueOf(complaint_id));
 
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_complaints_detail,

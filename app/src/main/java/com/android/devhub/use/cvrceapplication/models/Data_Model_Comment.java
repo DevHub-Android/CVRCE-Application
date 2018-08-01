@@ -25,14 +25,14 @@ public class Data_Model_Comment {
 
 
 
-    public Data_Model_Comment(JSONObject object1, JSONObject object2, String times_readable) {
+    public Data_Model_Comment(JSONObject object1, JSONObject object2) {
         try {
             String name1 = object2.getString("first_name");
             this.posted_by = name1.concat(" ").concat(object2.getString("last_name"));
             this.description = object1.getString("description");
             this.date = object1.getString("created_at");
             this.email = object2.getString("email");
-            this.time_elapsed = times_readable;
+            this.time_elapsed = date;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -49,15 +49,13 @@ public class Data_Model_Comment {
         try {
             object1 = jsonObjects.getJSONArray("comments");
             object2 = jsonObjects.getJSONArray("comment_users");
-            object3 = jsonObjects.getJSONArray("times_readable");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         for (int i = 0; i < object1.length(); i++) {
             try {
                 gradesData.add(new Data_Model_Comment(object1.getJSONObject(object1.length()-i-1),
-                        object2.getJSONObject(object1.length()-i-1),
-                        object3.getString(object1.length()-i-1)));
+                        object2.getJSONObject(object1.length()-i-1)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
