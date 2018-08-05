@@ -1,6 +1,7 @@
 package com.android.devhub.use.cvrceapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class MentorActivity extends AppCompatActivity {
         global = (Globals)this.getApplication();
         serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
+        mentorId = "5678";
 
 
 
@@ -83,7 +85,7 @@ public class MentorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 studRegId = studentEditText.getText().toString();
-                mentorId = "5678";
+
                 addUrl = serverAddress.concat("/admin/addStudent.php").concat("?user_id=").concat(studRegId).concat("&mentor_id=").
                         concat(mentorId);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,addUrl, null, new Response.Listener<JSONObject>() {
@@ -116,6 +118,13 @@ public class MentorActivity extends AppCompatActivity {
     }
 
     private void showStudents(){
+        //String url_show_students = serverAddress.concat("/admin/showStudents.php").concat("?mentor_id=").concat(mentorId);
+                Intent intent = new Intent(MentorActivity.this,ShowStudentsActivity.class);
+                intent.putExtra("mentor_id",mentorId);
+                startActivity(intent);
+
+            }
+
 
     }
-}
+

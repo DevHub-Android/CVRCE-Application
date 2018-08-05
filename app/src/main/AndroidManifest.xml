@@ -14,13 +14,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/CustomAppTheme">
-
-        </activity>
+            android:theme="@style/CustomAppTheme"></activity>
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/CustomAppTheme" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -41,6 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ShowStudentsActivity"></activity>
     </application>
 
 </manifest>
