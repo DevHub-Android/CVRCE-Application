@@ -32,7 +32,8 @@
                 android:value="com.android.devhub.use.cvrceapplication.HomeActivity" />
         </activity>
         <activity android:name=".AddComplaint" />
-        <activity android:name=".MentorActivity">
+        <activity android:name=".MentorActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
