@@ -51,7 +51,7 @@ public class ShowStudentsActivity extends AppCompatActivity {
 
         //create an api call to the show the students
         urlShowStudents = serverAddress.concat("/admin/showStudents.php").concat("?mentor_id=").concat(mentor_id);
-        JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, urlShowStudents, null, new Response.Listener<JSONObject>() {
+        final JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, urlShowStudents, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -67,6 +67,10 @@ public class ShowStudentsActivity extends AppCompatActivity {
                 }catch(Exception e){
                     Log.d("Show students", "onResponse: " + e.getMessage());
                 }
+                Adapter_Show_Students myRecyclerViewAdaptar = new Adapter_Show_Students(ShowStudentsActivity.this,roots);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ShowStudentsActivity.this);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(myRecyclerViewAdaptar);
 
             }
         }, new Response.ErrorListener() {
@@ -79,10 +83,8 @@ public class ShowStudentsActivity extends AppCompatActivity {
         //Add the first request in the queue
         myQueue.add(request0);
 
-        Adapter_Show_Students myRecyclerViewAdaptar = new Adapter_Show_Students(ShowStudentsActivity.this,roots);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ShowStudentsActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(myRecyclerViewAdaptar);
+
+
 
 
 

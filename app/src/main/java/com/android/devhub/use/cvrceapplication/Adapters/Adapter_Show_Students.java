@@ -40,6 +40,7 @@ public class Adapter_Show_Students extends RecyclerView.Adapter<Adapter_Show_Stu
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         try {
+            Log.d("position", "onBindViewHolder: " + position);
             String first_name = objects.get(position).getString("first_name");
             String contact = objects.get(position).getString("contact");
             String registrationId = objects.get(position).getString("REGID");
