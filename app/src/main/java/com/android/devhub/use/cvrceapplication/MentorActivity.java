@@ -45,9 +45,7 @@ public class MentorActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private MentorSectionsPagerAdapter mSectionsPagerAdapter;
     ProgressDialog progressDialog;
-
     private JSONObject userComplains,hostelComplains,instiComplains;
-
     public JSONObject getUserComplains(){
         return userComplains;
     }
