@@ -34,7 +34,7 @@ public class MentorActivity extends AppCompatActivity {
     Context context;
     String serverAddress;
     String addUrl;
-
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,10 @@ public class MentorActivity extends AppCompatActivity {
         global = (Globals)this.getApplication();
         serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
-        mentorId = "5678";
+        mentorId = "578";
+               Bundle bundle = getIntent().getExtras();
+        mentorId = bundle.getString("empid");
+        name = bundle.getString("name");
 
 
 
@@ -88,6 +91,7 @@ public class MentorActivity extends AppCompatActivity {
 
                 addUrl = serverAddress.concat("/admin/addStudent.php").concat("?user_id=").concat(studRegId).concat("&mentor_id=").
                         concat(mentorId);
+                Log.e("Add Url",addUrl);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,addUrl, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -97,7 +101,7 @@ public class MentorActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "Student added Successfully", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(context, "error in this"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });

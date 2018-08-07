@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/CustomAppTheme"></activity>
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/CustomAppTheme" />
@@ -33,13 +33,16 @@
         </activity>
         <activity android:name=".AddComplaint" />
         <activity android:name=".MentorActivity">
+
+        </activity>
+        <activity android:name=".ShowStudentsActivity" />
+        <activity android:name=".MentorLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowStudentsActivity"></activity>
     </application>
 
 </manifest>
