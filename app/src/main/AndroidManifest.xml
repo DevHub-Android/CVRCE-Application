@@ -32,11 +32,16 @@
                 android:value="com.android.devhub.use.cvrceapplication.HomeActivity" />
         </activity>
         <activity android:name=".AddComplaint" />
+<<<<<<< HEAD
         <activity android:name=".MentorActivity">
 
         </activity>
         <activity android:name=".ShowStudentsActivity" />
         <activity android:name=".MentorLogin">
+=======
+        <activity android:name=".MentorActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+>>>>>>> 1123a466a6d28c69896676cccb9405517276a5e9
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
