@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Comment;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
+import com.android.devhub.use.cvrceapplication.models.UserModel;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -219,10 +220,11 @@ public class ComplaintsActivity extends AppCompatActivity {
 
         //TODO EDIT the send complaints url here
         //TODO ALso add the complaint in the view
+        UserModel user = SharedPrefManager.getInstance(this).getUser();
         String url_add_comment = serverAddress.concat("/complaint/post_comment.php?complaint_id=").
                 concat(String.valueOf(id)).concat("&comment=").concat(inputText)
                 .concat("&user_id=")
-                .concat(user_id);
+                .concat(user.getRegid());
         url_add_comment = url_add_comment.replaceAll("\\s+","%20");
 
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_add_comment,null, new Response.Listener<JSONObject>() {

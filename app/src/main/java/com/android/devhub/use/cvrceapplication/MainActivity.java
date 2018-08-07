@@ -30,6 +30,8 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     EditText password,regId;
     Button login;
     TextView register;
@@ -61,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //global.setServerAddress("http://192.168.43.62:82/www");
-       // global.setServerAddress("http://192.168.43.226:8080/cvrce");
+        global.setServerAddress("http://192.168.43.226:8080/cvrce");
+        //global.setServerAddress("http://172.29.8.72:8080/cvrce");
 
 
-        global.setServerAddress("http://172.29.8.90:8080/cvrce");
+        //global.setServerAddress("http://172.29.8.90:8080/cvrce");
 
 
         serverAddress = global.getServerAddress();
@@ -256,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, "login details Error", duration);
+                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
                                 progressDialog.hide();
                                 toast.show();
                             }
