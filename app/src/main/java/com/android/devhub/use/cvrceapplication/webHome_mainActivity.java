@@ -136,6 +136,9 @@ public class webHome_mainActivity extends AppCompatActivity
         }else if(id == R.id.Faculty_Login){
             Intent intent = new Intent(getApplicationContext(),MentorLogin.class);
             startActivity(intent);
+        }else if(id == R.id.admin_Login)
+        {
+            startActivity(new Intent(getApplicationContext(),EmployeeLogin.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

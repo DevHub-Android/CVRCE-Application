@@ -42,6 +42,7 @@ public class HostelAuthorityActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     JSONObject hostel_complaints_data;
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +68,18 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         position = bundle.getString("position");
         Log.e("INFO ABOUT EMPLOYEE :",Integer.toString(priority)+"/ "+domain+"/ "+position);
 
-
+         type = "";
         //Here we have to check the priority and type of faculty:
-        if(domain.equals("hostel")&&priority==1){
-            hostelSuccessCallBack();
+        if (domain.equals("self"))
+        {
+            type = "0";
+        }else if(domain.equals("hostel"))
+        {
+            type = "1";
+        }else {
+            type ="2";
         }
-
+        hostelSuccessCallBack();
 
 
 
@@ -114,8 +121,8 @@ public class HostelAuthorityActivity extends AppCompatActivity {
 
     private void hostelAuthorityCallback() {
         final String hostel_Url = serverAddress.concat("/admin/hostel_authority_complaints.php")
-                .concat("?priority=").concat(String.valueOf(priority));
-        Log.d("fetching data", "hostelAuthorityCallback: yo fetching data");
+                .concat("?priority=").concat(String.valueOf(priority)).concat("&type=").concat(type);
+        Log.e("here in hostel callback",hostel_Url);
         class FetchData extends AsyncTask<Void,Void,Void>{
 
             @Override

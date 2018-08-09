@@ -20,19 +20,6 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/cvrce_logo" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textColor="#353333"
-        android:text="Jitu Nayak"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#302e2e"
-        android:text="jitunayak715@gmail.com " />
 
 </LinearLayout>
