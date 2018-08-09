@@ -62,7 +62,7 @@ public class webHome_mainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-       // mTextMessage = (TextView) findViewById(R.id.message);
+        //mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -115,12 +115,12 @@ public class webHome_mainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.grievance_id) {
-            mTextMessage.setText("grievance_id");
-            Intent intent = new Intent(getApplicationContext(),Grievance_form.class);
-            startActivity(intent);
+           // mTextMessage.setText("grievance_id");
+//            Intent intent = new Intent(getApplicationContext(),Grievance_form.class);
+//            startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            mTextMessage.setText("nav_gallery");
+           // mTextMessage.setText("nav_gallery");
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -130,6 +130,12 @@ public class webHome_mainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if(id == R.id.student_login){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.Faculty_Login){
+            Intent intent = new Intent(getApplicationContext(),MentorLogin.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

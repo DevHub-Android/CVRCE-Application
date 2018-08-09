@@ -31,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    EditText editregId,edituname,editpass,editcnfPass,editfname,editlname,editemail;
+    EditText editregId,editpass,editcnfPass;
     private ProgressDialog progressDialog;
     Button regBtn;
 
@@ -65,70 +65,20 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         mSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-        studentFrameLayout = findViewById(R.id.studentFrameLayout);
-        teacherFrameLayout = findViewById(R.id.teacherFrameLayout);
-        parentFrameLayout = findViewById(R.id.parentFrameLayout);
 
-
-        studentImageView = findViewById(R.id.studentCircularImageView);
-        teacherImageView = findViewById(R.id.teacherCircularImageView);
-        parentImageView =findViewById(R.id.parentCircularImageView);
 
         linearLayout = findViewById(R.id.linearLayout);
 
         editregId = (EditText)findViewById(R.id.regId);
-        edituname = (EditText)findViewById(R.id.uname);
-        editfname = (EditText)findViewById(R.id.fname);
-        editlname = (EditText)findViewById(R.id.lname);
-        editemail = (EditText)findViewById(R.id.email);
+
         editpass = (EditText)findViewById(R.id.pass);
         editcnfPass = (EditText)findViewById(R.id.cnfpass);
         regBtn = (Button)findViewById(R.id.register);
 
 
-        studentImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                studentFrameLayout.setBackgroundResource(R.drawable.border_circular_image);
-                editregId.setHint("Registration ID");
 
-                teacherFrameLayout.setBackgroundResource(0);
-                parentFrameLayout.setBackgroundResource(0);
-                linearLayout.setVisibility(View.VISIBLE);
 
-                userType="student";
 
-            }
-        });
-
-        teacherImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                editregId.setHint("User ID");
-
-                teacherFrameLayout.setBackgroundResource(R.drawable.border_circular_image);
-                studentFrameLayout.setBackgroundResource(0);
-                parentFrameLayout.setBackgroundResource(0);
-                linearLayout.setVisibility(View.INVISIBLE);
-                userType="teacher";
-
-            }
-        });
-
-        parentImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                editregId.setHint("User ID");
-                parentFrameLayout.setBackgroundResource(R.drawable.border_circular_image);
-                teacherFrameLayout.setBackgroundResource(0);
-                studentFrameLayout.setBackgroundResource(0);
-                linearLayout.setVisibility(View.INVISIBLE);
-
-                userType="parent";
-            }
-        });
 
 
 
@@ -179,25 +129,20 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
 
-                register(editregId.getText().toString(),edituname.getText().toString(),editfname.getText().toString(),editlname.getText().toString(),editemail.getText().toString(),
+                register(editregId.getText().toString(),
                         editpass.getText().toString(),editcnfPass.getText().toString());
             }
         });
 
     }
-    public void register(final String regId, final String uname, final String fname, final String lname, final String email , final String pass, String cnfPass){
+    public void register(final String regId,final String pass, String cnfPass){
        if(TextUtils.isEmpty(regId)){
         editregId.setError("Enter Registration ID");
         editregId.requestFocus();
         return;
 
        }
-        if(TextUtils.isEmpty(uname)){
-            edituname.setError("Enter User name");
-            edituname.requestFocus();
-            return;
 
-        }
         if(TextUtils.isEmpty(pass)){
             editpass.setError("Enter Password");
             editpass.requestFocus();
@@ -209,6 +154,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             editcnfPass.requestFocus();
             return;
 
+        }if(!pass.equals(cnfPass)){
+            editcnfPass.setError("Password Doesn't Match");
+            editcnfPass.requestFocus();
+            return;
         }//
         class RegistetUser extends AsyncTask<Void,Void,String>{
 
@@ -217,10 +166,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 RequestHandler requestHandler = new RequestHandler();
                 HashMap<String,String> params = new HashMap<>();
                 params.put("reg_id",regId);
-                params.put("username",uname);
-                params.put("firstname",fname);
-                params.put("lastname",lname);
-                params.put("email",email);
                 params.put("password",pass);
                 params.put("branch",mBranch);
                 params.put("hostel",livesInHostel);

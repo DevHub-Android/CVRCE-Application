@@ -42,9 +42,9 @@ public class MentorActivity extends AppCompatActivity {
     Context context;
     String serverAddress;
     String addUrl;
-<<<<<<< HEAD
+
     String name;
-=======
+
     private ViewPager mViewPager;
     private MentorSectionsPagerAdapter mSectionsPagerAdapter;
     ProgressDialog progressDialog;
@@ -62,7 +62,7 @@ public class MentorActivity extends AppCompatActivity {
     }
 
 
->>>>>>> 1123a466a6d28c69896676cccb9405517276a5e9
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +75,15 @@ public class MentorActivity extends AppCompatActivity {
         global = (Globals)this.getApplication();
         serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
-<<<<<<< HEAD
+
         mentorId = "578";
                Bundle bundle = getIntent().getExtras();
         mentorId = bundle.getString("empid");
         name = bundle.getString("name");
-=======
-        mentorId = "5678";
+
+       // mentorId = "5678";
         progressDialog = new ProgressDialog(this);
->>>>>>> 1123a466a6d28c69896676cccb9405517276a5e9
+
 
         successCallback();
     }
@@ -175,8 +175,8 @@ public class MentorActivity extends AppCompatActivity {
                        progressDialog.dismiss();
                        Log.d("inside", "successCallback: " + "inside the method");
                        String url_user_complaints = serverAddress.concat("/public/mentor_individual_complaints.php").concat("?mentor_id=").concat(mentorId);
-                       String url_hostel_complaints = serverAddress.concat("/public/mentor_hostel_complaints.php").concat("?mentor_id=").concat(mentorId);;
-                       String url_insti_complaints = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(mentorId);;
+                       String url_hostel_complaints = serverAddress.concat("/public/mentor_hostel_complaints.php").concat("?mentor_id=").concat(mentorId);
+                       String url_insti_complaints = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(mentorId);
 
                        final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
 

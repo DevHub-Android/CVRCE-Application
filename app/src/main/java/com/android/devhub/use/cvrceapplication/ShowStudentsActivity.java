@@ -154,11 +154,6 @@ public class ShowStudentsActivity extends AppCompatActivity {
         showStudent ss = new showStudent();
         ss.execute();
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 1123a466a6d28c69896676cccb9405517276a5e9
 
 
 
