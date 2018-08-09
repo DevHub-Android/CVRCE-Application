@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
+import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints_Authority;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -157,7 +158,7 @@ public class HostelAuthorityActivity extends AppCompatActivity {
 
         Activity activity = (HostelAuthorityActivity)context;
 
-        mAdapter = new Adapter_Complaints(hostel_complaints_data,activity,context);
+        mAdapter = new Adapter_Complaints_Authority(hostel_complaints_data,activity,context,"authority");
         //Log.i("hagga", complaints_data.toString());
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);

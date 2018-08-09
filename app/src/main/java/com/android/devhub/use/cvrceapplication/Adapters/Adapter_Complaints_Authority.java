@@ -3,6 +3,7 @@ package com.android.devhub.use.cvrceapplication.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -32,8 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-
-public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.ViewHolder>{
+public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_Complaints_Authority.ViewHolder>{
 
 
     static String serverAddress;
@@ -41,14 +41,17 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
     final int duration = Toast.LENGTH_LONG;
     Globals global;
     Context context;
+    String is_seen_domain;
     //we pass the complaints_data to the next activity
     JSONObject complaint_details;
     Activity parent;
+    public static final String my_pref = "CHECKED_DATA";
+    public static final String CHECKED_KEY = "is_checked";
 
     private ArrayList<Data_Model_Complaints> ComplaintsData ;
 
 
-    public Adapter_Complaints(JSONObject ndata, Activity a, Context c) {
+    public Adapter_Complaints_Authority(JSONObject ndata, Activity a, Context c,String domain) {
 
         JSONArray object1 = null;
         JSONArray object2 = null;
@@ -64,6 +67,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
 
         context = c;
         parent = a;
+        is_seen_domain = domain;
         global = ((Globals) a.getApplication());
         serverAddress = global.getServerAddress();
         myQueue = global.getVolleyQueue();
@@ -79,7 +83,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         public TextView description;
         public TextView postedBy;
         public TextView createdAt;
-        public CheckBox reslovedCheckBox;
+        public TextView registrationNumaber;
+        public CheckBox is_seen;
         public ViewHolder(final View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.complaint_title);
@@ -87,88 +92,120 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             postedBy = (TextView) v.findViewById(R.id.complaint_posted_by);
             createdAt = (TextView) v.findViewById(R.id.complaint_created_at);
             cardView = (CardView) v.findViewById(R.id.complaint_card_view);
-            reslovedCheckBox = (CheckBox)v.findViewById(R.id.is_reslove_box);
+            registrationNumaber = (TextView)v.findViewById(R.id.reg_no);
+            is_seen = (CheckBox)v.findViewById(R.id.is_seen_checkbox);
         }
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public Adapter_Complaints.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public Adapter_Complaints_Authority.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.element_complaints, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+                .inflate(R.layout.element_complaints_faculty, parent, false);
+        Adapter_Complaints_Authority.ViewHolder vh = new Adapter_Complaints_Authority.ViewHolder(v);
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final Adapter_Complaints_Authority.ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final Data_Model_Complaints item =  ComplaintsData.get(position);
         String a = "At: "+item.date;
         String b = "By: "+item.name;
-        String c = String.valueOf(item.up_vote);
-        String d = String.valueOf(item.down_vote);
+        String registration = "Regid: " + item.reg_id;
         holder.title.setText(item.title);
         holder.createdAt.setText(a);
         holder.postedBy.setText(b);
         holder.description.setText(item.description);
+        holder.registrationNumaber.setText(registration);
         int is_resolved = item.isresolved;
         final int complaint_id = item.complaint_id;
 
-        if(is_resolved==1) {
-            holder.reslovedCheckBox.setChecked(true);
-        }
-        else if(is_resolved==0){
-            holder.reslovedCheckBox.setChecked(false);
-        }
+        if(is_seen_domain.equals("mentor")){
+            int is_seen = item.mentor_seen;
 
-
-
-        holder.reslovedCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                item.isresolved = 1;
-                holder.reslovedCheckBox.setChecked(true);
-                int complains_id = complaint_id;
-                String title = item.title;
-                String created_at = item.date;
-                int priority = item.priority;
-                String description = item.description;
-                String url_upvote = serverAddress.concat("/public/is_resolved.php?complaint_id=").concat(String.valueOf(complains_id))
-                        .concat("&description=")
-                        .concat(description)
-                        .concat("&title=")
-                        .concat(title)
-                        .concat("&created_at=")
-                        .concat(created_at)
-                        .concat("&priority=")
-                        .concat(String.valueOf(priority));
-
-                url_upvote = url_upvote.replaceAll("\\s+","%20");
-                Log.i("haggax",url_upvote);
-                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_upvote, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i("hagga3", "response");
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "Network Error", duration);
-                        toast.show();
-                    }
-                });
-                //Add the first request in the queue
-                myQueue.add(request0);
-
+            if(is_seen==1) {
+                holder.is_seen.setChecked(true);
+            }
+            else if(is_seen==0){
+                holder.is_seen.setChecked(false);
             }
 
-        });
+            holder.is_seen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.mentor_seen = 1;
+                    holder.is_seen.setChecked(true);
+                    int complains_id = complaint_id;
+                    String url_upvote = serverAddress.concat("/public/is_seen_mentor.php?complaint_id=").concat(String.valueOf(complains_id));
+                    Log.i("haggax",url_upvote);
+                    JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_upvote, null, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("hagga3", "response");
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast toast = Toast.makeText(context, "Network Error", duration);
+                            toast.show();
+                        }
+                    });
+                    //Add the first request in the queue
+                    myQueue.add(request0);
+
+                }
+
+            });
+        }else{
+            SharedPreferences myPreferences = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE);
+            String is_checked = myPreferences.getString(CHECKED_KEY,null);
+            if(is_checked!=null){
+                holder.is_seen.setChecked(true);
+            }else if(is_checked==null){
+                holder.is_seen.setChecked(false);
+            }
+
+            holder.is_seen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    item.mentor_seen = 1;
+                    holder.is_seen.setChecked(true);
+                    final int complains_id = complaint_id;
+                    String url_upvote = serverAddress.concat("/public/position_seen.php?complaint_id=").concat(String.valueOf(complains_id))
+                            .concat("&priority=")
+                            .concat(String.valueOf(item.priority));
+                    Log.i("haggax",url_upvote);
+                    JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_upvote, null, new Response.Listener<JSONObject>() {
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.i("hagga3", "response");
+                            SharedPreferences.Editor editor = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE).edit();
+                            editor.putString(CHECKED_KEY,"Not Null");
+                            editor.apply();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast toast = Toast.makeText(context, "Network Error", duration);
+                            toast.show();
+                        }
+                    });
+                    //Add the first request in the queue
+                    myQueue.add(request0);
+
+                }
+
+            });
+
+
+        }
 
 
 

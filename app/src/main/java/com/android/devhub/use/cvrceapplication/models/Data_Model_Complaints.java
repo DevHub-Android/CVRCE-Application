@@ -24,6 +24,9 @@ public class Data_Model_Complaints {
     public String email;
     public String title;
     public String reg_id;
+    public int priority;
+    public int mentor_seen;
+    public String positon_seen;
 
     public Data_Model_Complaints(String description, int isresolved, int faculty_visibility, int
             student_visibility, int up_vote, int down_vote, int type, String date, String name,
@@ -54,6 +57,7 @@ public class Data_Model_Complaints {
             int upvote=object1.getInt("up_vote");
             int downvote=object1.getInt("down_vote");
             int type=object1.getInt("type");
+            int priority = object1.getInt("priority");
             String date= object1.getString("created_at");
             String description = object1.getString("description");
             String name1 = object2.getString("first_name");
@@ -61,6 +65,8 @@ public class Data_Model_Complaints {
             String email = object2.getString("email");
             String reg_id = object2.getString("REGID");
             this.title = object1.getString("title");
+            int mentorSeen = object1.getInt("mentor_seen");
+            String positionSeen = object1.getString("position_seen");
             this.complaint_id = complaint_id1;
             this.isresolved = isresolved1;
             this.faculty_visibility = faculty_visibility1;
@@ -73,6 +79,9 @@ public class Data_Model_Complaints {
             this.name = name;
             this.email = email;
             this.reg_id = reg_id;
+            this.priority = priority;
+            this.mentor_seen = mentorSeen;
+            this.positon_seen = positionSeen;
 
 
         } catch (JSONException e) {
