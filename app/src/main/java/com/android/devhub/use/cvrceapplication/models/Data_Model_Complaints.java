@@ -90,7 +90,7 @@ public class Data_Model_Complaints {
         for (int i = 0; i <object1.length(); i++) {
             try {
                 Log.d("why", "fromJson: " + object1.getJSONObject(object1.length()-i-1));
-                Log.d("bhack bhosdike", "fromJson: " + object2.getJSONObject(object1.length()-i-1));
+                Log.d("XX", "fromJson: " + object2.getJSONObject(object1.length()-i-1));
                 gradesData.add(new Data_Model_Complaints(object1.getJSONObject(object1.length()-i-1),
                         object2.getJSONObject(object1.length()-i-1)));
             } catch (JSONException e) {
