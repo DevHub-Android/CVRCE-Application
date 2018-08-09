@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -52,15 +53,19 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)this.getApplication();
         myQueue = global.getVolleyQueue();
+
         context = this;
         recyclerView = (RecyclerView)findViewById(R.id.authorityRecyclerview);
         //change this to dynamic when required
         facultyId = "12345";
-        priority = 1;
-        domain = "hostel";
-        position = "warden";
-
-
+//        priority = 1;
+//        domain = "hostel";
+//        position = "warden";
+        Bundle bundle = getIntent().getExtras();
+        priority = bundle.getInt("priority");
+        domain = bundle.getString("domain");
+        position = bundle.getString("position");
+        Log.e("INFO ABOUT EMPLOYEE :",Integer.toString(priority)+"/ "+domain+"/ "+position);
 
 
         //Here we have to check the priority and type of faculty:
@@ -78,13 +83,17 @@ public class HostelAuthorityActivity extends AppCompatActivity {
     }
 
     public void checkStatus(){
-        String urlCheck = serverAddress.
-                concat("/admin/checkStatus.php");
-         JsonObjectRequest request2 = new JsonObjectRequest(Request.Method.GET,urlCheck,null, new Response.Listener<JSONObject>() {
+        String urlCheck = serverAddress.concat("/admin/checkStatus.php");
+        Log.e("URL",urlCheck);
+
+                JsonObjectRequest request2 = new JsonObjectRequest(Request.Method.GET,
+                        urlCheck,
+                        null,
+                        new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.d("response of check", "onResponse: " + response);
+                Log.e("response of check", "onResponse: " + response);
                 hostelAuthorityCallback();
 
 
@@ -92,12 +101,15 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast = Toast.makeText(context, error.getMessage() , Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(context, error.toString(), Toast.LENGTH_LONG);
                 toast.show();
             }
         }) ;
 
+        Log.e("URL3",urlCheck);
+
         myQueue.add(request2);
+        Log.e("URL2",urlCheck);
     }
 
     private void hostelAuthorityCallback() {
@@ -115,8 +127,9 @@ public class HostelAuthorityActivity extends AppCompatActivity {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 progressDialog.dismiss();
-
-                final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,hostel_Url,null, new Response.Listener<JSONObject>() {
+                Log.e("In :","Post execute");
+                final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,hostel_Url,
+                        null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
