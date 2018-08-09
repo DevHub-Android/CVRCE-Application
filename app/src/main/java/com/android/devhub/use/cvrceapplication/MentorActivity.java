@@ -42,6 +42,9 @@ public class MentorActivity extends AppCompatActivity {
     Context context;
     String serverAddress;
     String addUrl;
+
+    String name;
+
     private ViewPager mViewPager;
     private MentorSectionsPagerAdapter mSectionsPagerAdapter;
     ProgressDialog progressDialog;
@@ -58,6 +61,7 @@ public class MentorActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +73,15 @@ public class MentorActivity extends AppCompatActivity {
         global = (Globals)this.getApplication();
         serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
-        mentorId = "5678";
+
+        mentorId = "578";
+               Bundle bundle = getIntent().getExtras();
+        mentorId = bundle.getString("empid");
+        name = bundle.getString("name");
+
+       // mentorId = "5678";
         progressDialog = new ProgressDialog(this);
+
 
         successCallback();
     }
@@ -110,6 +121,7 @@ public class MentorActivity extends AppCompatActivity {
 
                 addUrl = serverAddress.concat("/admin/addStudent.php").concat("?user_id=").concat(studRegId).concat("&mentor_id=").
                         concat(mentorId);
+                Log.e("Add Url",addUrl);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,addUrl, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -119,7 +131,7 @@ public class MentorActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "Student added Successfully", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(context, "error in this"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
@@ -161,8 +173,8 @@ public class MentorActivity extends AppCompatActivity {
                        progressDialog.dismiss();
                        Log.d("inside", "successCallback: " + "inside the method");
                        String url_user_complaints = serverAddress.concat("/public/mentor_individual_complaints.php").concat("?mentor_id=").concat(mentorId);
-                       String url_hostel_complaints = serverAddress.concat("/public/mentor_hostel_complaints.php").concat("?mentor_id=").concat(mentorId);;
-                       String url_insti_complaints = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(mentorId);;
+                       String url_hostel_complaints = serverAddress.concat("/public/mentor_hostel_complaints.php").concat("?mentor_id=").concat(mentorId);
+                       String url_insti_complaints = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(mentorId);
 
                        final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
 

@@ -27,14 +27,14 @@
 
 
         <EditText
-            android:id="@+id/regId"
+            android:id="@+id/empId"
             android:layout_marginTop="120dp"
             android:padding="10dp"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:textColorHint="@android:color/white"
             android:background="@drawable/border_fields"
-            android:hint="Regd  ID"
+            android:hint="Employee ID"
             android:drawableLeft="@drawable/icon_uid"
             android:inputType="text" />
 
@@ -64,31 +64,6 @@
             android:layout_height="45dp"
             android:background="@drawable/button_background"/>
 
-       <LinearLayout
-           android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:layout_gravity="center_horizontal"
-            android:text="Don't have an account ? "
-            android:textStyle="italic"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_orange_dark"
-            android:layout_gravity="center_horizontal"
-            android:text="Register Here.."
-            android:textStyle="italic"
-            android:textSize="15sp"/>
-
-    </LinearLayout>
 
 
     </LinearLayout>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.android.devhub.use.cvrceapplication.MainActivity"
     android:theme="@style/CustomAppTheme"
-    android:background="#375c73"
+    android:background="@color/colorPrimary"
     >
   <RelativeLayout
       android:layout_width="wrap_content"
@@ -23,117 +23,11 @@
         android:layout_height="wrap_content"
         android:fontFamily="serif"/>
 
-    <TextView
+      <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="WHO YOU ARE ?"
-        android:textColor="#FF997CFF"
-        android:fontFamily="monospace"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/studentFrameLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/studentCircularImageView"
-                    android:layout_margin="10dp"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/student_circular_image"
-                    />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/studentTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center_horizontal"
-                android:text="STUDENT"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/teacherFrameLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/teacherCircularImageView"
-                    android:layout_margin="10dp"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/teacher_circular_image"
-                    />
-            </FrameLayout>
-            <TextView
-                android:id="@+id/teacherTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center_horizontal"
-                android:text="TEACHER"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/parentFrameLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/parentCircularImageView"
-                    android:layout_width="70dp"
-                    android:layout_margin="10dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/parent_circular_image"/>
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/parentTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center_horizontal"
-                android:text="PARENT"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="150dp"
+          android:layout_marginLeft="30dp"
         android:orientation="vertical"
         android:layout_centerHorizontal="true">
 
@@ -151,50 +45,6 @@
 
 
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:id="@+id/uname"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:textColorHint="@android:color/white"
-            android:background="@drawable/border_fields"
-            android:drawableLeft="@drawable/icon_username"
-            android:hint=" Username"
-            android:inputType="text" />
-        <EditText
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:id="@+id/fname"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:textColorHint="@android:color/white"
-            android:background="@drawable/border_fields"
-            android:drawableLeft="@drawable/icon_username"
-            android:hint=" Firstname"
-            android:inputType="text" />
-        <EditText
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:id="@+id/lname"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:textColorHint="@android:color/white"
-            android:background="@drawable/border_fields"
-            android:drawableLeft="@drawable/icon_username"
-            android:hint=" Lastname"
-            android:inputType="text" />
-        <EditText
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:id="@+id/email"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:textColorHint="@android:color/white"
-            android:background="@drawable/border_fields"
-            android:drawableLeft="@drawable/icon_username"
-            android:hint=" Email"
-            android:inputType="textEmailAddress" />
 
           <EditText
             android:drawableLeft="@drawable/icon_password"

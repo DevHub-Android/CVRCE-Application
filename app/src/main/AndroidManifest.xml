@@ -32,18 +32,25 @@
                 android:value="com.android.devhub.use.cvrceapplication.HomeActivity" />
         </activity>
         <activity android:name=".AddComplaint" />
+        <activity android:name=".ShowStudentsActivity" />
+        <activity android:name=".MentorLogin"></activity>
         <activity
             android:name=".MentorActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".webHome_mainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".ShowStudentsActivity" />
-        <activity android:name=".HostelAuthorityActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".HostelAuthorityActivity">
+
+        </activity>
+        <activity android:name=".EmployeeLogin">
+
         </activity>
     </application>
 
