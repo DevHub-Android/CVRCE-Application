@@ -131,7 +131,8 @@ public class MentorActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "error in this"+error.getMessage(), Toast.LENGTH_LONG);
+                        Log.e("MENTOR ADD STUDENTS",error.toString());
+                        Toast toast = Toast.makeText(context, "error in mentor add students"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
