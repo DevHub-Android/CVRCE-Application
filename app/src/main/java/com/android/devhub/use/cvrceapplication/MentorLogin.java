@@ -49,7 +49,7 @@ public class MentorLogin extends AppCompatActivity  {
                     protected String doInBackground(Void... voids) {
                         RequestHandler requestHandler = new RequestHandler();
                         HashMap<String,String> hashMap = new HashMap<>();
-                        hashMap.put("empid",empId.getText().toString());
+                        hashMap.put("reg_id",empId.getText().toString());
                         hashMap.put("password",password.getText().toString());
                         return requestHandler.sendPostRequest(URLs.URL_MENTOR_LOGIN,hashMap);
                         //return null;

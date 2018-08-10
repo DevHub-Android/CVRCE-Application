@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        global.setServerAddress("http://192.168.43.226:8080/cvrce");
+        global.setServerAddress("http://192.168.1.4/www");
         //global.setServerAddress("http://172.29.8.72:8080/cvrce");
 
 
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(s);
                     if(!jsonObject.getBoolean("error"))
                     {
+                        Toast.makeText(getApplicationContext(),"Comming Here!!",Toast.LENGTH_LONG).show();
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
                         UserModel user = new UserModel(
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                                 userJson.getString("hostel")
                         );
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                        finish();
+                       // finish();
 
 
                         String url_login = serverAddress.concat("/public/login.php?userid=");
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         String url_user_complaints = serverAddress.concat("/public/user_complaints.php");
                         String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php");
                         String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php");
-
+                        Log.e("URL_NOTIFY",url_login);
                         final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
 
                             @Override
@@ -156,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                                Log.e("request4",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -174,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                                Log.e("request3",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -194,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage() , duration);
+                                Log.e("request3",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -211,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                                Log.e("request1",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -259,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                                Log.e("request0",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }

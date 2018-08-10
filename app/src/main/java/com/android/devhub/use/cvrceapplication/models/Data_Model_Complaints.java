@@ -64,6 +64,7 @@ public class Data_Model_Complaints {
             String name = name1.concat(" ").concat(object2.getString("last_name"));
             String email = object2.getString("email");
             String reg_id = object2.getString("REGID");
+
             this.title = object1.getString("title");
             int mentorSeen = object1.getInt("mentor_seen");
             String positionSeen = object1.getString("position_seen");
@@ -98,8 +99,8 @@ public class Data_Model_Complaints {
 
         for (int i = 0; i <object1.length(); i++) {
             try {
-                Log.d("why", "fromJson: " + object1.getJSONObject(object1.length()-i-1));
-                Log.d("bhack bhosdike", "fromJson: " + object2.getJSONObject(object1.length()-i-1));
+                Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(object1.length()-i-1));
+                Log.e("Data Model OBJECT2", "fromJson: " + object2.getJSONObject(object1.length()-i-1));
                 gradesData.add(new Data_Model_Complaints(object1.getJSONObject(object1.length()-i-1),
                         object2.getJSONObject(object1.length()-i-1)));
             } catch (JSONException e) {

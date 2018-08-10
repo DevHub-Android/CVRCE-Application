@@ -74,11 +74,11 @@ public class MentorActivity extends AppCompatActivity {
         serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
 
-        mentorId = "578";
+      //  mentorId = "578";
                Bundle bundle = getIntent().getExtras();
         mentorId = bundle.getString("empid");
         name = bundle.getString("name");
-
+        Log.e("MENTOR ACTIVITY INFO",mentorId+" "+name);
        // mentorId = "5678";
         progressDialog = new ProgressDialog(this);
 
@@ -131,7 +131,8 @@ public class MentorActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "error in this"+error.getMessage(), Toast.LENGTH_LONG);
+                        Log.e("MENTOR ADD STUDENTS",error.toString());
+                        Toast toast = Toast.makeText(context, "error in mentor add students"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
@@ -181,7 +182,7 @@ public class MentorActivity extends AppCompatActivity {
                            @Override
                            public void onResponse(JSONObject response) {
                                instiComplains = response;
-                               Log.d("institute complaint", "onResponse: " + instiComplains);
+                               Log.e("institute complaint", "onResponse: " + instiComplains);
                                pagerAdapterCallback();
 
                            }
