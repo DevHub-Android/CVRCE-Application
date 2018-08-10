@@ -60,6 +60,7 @@ public class Data_Model_Complaints {
             String name = name1.concat(" ").concat(object2.getString("last_name"));
             String email = object2.getString("email");
             String reg_id = object2.getString("REGID");
+
             this.title = object1.getString("title");
             this.complaint_id = complaint_id1;
             this.isresolved = isresolved1;
