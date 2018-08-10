@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
+import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints_Authority;
 import com.android.devhub.use.cvrceapplication.HomeActivity;
 import com.android.devhub.use.cvrceapplication.MentorActivity;
 import com.android.devhub.use.cvrceapplication.R;
@@ -56,7 +57,7 @@ public class MentorFragmentHostel extends Fragment {
         MentorActivity activity = (MentorActivity) getActivity();
         Context context = (MentorActivity) getContext();
         complaints_data =  activity.getHostelComplains();
-        mAdapter = new Adapter_Complaints(complaints_data,activity,context);
+        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
         //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
