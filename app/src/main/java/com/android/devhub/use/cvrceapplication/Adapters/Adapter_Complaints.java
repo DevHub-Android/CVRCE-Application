@@ -80,6 +80,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         public TextView postedBy;
         public TextView createdAt;
         public CheckBox reslovedCheckBox;
+        public CheckBox mentor_seen_checkbox;
+        public TextView position_seen_textview;
         public ViewHolder(final View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.complaint_title);
@@ -88,6 +90,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             createdAt = (TextView) v.findViewById(R.id.complaint_created_at);
             cardView = (CardView) v.findViewById(R.id.complaint_card_view);
             reslovedCheckBox = (CheckBox)v.findViewById(R.id.is_reslove_box);
+            mentor_seen_checkbox = (CheckBox)v.findViewById(R.id.seen_mentor_box);
+            position_seen_textview = (TextView)v.findViewById(R.id.position_seen_textview);
         }
     }
 
@@ -117,6 +121,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         holder.postedBy.setText(b);
         holder.description.setText(item.description);
         int is_resolved = item.isresolved;
+        int is_seen_mentor = item.mentor_seen;
+        String position_seen = item.positon_seen;
         final int complaint_id = item.complaint_id;
 
         if(is_resolved==1) {
@@ -169,6 +175,20 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             }
 
         });
+
+        if(is_seen_mentor==1) {
+            holder.mentor_seen_checkbox.setChecked(true);
+        }
+        else if(is_seen_mentor==0){
+            holder.mentor_seen_checkbox.setChecked(false);
+            holder.mentor_seen_checkbox.setEnabled(false);
+        }
+
+        holder.position_seen_textview.setText("position: " + item.positon_seen);
+
+
+
+
 
 
 
