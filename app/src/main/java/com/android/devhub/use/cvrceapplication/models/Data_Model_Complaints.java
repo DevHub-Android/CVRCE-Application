@@ -97,7 +97,7 @@ public class Data_Model_Complaints {
 
         ArrayList<Data_Model_Complaints> gradesData = new ArrayList<>();
 
-        for (int i = 0; i <object1.length(); i++) {
+        for (int i = 0; i <object1.length()-1; i++) {
             try {
                 Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(object1.length()-i-1));
                 Log.e("Data Model OBJECT2", "fromJson: " + object2.getJSONObject(object1.length()-i-1));
