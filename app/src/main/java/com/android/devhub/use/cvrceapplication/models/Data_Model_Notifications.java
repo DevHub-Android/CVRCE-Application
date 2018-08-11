@@ -67,13 +67,17 @@ public class Data_Model_Notifications {
     public static ArrayList<Data_Model_Notifications> fromJson(JSONArray jsonObjects) {
 
         ArrayList<Data_Model_Notifications> gradesData = new ArrayList<>();
-        Log.d("bhenchod", "fromJson: " + jsonObjects.length());
-        for (int i = 0; i < jsonObjects.length(); i++) {
-            try {
-                gradesData.add(new Data_Model_Notifications(jsonObjects.getJSONObject(jsonObjects.length()-i-1)));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        if(jsonObjects!=null)
+        {
+            Log.d("bhenchod", "fromJson: " + jsonObjects.length());
+            for (int i = 0; i < jsonObjects.length(); i++) {
+                try {
+                    gradesData.add(new Data_Model_Notifications(jsonObjects.getJSONObject(jsonObjects.length()-i-1)));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
 
 

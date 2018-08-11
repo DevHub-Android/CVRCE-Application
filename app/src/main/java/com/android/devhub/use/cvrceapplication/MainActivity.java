@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request3",error.getMessage());
+                                Log.e("request3 hostel ",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast toast = Toast.makeText(context, error.getMessage() , duration);
-                                Log.e("request3",error.getMessage());
+                                Log.e("request2 user",error.getMessage());
                                 progressDialog.hide();
                                 toast.show();
                             }

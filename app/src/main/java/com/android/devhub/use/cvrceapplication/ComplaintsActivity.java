@@ -27,6 +27,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+
 public class ComplaintsActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
@@ -47,7 +49,7 @@ public class ComplaintsActivity extends AppCompatActivity {
         //Get data from the intent
         global = ((Globals) this.getApplication());
         myQueue = global.getVolleyQueue();
-        serverAddress = global.getServerAddress();
+        serverAddress = URLs.SERVER_ADDR;
 
         try{
 
@@ -240,6 +242,7 @@ public class ComplaintsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("ERROR IN POST COMMENT",error.toString());
                 Toast toast = Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_LONG);
                 toast.show();
             }

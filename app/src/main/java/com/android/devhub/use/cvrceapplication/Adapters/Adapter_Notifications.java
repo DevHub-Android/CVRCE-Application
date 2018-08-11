@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.android.devhub.use.cvrceapplication.ComplaintsActivity;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.R;
+import com.android.devhub.use.cvrceapplication.URLs;
 import com.android.devhub.use.cvrceapplication.models.Data_Model_Notifications;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -50,11 +51,11 @@ public class Adapter_Notifications extends RecyclerView.Adapter<Adapter_Notifica
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("size", "Adapter_Notifications: " + ndata1.length());
+       // Log.d("size", "Adapter_Notifications: " + ndata1.length());
         notificationsData = Data_Model_Notifications.fromJson(ndata1);
         context = c;
         global = ((Globals) a.getApplication());
-        serverAddress = global.getServerAddress();
+        serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
     }
 
