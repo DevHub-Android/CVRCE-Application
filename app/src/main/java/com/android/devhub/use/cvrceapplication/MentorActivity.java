@@ -102,10 +102,17 @@ public class MentorActivity extends AppCompatActivity {
             case R.id.students:
                 showStudents();
                 return true;
+            case R.id.resolvedComplaints:
+                showResolvedComplaints();
             default:
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private void showResolvedComplaints() {
+        Intent intent = new Intent(MentorActivity.this,MentorResolvedComplaintsActivity.class);
+        intent.putExtra("mentor_id",mentorId);
     }
 
     private void addStudent() {

@@ -14,10 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/CustomAppTheme" >
-
-        </activity>
-
+            android:theme="@style/CustomAppTheme"></activity>
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/CustomAppTheme" />
@@ -36,25 +33,37 @@
         </activity>
         <activity android:name=".AddComplaint" />
         <activity android:name=".ShowStudentsActivity" />
-        <activity android:name=".MentorLogin"></activity>
+        <activity android:name=".MentorLogin" />
         <activity
             android:name=".MentorActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".webHome_mainActivity"
+<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar">
+=======
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".HostelAuthorityActivity">
+
+        </activity>
+        <activity android:name=".EmployeeLogin"></activity>
+        <activity android:name=".MentorResolvedComplaintsActivity">
+>>>>>>> cc227693a62f93412e88e65b6e052a14022c0c24
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".HostelAuthorityActivity">
 
         </activity>
         <activity android:name=".EmployeeLogin">
 
         </activity>
+=======
+>>>>>>> cc227693a62f93412e88e65b6e052a14022c0c24
     </application>
 
 </manifest>

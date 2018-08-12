@@ -154,7 +154,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                         .concat(created_at)
                         .concat("&priority=")
                         .concat(String.valueOf(priority))
-                        .concat("&issued");
+                        .concat("&issued_by=")
+                        .concat(item.reg_id);
 
                 url_upvote = url_upvote.replaceAll("\\s+","%20");
                 Log.i("haggax",url_upvote);
@@ -227,7 +228,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "Network Error", duration);
+                        Toast toast = Toast.makeText(context,"Network Error", duration);
                         toast.show();
                     }
                 }) ;
