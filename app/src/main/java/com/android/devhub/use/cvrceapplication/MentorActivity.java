@@ -76,10 +76,10 @@ public class MentorActivity extends AppCompatActivity {
 
       //  mentorId = "578";
                Bundle bundle = getIntent().getExtras();
-        mentorId = bundle.getString("empid");
-        name = bundle.getString("name");
+        //mentorId = bundle.getString("empid");
+        //name = bundle.getString("name");
         Log.e("MENTOR ACTIVITY INFO",mentorId+" "+name);
-       // mentorId = "5678";
+        mentorId = "5678";
         progressDialog = new ProgressDialog(this);
 
 

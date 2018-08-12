@@ -59,15 +59,15 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         context = this;
         recyclerView = (RecyclerView)findViewById(R.id.authorityRecyclerview);
         //change this to dynamic when required
-        facultyId = "12345";
-//        priority = 1;
-//        domain = "hostel";
-//        position = "warden";
-        Bundle bundle = getIntent().getExtras();
-        priority = bundle.getInt("priority");
-        domain = bundle.getString("domain");
-        position = bundle.getString("position");
-        Log.e("INFO ABOUT EMPLOYEE :",Integer.toString(priority)+"/ "+domain+"/ "+position);
+        facultyId = "123333";
+        priority = 1;
+        domain = "hostel";
+        position = "warden";
+//        Bundle bundle = getIntent().getExtras();
+//        priority = bundle.getInt("priority");
+//        domain = bundle.getString("domain");
+//        position = bundle.getString("position");
+//        Log.e("INFO ABOUT EMPLOYEE :",Integer.toString(priority)+"/ "+domain+"/ "+position);
 
          type = "";
         //Here we have to check the priority and type of faculty:

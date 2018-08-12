@@ -152,7 +152,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                         .concat("&created_at=")
                         .concat(created_at)
                         .concat("&priority=")
-                        .concat(String.valueOf(priority));
+                        .concat(String.valueOf(priority))
+                        .concat("&issued");
 
                 url_upvote = url_upvote.replaceAll("\\s+","%20");
                 Log.i("haggax",url_upvote);
