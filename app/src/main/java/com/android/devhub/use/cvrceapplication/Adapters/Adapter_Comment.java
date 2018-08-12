@@ -72,7 +72,11 @@ public class Adapter_Comment extends RecyclerView.Adapter<Adapter_Comment.ViewHo
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return CommentsData.size();
+        if(CommentsData!=null)
+        {
+            return CommentsData.size();
+        }
+       return  0;
     }
 
 }

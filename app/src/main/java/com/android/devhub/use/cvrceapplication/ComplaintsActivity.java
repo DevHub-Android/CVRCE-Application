@@ -228,6 +228,7 @@ public class ComplaintsActivity extends AppCompatActivity {
                 .concat("&user_id=")
                 .concat(user.getRegid());
         url_add_comment = url_add_comment.replaceAll("\\s+","%20");
+        Log.e("@Complaint Activity 231",url_add_comment);
 
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_add_comment,null, new Response.Listener<JSONObject>() {
 
@@ -238,6 +239,7 @@ public class ComplaintsActivity extends AppCompatActivity {
                 mAdapter = new Adapter_Comment(complaintDetails);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -249,5 +251,11 @@ public class ComplaintsActivity extends AppCompatActivity {
         }) ;
         //Add the first request in the queue
         myQueue.add(request0);
+        restartActivity();
+    }
+    public void restartActivity(){
+        Intent mIntent = getIntent();
+        finish();
+        startActivity(mIntent);
     }
 }
