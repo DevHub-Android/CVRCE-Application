@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.devhub.use.cvrceapplication.ComplaintsActivity;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.R;
+import com.android.devhub.use.cvrceapplication.URLs;
 import com.android.devhub.use.cvrceapplication.models.Data_Model_Complaints;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -65,7 +66,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         context = c;
         parent = a;
         global = ((Globals) a.getApplication());
-        serverAddress = global.getServerAddress();
+        serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
 
 

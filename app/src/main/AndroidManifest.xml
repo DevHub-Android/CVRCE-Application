@@ -43,14 +43,14 @@
         <activity
             android:name=".webHome_mainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".HostelAuthorityActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".HostelAuthorityActivity">
+
         </activity>
         <activity android:name=".EmployeeLogin">
 

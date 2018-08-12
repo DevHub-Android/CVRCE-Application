@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         //global.setServerAddress("http://192.168.1.4/www");
-        global.setServerAddress("http://172.29.8.90:8080/cvrce");
+       // global.setServerAddress("http://172.29.8.90:8080/cvrce");
 
 
         //global.setServerAddress("http://172.29.8.90:8080/cvrce");
 
 
-        serverAddress = global.getServerAddress();
+        serverAddress = URLs.SERVER_ADDR;
 
         myQueue = global.getVolleyQueue();
 
@@ -263,8 +263,8 @@ public class MainActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request0",error.getMessage());
+                                Toast toast = Toast.makeText(context, error.toString(), duration);
+                                Log.e("request0",error.toString());
                                 progressDialog.hide();
                                 toast.show();
                             }
