@@ -50,10 +50,10 @@ public class MentorResolvedComplaintsActivity extends AppCompatActivity {
         myQueue = global.getVolleyQueue();
         dialog = new ProgressDialog(context);
 
-//        Intent intent = getIntent();
-//        mentor_id = intent.getStringExtra("mentor_id");
+        Intent intent = getIntent();
+        mentor_id = intent.getStringExtra("mentor_id");
 
-        mentor_id = "5678";
+       // mentor_id = "5678";
 
 
         successCallBack();
@@ -105,12 +105,12 @@ public class MentorResolvedComplaintsActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("MENTOR ADD STUDENTS",error.toString());
+                        Log.e("MENTOR RESOLVED",error.toString());
                         Toast toast = Toast.makeText(context, "error in mentor add students"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }

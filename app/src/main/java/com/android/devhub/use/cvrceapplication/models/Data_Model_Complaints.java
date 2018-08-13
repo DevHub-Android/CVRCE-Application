@@ -94,18 +94,26 @@ public class Data_Model_Complaints {
 
     public static ArrayList<Data_Model_Complaints> fromJson(JSONArray object1, JSONArray object2) {
         ArrayList<Data_Model_Complaints> gradesData = new ArrayList<>();
+
         Log.e("Comming here","IN ARRAY LIST ");
         if(object1!=null||object2!=null)
         {
 
-            Log.e("BUT NOT Comming here","IN ARRAY LIST ");
+            Log.e("Coming inside loop","IN ARRAY LIST ");
             for (int i = 0; i <object1.length(); i++) {
                 try {
                     Log.e("BUT DEFINATELY","IN ARRAY LIST ");
-                    Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(object1.length()-i-1));
-                    Log.e("Data Model OBJECT2", "fromJson: " + object2.getJSONObject(object1.length()-i-1));
-                    gradesData.add(new Data_Model_Complaints(object1.getJSONObject(object1.length()-i-1),
-                            object2.getJSONObject(object1.length()-i-1)));
+                    Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(i));
+                    for(int j=0;j<object2.length();j++)
+                    {
+                        if(object1.getJSONObject(i).getString("user_id").equals(object2.getJSONObject(j).getString("REGID")))
+                        {
+                            gradesData.add(new Data_Model_Complaints(object1.getJSONObject(i),
+                                    object2.getJSONObject(j)));
+                            Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(j));
+                        }
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -75,11 +75,11 @@ public class MentorActivity extends AppCompatActivity {
         myQueue = global.getVolleyQueue();
 
       //  mentorId = "578";
-               Bundle bundle = getIntent().getExtras();
-        //mentorId = bundle.getString("empid");
-        //name = bundle.getString("name");
+        Bundle bundle = getIntent().getExtras();
+        mentorId = bundle.getString("empid");
+        name = bundle.getString("name");
         Log.e("MENTOR ACTIVITY INFO",mentorId+" "+name);
-        mentorId = "5678";
+
         progressDialog = new ProgressDialog(this);
 
 
@@ -103,7 +103,9 @@ public class MentorActivity extends AppCompatActivity {
                 showStudents();
                 return true;
             case R.id.resolvedComplaints:
+                Toast.makeText(getApplicationContext(),"Show Resolved Complaints",Toast.LENGTH_SHORT).show();
                 showResolvedComplaints();
+                return  true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -112,7 +114,9 @@ public class MentorActivity extends AppCompatActivity {
 
     private void showResolvedComplaints() {
         Intent intent = new Intent(MentorActivity.this,MentorResolvedComplaintsActivity.class);
+        Log.e("mentor_ID",mentorId);
         intent.putExtra("mentor_id",mentorId);
+        startActivity(intent);
     }
 
     private void addStudent() {
@@ -183,7 +187,7 @@ public class MentorActivity extends AppCompatActivity {
                        String url_user_complaints = serverAddress.concat("/public/mentor_individual_complaints.php").concat("?mentor_id=").concat(mentorId);
                        String url_hostel_complaints = serverAddress.concat("/public/mentor_hostel_complaints.php").concat("?mentor_id=").concat(mentorId);
                        String url_insti_complaints = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(mentorId);
-
+                        Log.e("HOSTEL LINK MENTOR",url_hostel_complaints);
                        final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
 
                            @Override

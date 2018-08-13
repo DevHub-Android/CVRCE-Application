@@ -35,13 +35,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private ProgressDialog progressDialog;
     Button regBtn;
 
+
     Spinner mSpinner;
     String mBranch;//branch for the student-user
 
     private RadioGroup radioGroup;
     private CircleImageView studentImageView,teacherImageView,parentImageView;
 
-    FrameLayout studentFrameLayout,teacherFrameLayout,parentFrameLayout;
+    FrameLayout studentFrameLayout, teacherFrameLayout,parentFrameLayout;
 
 
     LinearLayout linearLayout;
@@ -158,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             editcnfPass.setError("Password Doesn't Match");
             editcnfPass.requestFocus();
             return;
-        }//
+        }
         class RegistetUser extends AsyncTask<Void,Void,String>{
 
             @Override
@@ -184,6 +185,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),"User Registered Successfully!" +
+                        "Check Your Registered Email To Confirm Registration",Toast.LENGTH_LONG);
                 try{
                     JSONObject jsonObject = new JSONObject(s);
                     if(!jsonObject.getBoolean("error"))

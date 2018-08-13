@@ -42,7 +42,7 @@ public class ShowStudentsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mentor_id = intent.getStringExtra("mentor_id");
-        Log.d("mentorid", "onCreate: " + mentor_id);
+        Log.e("mentorid", "onCreate: " + mentor_id);
 
         roots = new ArrayList<>();
         serverAddress = URLs.SERVER_ADDR;
@@ -53,6 +53,7 @@ public class ShowStudentsActivity extends AppCompatActivity {
 
         //create an api call to the show the students
         urlShowStudents = serverAddress.concat("/admin/showStudents.php").concat("?mentor_id=").concat(mentor_id);
+        Log.e("URL SHOW STUDENTS",urlShowStudents);
         final JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, urlShowStudents, null, new Response.Listener<JSONObject>() {
 
             @Override
