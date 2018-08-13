@@ -4,22 +4,14 @@
 	$priority = $_GET["priority"];
 	$type = $_GET["type"];
 	
-	$sql = "select * from hostel_complaints";
-	
-	$result = mysqli_query($conn,$sql);
+	//$sql = "select * from hostel_complaints";
 	
 	$uid = 0;
 	$array_u=null;
-	while($row = mysqli_fetch_assoc($result)){
-		
-		$c_id  =  $row["complaint_id"];
-		
-		
-		$sql1 = "select * from complaints where complaint_id = '$c_id' and priority='$priority' and type=$type";
-		
-		$resultC = mysqli_query($conn,$sql1);
-		
-		while($rows = mysqli_fetch_assoc($resultC)){
+	$array_yo = null;
+	$sql = "select * from complaints where priority='$priority' and type=$type";
+	$result = mysqli_query($conn,$sql);
+	while($rows = mysqli_fetch_assoc($result)){
 			$array_yo[] = $rows;
 			
 			$uid = $rows["user_id"];
@@ -33,8 +25,6 @@
 			$array_u[] = $myRows;
 			}
 		}
-		
-	}
 	$json_array["complaints"] = $array_yo;
 	$json_array2["users"] = $array_u;
 	

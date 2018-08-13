@@ -29,6 +29,6 @@
 	}
 	
 	$array_json["success"] = true;
-	echo (json_encode($array_json));
+	echo(json_encode($array_json));
 
  ?>

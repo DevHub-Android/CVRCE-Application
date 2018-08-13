@@ -1,5 +1,5 @@
 <?php
-$db_name="cvrce";
+$db_name="cvrce_application";
 $mysql_username="root";
 $mysql_password="";
 $server_name="localhost";

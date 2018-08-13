@@ -8,9 +8,9 @@
 	$priority = $_GET["priority"];
 	$domain = "";
 	$solved_by = "";
-	
+	$issued_by = $_GET["issued_by"];
 	$date = date('Y-m-d');
-	
+	$response = array();
 	
 	mysqli_query($conn,"delete from complaints where complaint_id = '$complaint_id'");
 	mysqli_query($conn,"delete from hostel_complaints where complaint_id = '$complaint_id'");
@@ -40,8 +40,16 @@
 	}
 	
 	
-	$sql = "insert into resolver(complaint_id,created_at,solved_at,description,title) values('$complaint_id','$created_at','$date','$description','$title')";
-	mysqli_query($conn,$sql);
+	$sql = "insert into resolver(complaint_id,created_at,solved_at,description,title,issued_by,solved_by) values('$complaint_id','$created_at','$date','$description','$title','$issued_by','$solved_by')";
+	$result = mysqli_query($conn,$sql);
+	if($result)
+	{
+		$response['msg']="Marked As Solved"
+		echo json_encode($response);
+	}else {
+		$response['msg']="Something Went Wrong"
+		echo json_encode($response);
+	}
 
 
 

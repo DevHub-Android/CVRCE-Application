@@ -43,14 +43,39 @@
 				$result1 = mysqli_query($conn,$sql1);
 				if($result1)
 				{	 
-					echo "In here";
+					//echo "In here";
 					$message="
 						          
 					Confirm your registration!!
                     Click on the link below.
                     http://localhost/www/public/emailconfirmation.php?username=$reg_id&confirmcode=$confirmcode
 					";
-					mail($email,"Confirm Your Mail!",$message,"FROM:rcrakesh131@gmail.com");
+					
+					//$success = mail($email,"Confirm Your Mail!",$message,"FROM:rcrakesh131@gmail.com");
+					
+					require 'PHPMailer/PHPMailerAutoload.php';
+					
+					$mail = new PHPMailer;
+					
+					$mail->isSMTP();
+					$mail->Host = 'smtp.gmail.com';
+					$mail->SMTPAuth = true;
+					$mail->Username = 'cvrce.devhub123@gmail.com';
+					$mail->Password = 'devhubANDROID@123';
+					//;$mail->SMTPSecure = 
+					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+					$mail->Port = 587;                                    // TCP port to connect to
+
+					$mail->setFrom('rcrakesh131@gmail.com', 'Admin');
+					$mail->addAddress($email);               // Name is optional
+
+					$subject = "Confirm Your Mail!!";
+					$mail->Subject = $subject;
+					$mail->Body    = $message;
+					$mail->send();
+					
+
+					
 				  $stmt = $conn->prepare("SELECT regid,username,first_name,last_name,email,pass,branch,hostel FROM users where regid=?");		
 				 $stmt->bind_param("s",$reg_id);
 				 $stmt->execute();
@@ -72,7 +97,7 @@
 				 $response['user']=$user;
 					
 				}else {
-					echo "Something went wrong!!"." " .mysqli_error($conn);
+				//	echo "Something went wrong!!"." " .mysqli_error($conn);
 				}
 					
 				

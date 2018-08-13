@@ -1,7 +1,7 @@
 <?php
 	include 'config.php';
 	
-	
+	$my_array = null;
 	
 	$sql = "select * from notifications";
 	
