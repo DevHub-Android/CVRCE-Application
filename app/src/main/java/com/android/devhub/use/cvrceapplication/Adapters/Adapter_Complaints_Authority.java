@@ -219,7 +219,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Toast toast = Toast.makeText(context, "Network Error", duration);
+                            Toast toast = Toast.makeText(context, error.toString(), duration);
                             toast.show();
                         }
                     });

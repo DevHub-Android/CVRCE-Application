@@ -45,14 +45,14 @@
 	$result = mysqli_query($conn,$sql);
 	if($result)
 	{
-		$response['msg']="Marked As Solved"
-		echo json_encode($response);
+		$response['msg']="Marked As Solved";
+	
 	}else {
-		$response['msg']="Something Went Wrong"
-		echo json_encode($response);
+		$response['msg']="Something Went Wrong";
+
 	}
 
-
+	echo json_encode($response);
 
 
 	

@@ -6,7 +6,7 @@
 	
 	$domain =  "";
 	$position = "";
-	
+	$response = array();
 	$sql1 = "select * from complaints where complaint_id = '$complaint_id'";
 	$result = mysqli_query($conn,$sql1);
 	
@@ -27,11 +27,17 @@
 	while($row = mysqli_fetch_assoc($finalResult)){
 		$position = $row["position"];
 	}
+	// $complaint_id ."   ".$position."   ";
+	$sql3 = "update complaints set position_seen = '$position' where complaint_id = '$complaint_id'";
 	
-	$sql = "update complaints set position_seen = '$position' where id = '$complaint_id'";
 	
-	mysqli_query($conn,$sql);
-	
+	if($conn->query($sql3))
+	{
+		$response['message']="Marked As Seen";
+	}else {
+		$response['message']="Something Went Wrong!";
+	}
+	echo json_encode($response);
 	
 
 

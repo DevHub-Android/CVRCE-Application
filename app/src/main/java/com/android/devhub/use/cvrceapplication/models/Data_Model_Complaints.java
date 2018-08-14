@@ -112,7 +112,9 @@ public class Data_Model_Complaints {
                         {
                             gradesData.add(new Data_Model_Complaints(object1.getJSONObject(i),
                                     object2.getJSONObject(j)));
+
                             Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(j));
+                            break;
                         }
                     }
 
