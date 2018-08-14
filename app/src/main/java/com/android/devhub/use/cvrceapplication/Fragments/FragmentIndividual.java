@@ -108,7 +108,7 @@ public class FragmentIndividual extends Fragment {
                         complaints_data = response;
                         Log.d("Chutiya data dekh", "onResponse: " + response);
                         //mAdapter.notifyDataSetChanged();
-                        callAdapters();
+                        mAdapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
                     @Override
