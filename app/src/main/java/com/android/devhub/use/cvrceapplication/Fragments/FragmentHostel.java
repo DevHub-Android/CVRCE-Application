@@ -70,7 +70,8 @@ public class FragmentHostel extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter.notifyDataSetChanged();
+      //  mAdapter.notifyDataSetChanged();
+        callAdapters();
 
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -106,7 +107,7 @@ public class FragmentHostel extends Fragment {
                         complaints_data = response;
                         Log.d("Chutiya data dekh", "onResponse: " + response);
                         //mAdapter.notifyDataSetChanged();
-                        callAdapters();
+                        mAdapter.notifyDataSetChanged();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -128,7 +129,7 @@ public class FragmentHostel extends Fragment {
         // specify an adapter (see also next example)
         HomeActivity activity = (HomeActivity) getActivity();
         Context context = (HomeActivity) getContext();
-        complaints_data =  activity.getUserComplains();
+        complaints_data =  activity.getHostelComplains();
         mAdapter = new Adapter_Complaints(complaints_data,activity,context);
         //Log.i("hagga",complaints_data.toString());
 

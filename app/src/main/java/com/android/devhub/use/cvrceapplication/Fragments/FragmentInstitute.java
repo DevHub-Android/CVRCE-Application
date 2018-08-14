@@ -128,7 +128,7 @@ public class FragmentInstitute extends Fragment {
         // specify an adapter (see also next example)
         HomeActivity activity = (HomeActivity) getActivity();
         Context context = (HomeActivity) getContext();
-        complaints_data =  activity.getUserComplains();
+        complaints_data =  activity.getInstiComplains();
         mAdapter = new Adapter_Complaints(complaints_data,activity,context);
         //Log.i("hagga",complaints_data.toString());
 

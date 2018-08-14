@@ -103,10 +103,12 @@ public class Data_Model_Complaints {
             for (int i = 0; i <object1.length(); i++) {
                 try {
                     Log.e("BUT DEFINATELY","IN ARRAY LIST ");
-                    Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(i));
+                    Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(i).getString("user_id"));
+                    Log.e("JSON OBJECT",object2.toString());
+                    String user_id = object1.getJSONObject(i).getString("user_id");
                     for(int j=0;j<object2.length();j++)
                     {
-                        if(object1.getJSONObject(i).getString("user_id").equals(object2.getJSONObject(j).getString("REGID")))
+                        if(user_id.equals(object2.getJSONObject(j).getString("REGID")))
                         {
                             gradesData.add(new Data_Model_Complaints(object1.getJSONObject(i),
                                     object2.getJSONObject(j)));

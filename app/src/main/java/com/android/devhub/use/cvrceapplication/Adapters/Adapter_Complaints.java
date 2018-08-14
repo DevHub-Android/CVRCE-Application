@@ -55,8 +55,11 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         JSONArray object2 = null;
         try {
 
-            object1 = ndata.getJSONObject("root").getJSONArray("complaints");
-            object2 = ndata.getJSONObject("root").getJSONArray("users");
+                object1 = ndata.getJSONObject("root").getJSONArray("complaints");
+                object2 = ndata.getJSONObject("root").getJSONArray("users");
+
+
+
 
         }catch (JSONException e) {
             e.printStackTrace();

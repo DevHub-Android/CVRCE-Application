@@ -185,18 +185,21 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(),"User Registered Successfully!" +
-                        "Check Your Registered Email To Confirm Registration",Toast.LENGTH_LONG);
+
                 try{
                     JSONObject jsonObject = new JSONObject(s);
                     if(!jsonObject.getBoolean("error"))
                     {
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
-                        JSONObject userJson = jsonObject.getJSONObject("user");
-                        UserModel user = new UserModel(userJson.getString("reg_id"),userJson.getString("username"),userJson.getString("first_name"),userJson.getString("last_name"),userJson.getString("email"),userJson.getString("branch"),userJson.getString("hostel"));
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                        Toast.makeText(getApplicationContext(),"User Registered Successfully!" +
+                                "Check Your Registered Email To Confirm Registration",Toast.LENGTH_LONG);
+//                        JSONObject userJson = jsonObject.getJSONObject("user");
+//                        UserModel user = new UserModel(userJson.getString("reg_id"),
+//                          userJson.getString("username"),
+//                          userJson.getString("firstname"),userJson.getString("lastname"),userJson.getString("email"),userJson.getString("branch"),userJson.getString("hostel"));
+//                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+//                        finish();
+//                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
 
                     }else{
                         Toast.makeText(getApplicationContext(),"Something Went Wrong",Toast.LENGTH_SHORT).show();
