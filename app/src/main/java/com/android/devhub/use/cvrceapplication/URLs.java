@@ -7,7 +7,7 @@ public class URLs {
 
 
 
-     //public static final String ROOT_URL = "http://192.168.43.226:8080/cvrce/api.php?apicall=";
+   //  public static final String ROOT_URL = "http://192.168.43.226:8080/cvrce/api.php?apicall=";
 
    // public static final String ROOT_URL = "http://172.29.10.111:8080/cvrce/api.php?apicall=";
 
@@ -25,6 +25,6 @@ public class URLs {
 
 
      //public static final String SERVER_ADDR = "http://172.29.8.90:8080/cvrce";
-   //  public static final String SERVER_ADDR = "http://192.168.43.226:8080/cvrce";
+    // public static final String SERVER_ADDR = "http://192.168.43.226:8080/cvrce";
 
 }

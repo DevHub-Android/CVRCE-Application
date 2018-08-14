@@ -1,17 +1,28 @@
 package com.android.devhub.use.cvrceapplication.Fragments;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
+import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.HomeActivity;
 import com.android.devhub.use.cvrceapplication.R;
+import com.android.devhub.use.cvrceapplication.URLs;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
@@ -22,6 +33,9 @@ public class FragmentInstitute extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     JSONObject complaints_data;
+    String serverAddress;
+    Globals global;
+    static RequestQueue myQueue;
 
     public FragmentInstitute() {
         // Required empty public constructor
@@ -33,6 +47,10 @@ public class FragmentInstitute extends Fragment {
         super.onCreate(savedInstanceState);
         HomeActivity activity = (HomeActivity) getActivity();
         complaints_data =  activity.getInstiComplains();
+        serverAddress = URLs.SERVER_ADDR;
+        global = (Globals)activity.getApplication();
+        serverAddress = URLs.SERVER_ADDR;
+        myQueue = global.getVolleyQueue();
     }
 
     @Override
@@ -52,14 +70,69 @@ public class FragmentInstitute extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
+        callAdapters();
+
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "Hey I am Here", Toast.LENGTH_SHORT).show();
+
+                updateData();
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        return view;
+    }
+
+    private void updateData() {
+        class FetchData extends AsyncTask<Void,Void,Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                String url = serverAddress.concat("/public/institute_complaints.php");
+                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
+                        complaints_data = response;
+                        Log.d("Chutiya data dekh", "onResponse: " + response);
+                        //mAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Bhai Bhai",error.toString());
+                        Toast toast = Toast.makeText(getContext(), "Fragements"+error.getMessage(), Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                });
+                //Add the first request in the queue
+                myQueue.add(request0);
+            }
+        }
+        FetchData fetchData = new FetchData();
+        fetchData.execute();
+    }
+
+    private void callAdapters(){
+        // specify an adapter (see also next example)
         HomeActivity activity = (HomeActivity) getActivity();
         Context context = (HomeActivity) getContext();
-        complaints_data =  activity.getInstiComplains();
+        complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints(complaints_data,activity,context);
-        //Log.i("hagga", complaints_data.toString());
+        //Log.i("hagga",complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
-        return view;
     }
 
 

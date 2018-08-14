@@ -27,4 +27,6 @@
         android:icon="@drawable/logout"
         android:onClick="logout_method"
         app:showAsAction="ifRoom" />
+
+
 </menu>
