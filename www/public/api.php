@@ -55,8 +55,8 @@
 					
 					require 'PHPMailer/PHPMailerAutoload.php';
 					
-					$mail = new PHPMailer;
-					
+					$mail = new PHPMailer(true);
+					try{
 					$mail->isSMTP();
 					$mail->Host = 'smtp.gmail.com';
 					$mail->SMTPAuth = true;
@@ -66,22 +66,19 @@
 					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 					$mail->Port = 587;                                    // TCP port to connect to
 
-					$mail->setFrom('rcrakesh131@gmail.com', 'Admin');
+					$mail->setFrom('cvrce.devhub123@gmail.com', 'Admin');
 					$mail->addAddress($email);               // Name is optional
 
 					$subject = "Confirm Your Mail!!";
 					$mail->Subject = $subject;
 					$mail->Body    = $message;
-					$mail->send();
-					
-
-					
-				  $stmt = $conn->prepare("SELECT regid,username,first_name,last_name,email,pass,branch,hostel FROM users where regid=?");		
-				 $stmt->bind_param("s",$reg_id);
-				 $stmt->execute();
-				 $stmt->bind_result($reg_id,$username,$firstname,$lastname,$email,$password,$branch,$hostel);
-				 $stmt->fetch();
-				 $user=array(
+					if($mail->send()){
+					$stmt = $conn->prepare("SELECT regid,username,first_name,last_name,email,pass,branch,hostel FROM users where regid=?");		
+					$stmt->bind_param("s",$reg_id);
+					$stmt->execute();
+					$stmt->bind_result($reg_id,$username,$firstname,$lastname,$email,$password,$branch,$hostel);
+					$stmt->fetch();
+					$user=array(
 					'reg_id'=>$reg_id,
 					'username'=>$username,
 					'firstname'=>$firstname,
@@ -90,14 +87,30 @@
 					'password'=>$password,
 					'branch'=>$branch,
 					'hostel'=>$hostel
-				 );
-				 $stmt->close();
-				 $response['error']=false;
-				 $response['message']='User Registered Succesfully, Please Confirm Your Registration';
-				 $response['user']=$user;
+					);
+					$stmt->close();
+					$response['error']=false;
+					$response['message']='User Registered Succesfully, Please Confirm Your Registration';
+					$response['user']=$user;
+				}else {
+					$response['error']=true;
+					$response['message']='Mail Server error!!';
+				}
+				
+					}catch (phpmailerException $e)
+					{
+						$response['message']= "Mail Server Error!";
+					}
+					
+					
+					
+
+					
+				 
 					
 				}else {
-				//	echo "Something went wrong!!"." " .mysqli_error($conn);
+				$response['error']=true;
+				$response['message']='ERROR :'.mysqli_error($conn);
 				}
 					
 				

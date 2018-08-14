@@ -1,11 +1,9 @@
 <?php
-
 	require "config.php";
 	$type= $_GET['type'];
 	$response = array();
-	
-	$sql = "select * from resolver r  join users u on(r.issued_by=u.REGID) ";
-	$sql = "select * from resolver where type=";
+	//$sql = "select * from resolver where type=$type";
+	$sql = "select * from resolver r inner join users u on(r.issued_by=u.REGID) where r.type='$type'";
 	$result = mysqli_query($conn,$sql);
 	if($result)
 	{

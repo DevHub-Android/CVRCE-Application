@@ -6,7 +6,7 @@
 	$result = mysqli_query($conn,$sql);
 	
 	$uid = 0;
-	$array_u[]=null;
+	$array_u=null;
 	$array_yo=null;
 	
 	while($row = mysqli_fetch_assoc($result)){

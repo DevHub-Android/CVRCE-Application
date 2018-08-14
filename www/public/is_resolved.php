@@ -22,6 +22,7 @@
 	$result = mysqli_query($conn,$sql1);
 	
 	while($rows = mysqli_fetch_assoc($result)){
+		$type = $row['type'];
 		if($rows["type"]==0){
 			$domain = "student welfare";
 		}elseif($rows["type"]==1){
