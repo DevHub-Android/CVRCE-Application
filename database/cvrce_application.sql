@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2018 at 01:00 PM
+-- Generation Time: Aug 14, 2018 at 05:47 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -66,18 +66,8 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comments_id`, `complaint_id`, `user_id`, `created_at`, `description`) VALUES
-(1, 2, 1601227182, '2018-08-01', 'What can we do?'),
-(2, 3, 1601227182, '2018-08-01', 'What are you telling?'),
-(3, 2, 890, '2018-08-01', 'I am the greatest poet in human history'),
-(4, 2, 1601227182, '2018-08-01', 'hdjsjksksksdkjdjd'),
-(5, 2, 1601227182, '2018-08-01', 'jdjdkskndnd'),
-(6, 3, 1601227182, '2018-08-01', 'its a great thing'),
-(7, 3, 1601227182, '2018-08-01', 'gello '),
-(8, 2, 1601227182, '2018-08-01', 'yo'),
-(9, 47, 1601227184, '2018-08-01', 'tughujkkjj'),
-(10, 42, 890, '2018-08-01', 'ehsnsnss'),
-(11, 42, 1601227184, '2018-08-01', 'hdhsjdjd'),
-(12, 2, 1601227182, '2018-08-01', 'ghhfhhj');
+(17, 53, 1501227305, '2018-08-13', 'why its that'),
+(16, 52, 1501227305, '2018-08-13', 'ggggggggg');
 
 -- --------------------------------------------------------
 
@@ -97,32 +87,21 @@ CREATE TABLE `complaints` (
   `is_resolved` int(11) NOT NULL,
   `created_at` date NOT NULL,
   `title` varchar(100) NOT NULL,
-  `priority` int(11) NOT NULL
+  `priority` int(11) NOT NULL,
+  `position_seen` varchar(200) NOT NULL,
+  `mentor_seen` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `complaints`
 --
 
-INSERT INTO `complaints` (`complaint_id`, `user_id`, `description`, `type`, `student_visibility`, `faculty_visibility`, `up_vote`, `down_vote`, `is_resolved`, `created_at`, `title`, `priority`) VALUES
-(1, 1601227182, 'Wifi not letting me download games above 100 gb', 0, 1, 1, 1, 0, 0, '2018-07-11', 'Wifi', 0),
-(2, 1601227182, 'Hosted Destroyed', 1, 1, 1, 27, 2, 0, '2018-07-19', 'Hostel', 2),
-(3, 1601227182, 'Institute Destroyed', 2, 1, 1, 5, 1, 0, '2018-07-30', 'Institute', 0),
-(4, 890, 'sdfsd', 0, 0, 0, 0, 0, 0, '2018-08-03', '3efew', 0),
-(8, 890, 'rt', 2, 0, 1, 0, 0, 0, '2018-08-01', 'rr', 0),
-(42, 890, 'studnehwjdjslw\nsjdks\nd\nsdjld\ndks\n\n', 2, 0, 1, 1, 0, 0, '2018-08-01', 'Outpass problem', 0),
-(41, 890, 'outpass problem', 1, 0, 1, 18, 19, 0, '2018-08-01', 'Outpass', 2),
-(40, 890, 'add trash cana', 2, 0, 1, 1, 0, 0, '2018-08-01', 'Trash cans', 0),
-(43, 1601227182, 'notndslsao', 0, 1, 1, 9, 6, 0, '2018-08-01', 'wifi', 0),
-(44, 1601227182, 'gjjre', 1, 1, 1, 1, 0, 0, '2018-08-01', 'ghuy', 2),
-(45, 1601227184, 'going on', 0, 0, 1, 1, 0, 0, '2018-08-01', 'what is ', 0),
-(46, 1601227184, 'shhshs', 1, 1, 1, 0, 0, 0, '2018-08-01', 'eysjsg', 2),
-(47, 1601227184, 'uuehe', 2, 1, 1, 0, 0, 0, '2018-08-01', 'eyhdd', 0),
-(48, 1601227182, 'fkgjotgkgkk', 2, 1, 1, 0, 0, 0, '2018-08-01', 'yurgui', 0),
-(49, 1501227305, 'Hellow', 0, 1, 1, 0, 0, 0, '2018-08-09', 'title', 1),
-(50, 1501227305, 'sdfsd', 1, 1, 1, 0, 0, 0, '2018-08-09', 'Hellow', 1),
-(51, 1501227341, 'jejene', 2, 1, 1, 0, 0, 0, '2018-08-09', 'ahellp', 0),
-(52, 1501227341, 'jejene', 1, 1, 1, 0, 0, 0, '2018-08-09', 'ahellp', 0);
+INSERT INTO `complaints` (`complaint_id`, `user_id`, `description`, `type`, `student_visibility`, `faculty_visibility`, `up_vote`, `down_vote`, `is_resolved`, `created_at`, `title`, `priority`, `position_seen`, `mentor_seen`) VALUES
+(56, 1501227305, 'ksnememem', 2, 1, 1, 0, 0, 0, '2018-08-13', 'ksksk', 0, '', 0),
+(55, 1501227305, 'dlldle', 1, 1, 1, 0, 0, 0, '2018-08-13', 'helo', 0, '', 0),
+(54, 1501227305, 'problem', 0, 1, 1, 0, 0, 0, '2018-08-13', 'Food', 0, '', 0),
+(52, 1501227305, 'hshshs', 1, 1, 1, 0, 0, 0, '2018-08-13', 'Plelek', 1, '', 0),
+(53, 1501227305, 'food quality is not good', 1, 1, 1, 0, 0, 0, '2018-08-13', 'food', 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -165,7 +144,7 @@ CREATE TABLE `faculty` (
 
 INSERT INTO `faculty` (`empid`, `name`, `department`, `PASS`) VALUES
 (123, 'Rakesh', 'CSE', 'cvrce'),
-(5678, 'Rakesh Swain', 'CSE', 'cvrce');
+(578, 'Rakesh Swain', 'CSE', 'cvrce');
 
 -- --------------------------------------------------------
 
@@ -188,10 +167,10 @@ INSERT INTO `hostel_complaints` (`hostel_name`, `complaint_id`, `user_id`) VALUE
 ('boys', 27, 0),
 ('boys', 36, 0),
 ('boys', 41, 890),
-('boys', 44, 1601227182),
 ('boys', 46, 1601227184),
-('boys', 50, 1501227305),
-('boys', 52, 1501227341);
+('boys', 52, 1501227305),
+('boys', 53, 1501227305),
+('boys', 55, 1501227305);
 
 -- --------------------------------------------------------
 
@@ -215,7 +194,7 @@ INSERT INTO `institute_complaints` (`complaint_id`, `user_id`) VALUES
 (42, 890),
 (47, 1601227184),
 (48, 1601227182),
-(51, 1501227341);
+(56, 1501227305);
 
 -- --------------------------------------------------------
 
@@ -243,7 +222,11 @@ INSERT INTO `notifications` (`id`, `complaint_id`, `title`, `description`, `is_s
 (4, 44, 'ghuy', 'gjjre', 0, NULL),
 (5, 45, 'what is ', 'going on', 1, '2018-08-01'),
 (6, 46, 'eysjsg', 'shhshs', 1, '2018-08-01'),
-(7, 52, 'ahellp', 'jejene', 0, '2018-08-09');
+(7, 51, 'Hostel Destroyed', 'hello', 0, '2018-08-12'),
+(8, 52, 'Plelek', 'hshshs', 0, '2018-08-13'),
+(9, 53, 'food', 'food quality is not good', 0, '2018-08-13'),
+(10, 54, 'Food', 'problem', 0, '2018-08-13'),
+(11, 55, 'helo', 'dlldle', 0, '2018-08-13');
 
 -- --------------------------------------------------------
 
@@ -267,9 +250,33 @@ INSERT INTO `registered_students` (`regid`, `first_name`, `last_name`, `email`, 
 (1501217311, 'Soanli', 'Dash', 'rcrakesh131@gmail.com', '9658463402'),
 (1501227305, 'Rakesh', 'Swain', 'swain.rakesh131@gmail.com', '2147483647'),
 (1501227311, 'Soanli', 'Dash', 'rcrakesh131@gmail.com', '2147483647'),
-(1501227328, 'Soanli', 'Dash', 'rcrakesh131@gmail.com', '2147483647'),
-(1501227341, 'Rakesh ', 'Swain', 'swain.rakesh131@gmail.com', '7008916802'),
+(1501227328, 'Soanli', 'Dash', 'swain.rakesh131@gmail.com', '2147483647'),
 (1501227381, 'Soanli', 'Dash', 'rcrakesh131@gmail.com', '2147483647');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resolver`
+--
+
+CREATE TABLE `resolver` (
+  `resolver_id` int(11) NOT NULL,
+  `complaint_id` int(11) NOT NULL,
+  `created_at` date NOT NULL,
+  `solved_at` date NOT NULL,
+  `description` varchar(400) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `issued_by` int(11) NOT NULL,
+  `solved_by` varchar(100) NOT NULL,
+  `type` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `resolver`
+--
+
+INSERT INTO `resolver` (`resolver_id`, `complaint_id`, `created_at`, `solved_at`, `description`, `title`, `issued_by`, `solved_by`, `type`) VALUES
+(5, 51, '2018-08-12', '2018-08-12', 'hello', 'Hostel Destroyed', 1501227305, '', 1);
 
 -- --------------------------------------------------------
 
@@ -297,10 +304,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`REGID`, `USERNAME`, `PASS`, `BRANCH`, `HOSTEL`, `first_name`, `last_name`, `email`, `mentor_id`, `contact`, `CONFIRMED`, `CONFIRM_CODE`) VALUES
-(890, 'rakesh', '7d2af2d46362e444e5dcdcc5f68c1543', 'CHEM', 'yes', 'kumar', 'swain', 'swain.rakesh131@gmail.com\r\n', 0, '', 0, 0),
-(1501227341, 'Rakesh ', 'f6ff65c2cdd67389c6473dbeb377a978', 'CSE', 'yes', 'Rakesh ', 'Swain', 'swain.rakesh131@gmail.com', 5678, '7008916802', 1, 0),
-(1601227182, 'aakash', 'password', 'CHEM', 'yes', 'aakash', 'kumar', 'aakash.nanda99@gmail.com', 5678, '8908979864', 0, 0),
-(1601227184, 'sarthak', 'password', 'ECE', 'yes', 'sarthak', 'kar', 'aakash.nanda99@gmail.com', 5678, '7008581379', 0, 0);
+(1501227305, 'Rakesh', 'f6ff65c2cdd67389c6473dbeb377a978', 'CHEM', 'yes', 'Rakesh', 'Swain', 'swain.rakesh131@gmail.com', 578, '2147483647', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -323,7 +327,7 @@ INSERT INTO `user_complaints` (`user_id`, `complaint_id`) VALUES
 (0, 38),
 (32322, 39),
 (1601227182, 43),
-(1601227184, 45);
+(1501227305, 54);
 
 --
 -- Indexes for dumped tables
@@ -366,6 +370,12 @@ ALTER TABLE `registered_students`
   ADD PRIMARY KEY (`regid`);
 
 --
+-- Indexes for table `resolver`
+--
+ALTER TABLE `resolver`
+  ADD PRIMARY KEY (`resolver_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -380,19 +390,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comments_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `comments_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `complaints`
 --
 ALTER TABLE `complaints`
-  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `resolver`
+--
+ALTER TABLE `resolver`
+  MODIFY `resolver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
