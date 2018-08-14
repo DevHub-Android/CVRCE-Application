@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,8 @@ import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints_Authority;
+import com.android.devhub.use.cvrceapplication.Adapters.AuthorityPagerAdapter;
+import com.android.devhub.use.cvrceapplication.Adapters.MentorSectionsPagerAdapter;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -22,7 +26,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 //This activity is for all the authorities I have by mistakely named as onlu HostelAuthority
@@ -44,11 +52,21 @@ public class HostelAuthorityActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     JSONObject hostel_complaints_data;
     String type;
+    private ViewPager mViewPager;
+    JSONObject solvedComplaints,unsolvedComplaints;
+    private AuthorityPagerAdapter authorityPagerAdapter;
+    ArrayList<JSONObject> items;
+    public ArrayList<JSONObject> getSolvedComplaints(){
+        return items;
+    }
+    public JSONObject getUnsolvedComplaints(){
+        return unsolvedComplaints;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hostel_authority);
+        setContentView(R.layout.acitvity_authority);
 
         progressDialog = new ProgressDialog(this);
 
@@ -57,12 +75,13 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         myQueue = global.getVolleyQueue();
 
         context = this;
-        recyclerView = (RecyclerView)findViewById(R.id.authorityRecyclerview);
+        //recyclerView = (RecyclerView)findViewById(R.id.authorityRecyclerview);
         //change this to dynamic when required
         facultyId = "123333";
         priority = 1;
         domain = "hostel";
         position = "warden";
+        items = new ArrayList<>();
 //        Bundle bundle = getIntent().getExtras();
 //        priority = bundle.getInt("priority");
 //        domain = bundle.getString("domain");
@@ -109,6 +128,7 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("Error",error.toString());
                 Toast toast = Toast.makeText(context, error.toString(), Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -123,6 +143,8 @@ public class HostelAuthorityActivity extends AppCompatActivity {
     private void hostelAuthorityCallback() {
         final String hostel_Url = serverAddress.concat("/admin/hostel_authority_complaints.php")
                 .concat("?priority=").concat(String.valueOf(priority)).concat("&type=").concat(type);
+        final String solved_complaints_url = serverAddress.concat("/public/solved_authority_complaints.php")
+                .concat("?type=").concat(type);
         Log.e("here in hostel callback",hostel_Url);
         class FetchData extends AsyncTask<Void,Void,Void>{
 
@@ -141,9 +163,10 @@ public class HostelAuthorityActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        hostel_complaints_data = response;
+                       unsolvedComplaints = response;
                         Log.d("response of check", "onResponse: " + response);
-                        setRecyclerViewAdapter();
+                        pagerAdapterCallback();
+                      //  setRecyclerViewAdapter();
 
                     }
                 }, new Response.ErrorListener() {
@@ -153,8 +176,40 @@ public class HostelAuthorityActivity extends AppCompatActivity {
                         toast.show();
                     }
                 }) ;
+                final JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,solved_complaints_url,
+                        null, new Response.Listener<JSONObject>() {
 
-                myQueue.add(request);
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        solvedComplaints = response;
+                        Log.e("response of check", "onResponse: " + response);
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("root");
+                            if(jsonArray==null){
+                                Log.e("Array JSON","NULL");
+                            }else{
+                                Log.e("FIRST ELEMENT",jsonArray.get(0).toString());
+                            }
+                            for(int i = 0;i<jsonArray.length();i++){
+                                items.add(jsonArray.getJSONObject(i));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        myQueue.add(request);
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast toast = Toast.makeText(context, error.getMessage() , Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }) ;
+                myQueue.add(request1);
 
 
             }
@@ -171,19 +226,30 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         fetchData.execute();
 
     }
+    private void pagerAdapterCallback() {
+        authorityPagerAdapter = new AuthorityPagerAdapter(getSupportFragmentManager());
 
-    private void setRecyclerViewAdapter() {
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(authorityPagerAdapter);
 
-        Log.d("jklasjdlkjla", "setRecyclerViewAdapter: inside adapter");
-
-        Activity activity = (HostelAuthorityActivity)context;
-
-        mAdapter = new Adapter_Complaints_Authority(hostel_complaints_data,activity,context,"authority");
-        //Log.i("hagga", complaints_data.toString());
-        mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        recyclerView.setAdapter(mAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
     }
+//
+//    private void setRecyclerViewAdapter() {
+//
+//        Log.d("jklasjdlkjla", "setRecyclerViewAdapter: inside adapter");
+//
+//        Activity activity = (HostelAuthorityActivity)context;
+//
+//        mAdapter = new Adapter_Complaints_Authority(hostel_complaints_data,activity,context,"authority");
+//        //Log.i("hagga", complaints_data.toString());
+//        mLayoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(mLayoutManager);
+//
+//        recyclerView.setAdapter(mAdapter);
+//
+//    }
 }
