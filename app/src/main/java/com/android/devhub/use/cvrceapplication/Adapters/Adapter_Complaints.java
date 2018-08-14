@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -148,7 +149,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                 String created_at = item.date;
                 int priority = item.priority;
                 String description = item.description;
-                String url_upvote = serverAddress.concat("/public/is_resolved.php?complaint_id=").concat(String.valueOf(complains_id))
+                String url_resolved = serverAddress.concat("/public/is_resolved.php?complaint_id=").concat(String.valueOf(complains_id))
                         .concat("&description=")
                         .concat(description)
                         .concat("&title=")
@@ -160,18 +161,24 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                         .concat("&issued_by=")
                         .concat(item.reg_id);
 
-                url_upvote = url_upvote.replaceAll("\\s+","%20");
-                Log.i("haggax",url_upvote);
-                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_upvote, null, new Response.Listener<JSONObject>() {
+                url_resolved = url_resolved.replaceAll("\\s+","%20");
+                Log.i("URL RESOLVED",url_resolved);
+                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_resolved, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i("hagga3", "response");
+                        try {
+                            Log.i("response resolved check", response.getString("msg").toString());
+                            Toast.makeText(context,response.getString("msg").toString(),Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                      ;
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, "Network Error", duration);
+                        Toast toast = Toast.makeText(context, error.toString(), duration);
                         toast.show();
                     }
                 });
