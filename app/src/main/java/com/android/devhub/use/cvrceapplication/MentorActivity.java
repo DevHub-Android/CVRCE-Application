@@ -85,6 +85,9 @@ public class MentorActivity extends AppCompatActivity {
 
         successCallback();
     }
+    public String getMentorId(){
+        return mentorId;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

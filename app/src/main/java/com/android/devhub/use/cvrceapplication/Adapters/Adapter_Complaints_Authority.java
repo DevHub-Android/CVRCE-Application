@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -131,7 +132,47 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
            @Override
            public boolean onLongClick(View v) {
-               Toast.makeText(global, "LongClicked", Toast.LENGTH_SHORT).show();
+               if(item.priority<3){
+                   final AlertDialog.Builder builder;
+                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                       builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+                   } else {
+                       builder = new AlertDialog.Builder(context);
+                   }
+                   builder.setTitle("Pass on Complaint")
+                           .setMessage("Are you sure you want to Pass this complaint to higher authority!!")
+                           .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int which) {
+                                   String url_pass_on = serverAddress.concat("/admin/complaint_pass_on.php")
+                                           .concat("?complaint_id=")
+                                           .concat(String.valueOf(item.complaint_id));
+                                   JsonObjectRequest requestPassOn = new JsonObjectRequest(Request.Method.GET, url_pass_on, null, new Response.Listener<JSONObject>() {
+
+                                       @Override
+                                       public void onResponse(JSONObject response) {
+                                           Log.e("pass ho gaya na",response.toString());
+                                       }
+                                   }, new Response.ErrorListener() {
+                                       @Override
+                                       public void onErrorResponse(VolleyError error) {
+                                           Toast toast = Toast.makeText(context, "Network Error", duration);
+                                           toast.show();
+                                       }
+                                   });
+                                   //Add the first request in the queue
+                                   myQueue.add(requestPassOn);
+                               }
+                           })
+                           .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int which) {
+                                   dialog.dismiss();
+                               }
+                           })
+                           .setIcon(android.R.drawable.ic_dialog_alert)
+                           .show();
+               }else{
+                   Toast.makeText(context, "Complaint is at its Highest level possible!", Toast.LENGTH_SHORT).show();
+               }
                return true;
            }
        });

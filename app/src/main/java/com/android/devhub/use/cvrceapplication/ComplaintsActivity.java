@@ -239,6 +239,7 @@ public class ComplaintsActivity extends AppCompatActivity {
                 mAdapter = new Adapter_Comment(complaintDetails);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+                restartActivity();
 
             }
         }, new Response.ErrorListener() {
@@ -251,7 +252,7 @@ public class ComplaintsActivity extends AppCompatActivity {
         }) ;
         //Add the first request in the queue
         myQueue.add(request0);
-        restartActivity();
+
     }
     public void restartActivity(){
         Intent mIntent = getIntent();
