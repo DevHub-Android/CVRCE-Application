@@ -144,6 +144,11 @@ public class FragmentInstitute extends Fragment {
 
         mRecyclerView.setAdapter(mAdapter);
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+        mAdapter.notifyDataSetChanged();
+    }
 
 }

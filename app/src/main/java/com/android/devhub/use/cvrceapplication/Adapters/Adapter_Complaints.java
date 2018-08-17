@@ -172,7 +172,9 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                     public void onResponse(JSONObject response) {
                         try {
                             Log.i("response resolved check", response.getString("msg").toString());
-                            Toast.makeText(context,response.getString("msg").toString(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,response.getString("msg").toString()+" " +
+                                    "Swipe Up To Refresh!",Toast.LENGTH_SHORT).show();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(s);
                     if(!jsonObject.getBoolean("error"))
                     {
-                        Toast.makeText(getApplicationContext(),"Comming Here!!",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(),"Comming Here!!",Toast.LENGTH_LONG).show();
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
                         UserModel user = new UserModel(

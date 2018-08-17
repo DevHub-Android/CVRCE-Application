@@ -151,6 +151,16 @@ public class FragmentHostel extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+        mAdapter.notifyDataSetChanged();
+    }
 
-
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        updateData();
+//    }
 }

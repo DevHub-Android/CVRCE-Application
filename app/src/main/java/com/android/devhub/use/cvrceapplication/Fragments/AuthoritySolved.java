@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class AuthoritySolved extends Fragment {
          mRecyclerView.setLayoutManager(mRecyclerViewLayoutManager);
          HostelAuthorityActivity authorityActivity = (HostelAuthorityActivity)getActivity();
         solved_complaints_data = authorityActivity.getSolvedComplaints();
+        Log.e("SOLVED COMPLAINTS_DATA",solved_complaints_data.toString());
         Context context = getContext();
         mRecyclerViewAdapter = new Adapter_Resolved_Complaints(context,solved_complaints_data);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
