@@ -137,6 +137,7 @@ public class FragmentHostel extends Fragment {
         //Log.i("hagga",complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void callAdapters(){
