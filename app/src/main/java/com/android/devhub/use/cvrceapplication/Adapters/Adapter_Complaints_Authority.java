@@ -128,28 +128,13 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         int is_resolved = item.isresolved;
         final int complaint_id = item.complaint_id;
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Would you like to pass on this message to higher authority?");
-                builder.setTitle("Pass on message");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, item.complaint_id, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                return true;
-            }
-        });
+       holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+           @Override
+           public boolean onLongClick(View v) {
+               Toast.makeText(global, "LongClicked", Toast.LENGTH_SHORT).show();
+               return true;
+           }
+       });
 
         if(is_seen_domain.equals("mentor")){
             int is_seen = item.mentor_seen;
