@@ -128,13 +128,7 @@ public class webHome_mainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }else if(id == R.id.student_login){
+        } else if(id == R.id.student_login){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
         }else if(id == R.id.Faculty_Login){

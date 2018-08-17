@@ -111,7 +111,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -163,7 +163,10 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
 
                 url_resolved = url_resolved.replaceAll("\\s+","%20");
                 Log.i("URL RESOLVED",url_resolved);
-                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_resolved, null, new Response.Listener<JSONObject>() {
+                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,
+                        url_resolved,
+                        null,
+                        new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -178,11 +181,13 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(context, error.toString(), duration);
+                        Toast toast = Toast.makeText(context,
+                                error.toString(),
+                                duration);
                         toast.show();
                     }
                 });
-                //Add the first request in the queue
+                //Add_the_first_request_in_the_queue
                 myQueue.add(request0);
 
             }
@@ -242,8 +247,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                         toast.show();
                     }
                 }) ;
-                //Add the first request in the queue
-                Log.i("yo","getting here2");
+                //Add_the_first_request_in_the_queue
+                Log.i("yo", "getting here2");
                 myQueue.add(request0);
             }
         });
