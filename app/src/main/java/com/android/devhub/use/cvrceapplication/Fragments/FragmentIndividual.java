@@ -35,6 +35,7 @@ public class FragmentIndividual extends Fragment {
     String serverAddress;
     Globals global;
     static RequestQueue myQueue;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public FragmentIndividual() {
         // Required empty public constructor
@@ -71,7 +72,7 @@ public class FragmentIndividual extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         callAdapters();
 
-        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -79,7 +80,7 @@ public class FragmentIndividual extends Fragment {
 
                 updateData();
 
-                swipeRefreshLayout.setRefreshing(false);
+
             }
         });
 
@@ -108,7 +109,9 @@ public class FragmentIndividual extends Fragment {
                         complaints_data = response;
                         Log.d("Chutiya data dekh", "onResponse: " + response);
                         //mAdapter.notifyDataSetChanged();
-                        mAdapter.notifyDataSetChanged();
+                        callUpdatedAdapters(complaints_data);
+                        swipeRefreshLayout.setRefreshing(false);
+                        Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -132,6 +135,15 @@ public class FragmentIndividual extends Fragment {
         Context context = (HomeActivity) getContext();
         complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints(complaints_data,activity,context);
+        //Log.i("hagga",complaints_data.toString());
+
+        mRecyclerView.setAdapter(mAdapter);
+    }
+    private void callUpdatedAdapters(JSONObject complaints) {
+        Log.e("Hehe ho gya sayad!!",complaints.toString());
+        HomeActivity activity = (HomeActivity) getActivity();
+        Context context = (HomeActivity) getContext();
+        mAdapter = new Adapter_Complaints(complaints,activity,context);
         //Log.i("hagga",complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
