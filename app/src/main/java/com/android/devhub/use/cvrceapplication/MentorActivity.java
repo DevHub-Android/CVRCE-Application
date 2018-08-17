@@ -140,7 +140,11 @@ public class MentorActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
+                        try {
+                            Toast.makeText(global, response.getString("msg"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override
