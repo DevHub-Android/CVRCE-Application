@@ -53,7 +53,8 @@
             </intent-filter>
 
           </activity>
-        <activity android:name=".HostelAuthorityActivity">
+        <activity android:name=".HostelAuthorityActivity"
+            android:theme="@style/AppTheme.NoActionBar">
 
 
             </activity>
