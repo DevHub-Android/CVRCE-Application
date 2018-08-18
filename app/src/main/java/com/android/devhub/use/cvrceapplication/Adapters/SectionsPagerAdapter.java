@@ -20,15 +20,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new FragmentNotifications();
-                break;
-            case 1:
                 fragment = new FragmentIndividual();
                 break;
-            case 2:
+            case 1:
                 fragment = new FragmentHostel();
                 break;
-            case 3:
+            case 2:
                 fragment = new FragmentInstitute();
                 break;
         }
@@ -39,19 +36,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
     @Override
     public int getCount() {
         // Show 4 total pages.
-        return 4;
+        return 3;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "My Notifications";
-            case 1:
                 return "My Complains";
-            case 2:
+            case 1:
                 return "Hostel Complains";
-            case 3:
+            case 2:
                 return "Institute Complains";
         }
         return null;

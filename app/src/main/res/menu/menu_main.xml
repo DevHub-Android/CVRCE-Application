@@ -4,13 +4,6 @@
     tools:context="com.example.hd.rizolve.MainActivity">
 
 
-    <item
-        android:id="@+id/Resolve"
-        android:orderInCategory="100"
-        android:title="Resolve"
-        android:onClick="call_resolve"
-        android:icon="@drawable/resol"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/add_complaint"

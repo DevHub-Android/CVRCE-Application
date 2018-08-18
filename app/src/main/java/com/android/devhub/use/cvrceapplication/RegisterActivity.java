@@ -202,7 +202,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 //                        startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
 
                     }else{
-                        Toast.makeText(getApplicationContext(),"Something Went Wrong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+
                     }
 
 

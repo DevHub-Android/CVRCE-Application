@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     String reg_id;
     int usertype;
     static boolean proceed;
-
+    static String REGID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(s);
                     if(!jsonObject.getBoolean("error"))
                     {
+                        UserModel.REGID=regid;
                         //Toast.makeText(getApplicationContext(),"Comming Here!!",Toast.LENGTH_LONG).show();
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
@@ -142,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
                         String url_login = serverAddress.concat("/public/login.php?userid=");
                         url_login = url_login.concat(regid).concat("&password=").concat(pass);
                         String url_notification = serverAddress.concat("/public/notifications.php");
-                        String url_user_complaints = serverAddress.concat("/public/user_complaints.php");
-                        String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php");
-                        String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php");
+                        String url_user_complaints = serverAddress.concat("/public/user_complaints.php?user_id=").concat(regid);
+                        String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php?user_id=").concat(regid);
+                        String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php?user_id=").concat(regid);
                         Log.e("URL_NOTIFY",url_login);
                         final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
 
@@ -273,6 +274,9 @@ public class MainActivity extends AppCompatActivity {
                         myQueue.add(request0);
 
 
+                    }else
+                    {
+                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                     }
                 }catch (Exception e)
                 {

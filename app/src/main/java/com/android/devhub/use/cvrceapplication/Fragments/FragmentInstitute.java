@@ -18,6 +18,7 @@ import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.HomeActivity;
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.URLs;
+import com.android.devhub.use.cvrceapplication.models.UserModel;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -97,7 +98,7 @@ public class FragmentInstitute extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                String url = serverAddress.concat("/public/institute_complaints.php");
+                String url = serverAddress.concat("/public/institute_complaints.php?user_id="+ UserModel.REGID);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -113,7 +114,7 @@ public class FragmentInstitute extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Bhai Bhai",error.toString());
-                        Toast toast = Toast.makeText(getContext(), "Fragements"+error.getMessage(), Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getContext(), "in insi Fragements"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });

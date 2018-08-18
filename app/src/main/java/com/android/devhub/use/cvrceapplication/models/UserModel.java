@@ -6,7 +6,10 @@ package com.android.devhub.use.cvrceapplication.models;
 
 public class UserModel {
     private  String regid,username,first_name,last_name,email,branch,hostel;
+   public static String REGID;
+    public UserModel(){
 
+    }
     public UserModel(String regid, String username,String first_name,String last_name,String email,String branch,String hostel) {
         this.regid = regid;
         this.username = username;

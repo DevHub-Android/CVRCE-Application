@@ -16,8 +16,10 @@ import android.widget.Toast;
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.HomeActivity;
+import com.android.devhub.use.cvrceapplication.MainActivity;
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.URLs;
+import com.android.devhub.use.cvrceapplication.models.UserModel;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,7 +29,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
 
 
-public class FragmentIndividual extends Fragment {
+public class FragmentIndividual extends Fragment  {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -100,14 +102,17 @@ public class FragmentIndividual extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                String url = serverAddress.concat("/public/user_complaints.php");
+               // UserModel userModel = new UserModel();
+               // URLs.ROOT_URL = "";
+                String url = serverAddress.concat("/public/user_complaints.php?user_id="+UserModel.REGID);
+                Log.e("url",url);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         //Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
                         complaints_data = response;
-                        Log.d("Chutiya data dekh", "onResponse: " + response);
+                       // Log.d("Chutiya data dekh", "onResponse: " + response);
                         //mAdapter.notifyDataSetChanged();
                         callUpdatedAdapters(complaints_data);
                         swipeRefreshLayout.setRefreshing(false);
@@ -117,7 +122,7 @@ public class FragmentIndividual extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Bhai Bhai",error.toString());
-                        Toast toast = Toast.makeText(getContext(), "Fragements"+error.getMessage(), Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getContext(), "in indi Fragements"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
