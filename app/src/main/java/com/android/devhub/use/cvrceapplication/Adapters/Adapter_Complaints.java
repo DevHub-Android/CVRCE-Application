@@ -184,7 +184,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Marke resolved Error",error.toString());
-                       
+
+
                     }
                 });
                 //Add_the_first_request_in_the_queue

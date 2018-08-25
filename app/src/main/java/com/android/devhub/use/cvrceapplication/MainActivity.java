@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         ul.execute();
     }
     public void successCallback() {
-        Intent intent = new Intent(this,HomeActivity.class);
+        Intent intent = new Intent(this,StudentGrid.class);
         Bundle bundle = new Bundle();
         bundle.putString("NotificationList", notificationData.toString());
         bundle.putString("UserComplains",userComplains.toString());

@@ -1,7 +1,4 @@
 package com.android.devhub.use.cvrceapplication;
-/**
- * Created by user on 7/24/2018.
- */
 
 public class URLs {
 

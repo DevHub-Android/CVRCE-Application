@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".Grievance_form">
+    tools:context=".Grievance_form"
+    android:gravity="center">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -16,12 +17,15 @@
             android:layout_height="wrap_content"
             android:hint="Problem title"
             android:textStyle="bold"
+            android:id="@+id/entTittle"
+
             />
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/typeOfProblem"
-            android:prompt="@string/choose">
+            android:prompt="@string/choose"
+            android:id="@+id/type">
 
         </Spinner>
     </android.support.design.widget.TextInputLayout>
@@ -41,8 +45,18 @@
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             android:minHeight="170dp"
-            android:hint="brief description"
+            android:id="@+id/entDes"
+            android:hint="Description of your problem"
             />
     </android.support.design.widget.TextInputLayout>
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="SUBMIT"
+       android:background="@color/white"
+       android:elevation="8dp"
+       android:shadowColor="#000"
+       android:id="@+id/submit"/>
 
 </LinearLayout>

@@ -138,7 +138,10 @@ public class webHome_mainActivity extends AppCompatActivity
         {
             startActivity(new Intent(getApplicationContext(),EmployeeLogin.class));
         }
-
+        else if(id==R.id.developers)
+        {
+            startActivity(new Intent(getApplicationContext(),Developers.class));
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,37 +26,46 @@ public class AddComplaint extends AppCompatActivity {
     Spinner type;
     RadioGroup postTo;
     String typeInString;
-    Button register;
+    Button submit;
     String typeInInt;
     ProgressDialog progressDialog;
-    String typeOfComplaint[] ={"Individual","Hostel","Institute"};
+   ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_complaint);
-        postTo = findViewById(R.id.postTo);
+        setContentView(R.layout.activity_grievance_form);
+
         type = (Spinner) findViewById(R.id.type);
-        register = findViewById(R.id.addComplaints);
+        submit = findViewById(R.id.submit);
         entTittle = findViewById(R.id.entTittle);
         entDes = findViewById(R.id.entDes);
         progressDialog = new ProgressDialog(this);
       // type.setOnIt  emSelectedListener((AdapterView.OnItemSelectedListener) this);
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,typeOfComplaint);
+        ArrayAdapter aa = ArrayAdapter.createFromResource(this,R.array.typeOfProblem,android.R.layout.simple_spinner_item);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type.setAdapter(aa);
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 typeInString = type.getSelectedItem().toString();
-               if(typeInString.equals("Individual"))
+               if(typeInString.equals("Other"))
                {
                    typeInInt="0";
                }else if(typeInString.equals("Hostel"))
                 {
                     typeInInt="1";
-                }else
+                }else if(typeInString.equals("DSW"))
                {
                    typeInInt="2";
+               }else if(typeInString.equals("Placement"))
+               {
+                   typeInInt="3";
+               }else if(typeInString.equals("Exam"))
+               {
+                   typeInInt="4";
+               }else if(typeInString.equals("Food"))
+               {
+                   typeInInt="5";
                }
             }
 
@@ -64,29 +74,33 @@ public class AddComplaint extends AppCompatActivity {
 
             }
         });
-        register.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String facultyVisible="1",studentVisible="0";
-                int id = postTo.getCheckedRadioButtonId();
-                if(R.id.radio_term1==id)
-                {
-                    studentVisible="1";
-                }else
-                {
-                    studentVisible="0";
-                }
+            if(TextUtils.isEmpty(entTittle.getText()))
+            {
+                entTittle.setError("Enter Title");
+                entTittle.requestFocus();
+                return;
+            }else if(TextUtils.isEmpty(entDes.getText()))
+            {
+                entDes.setError("Enter Description");
+                entDes.requestFocus();
+                return;
+            }
+
+
                 UserModel userModel = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
-               addComplaint(String.valueOf(userModel.getRegid()),entDes.getText().toString(),typeInInt,studentVisible,facultyVisible,
+               addComplaint(String.valueOf(userModel.getRegid()),entDes.getText().toString(),typeInInt,
                        entTittle.getText().toString());
             }
         });
 
 
     }
-    public void addComplaint(final String reg_id, final String description, final String type,
-                             final String student_vis, final String faculty_vis
+    public void addComplaint(final String reg_id, final String description, final String type
+
                              , final String title){
      Log.e("In here","addcom");
         class SubmitComplaint extends AsyncTask<Void,Void,String>{
@@ -105,8 +119,6 @@ public class AddComplaint extends AppCompatActivity {
                 params.put("reg_id",reg_id);
                 params.put("description",description);
                 params.put("type",type);
-                params.put("student_vis",student_vis);
-                params.put("faculty_vis",faculty_vis);
                 params.put("title",title);
                 return requestHandler.sendPostRequest(URLs.URL_COMPLAINT,params);
             }

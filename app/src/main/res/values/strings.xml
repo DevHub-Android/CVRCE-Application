@@ -13,13 +13,14 @@
 
     <string name="choose">CHOOSE</string>
     <string-array name="typeOfProblem">
-        <item>Regarding hostel</item>
-        <item>Canteen Food</item>
-        <item>Bonafied certificate</item>
-        <item>Studies</item>
-        <item>Loan</item>
+        <item>Hostel</item>
+        <item>Food</item>
+        <item>Exam</item>
+        <item>Placement</item>
+        <item>DSW</item>
+        <item>Other</item>
     </string-array>
-
+    <integer name="swing_anim_time">1000</integer>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">home</string>

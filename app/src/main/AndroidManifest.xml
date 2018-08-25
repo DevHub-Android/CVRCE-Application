@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/CustomAppTheme"></activity>
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/CustomAppTheme" />
@@ -41,21 +41,27 @@
             android:name=".webHome_mainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity
-            android:name=".HostelAuthorityActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".EmployeeLogin"></activity>
-        <activity android:name=".MentorResolvedComplaintsActivity"></activity>
-        <activity android:name=".SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".HostelAuthorityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EmployeeLogin" />
+        <activity android:name=".MentorResolvedComplaintsActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Developers"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StudentGrid"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".StudentHomeActivity"></activity>
     </application>
 
 </manifest>

@@ -216,6 +216,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
             });
         }else{
             SharedPreferences myPreferences = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE);
+
             String is_checked = myPreferences.getString(CHECKED_KEY,null);
             if(is_checked!=null){
                 holder.is_seen.setChecked(true);

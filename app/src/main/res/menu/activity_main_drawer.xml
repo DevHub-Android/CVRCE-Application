@@ -36,6 +36,15 @@
             android:title="Slideshow" />
 
     </group>
+    <item android:title="Contact Us">
+        <menu>
+            <item
+                android:title="Developers"
+                android:id="@+id/developers"
+                android:icon="@drawable/student1"/>
+
+        </menu>
+    </item>
 
 
 </menu>
