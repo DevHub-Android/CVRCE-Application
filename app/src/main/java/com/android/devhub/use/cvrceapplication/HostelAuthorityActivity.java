@@ -90,14 +90,20 @@ public class HostelAuthorityActivity extends AppCompatActivity {
 
          type = "";
         //Here we have to check the priority and type of faculty:
-        if (domain.equals("self"))
+        if (domain.equals("other"))
         {
             type = "0";
         }else if(domain.equals("hostel"))
         {
             type = "1";
-        }else {
+        }else if(domain.equals("dsw")){
             type ="2";
+        }else if(domain.equals("exam")){
+            type ="4";
+        }else if(domain.equals("food")){
+            type ="5";
+        }else if(domain.equals("placement")){
+            type ="3";
         }
         hostelSuccessCallBack();
 

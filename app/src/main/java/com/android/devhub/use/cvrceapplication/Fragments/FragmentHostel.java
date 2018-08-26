@@ -17,6 +17,7 @@ import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.HomeActivity;
 import com.android.devhub.use.cvrceapplication.R;
+import com.android.devhub.use.cvrceapplication.StudentHomeActivity;
 import com.android.devhub.use.cvrceapplication.URLs;
 import com.android.devhub.use.cvrceapplication.models.UserModel;
 import com.android.volley.Request;
@@ -47,7 +48,7 @@ public class FragmentHostel extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HomeActivity activity = (HomeActivity) getActivity();
+        StudentHomeActivity activity = (StudentHomeActivity) getActivity();
         complaints_data =  activity.getHostelComplains();
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)activity.getApplication();
@@ -132,8 +133,8 @@ public class FragmentHostel extends Fragment {
 
     private void callUpdatedAdapters(JSONObject complaints) {
         Log.e("Hehe ho gya sayad!!",complaints.toString());
-        HomeActivity activity = (HomeActivity) getActivity();
-        Context context = (HomeActivity) getContext();
+        StudentHomeActivity activity = (StudentHomeActivity) getActivity();
+        Context context = (StudentHomeActivity) getContext();
         mAdapter = new Adapter_Complaints(complaints,activity,context);
         //Log.i("hagga",complaints_data.toString());
 
@@ -143,8 +144,8 @@ public class FragmentHostel extends Fragment {
 
     private void callAdapters(){
         // specify an adapter (see also next example)
-        HomeActivity activity = (HomeActivity) getActivity();
-        Context context = (HomeActivity) getContext();
+        StudentHomeActivity activity = (StudentHomeActivity) getActivity();
+        Context context = (StudentHomeActivity) getContext();
         complaints_data =  activity.getHostelComplains();
         mAdapter = new Adapter_Complaints(complaints_data,activity,context);
         //Log.i("hagga",complaints_data.toString());

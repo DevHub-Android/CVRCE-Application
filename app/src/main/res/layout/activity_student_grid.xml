@@ -34,7 +34,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_row="0"
-
+            android:id="@+id/hostelCard"
             android:elevation="8dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="8dp"
@@ -81,7 +81,7 @@
             android:layout_marginRight="16dp"
             android:layout_row="0"
             android:elevation="8dp"
-
+            android:id="@+id/foodCard"
             android:layout_gravity="center"
             app:cardCornerRadius="6dp"
             app:cardElevation="8dp">
@@ -123,6 +123,7 @@
             android:elevation="8dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="8dp"
+            android:id="@+id/examCard"
             android:layout_gravity="center">
 
             <LinearLayout
@@ -163,7 +164,8 @@
             android:elevation="8dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="8dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:id="@+id/placementCard">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -202,7 +204,8 @@
             android:elevation="8dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="8dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:id="@+id/dswCard">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -241,7 +244,8 @@
             android:elevation="8dp"
             app:cardCornerRadius="6dp"
             app:cardElevation="8dp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:id="@+id/moreCard">
 
             <LinearLayout
                 android:layout_width="wrap_content"

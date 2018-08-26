@@ -128,6 +128,7 @@ public class AddComplaint extends AppCompatActivity {
                 super.onPostExecute(s);
                 progressDialog.dismiss();
                 try{
+                    Log.e("Possible Error",s);
                     JSONObject response = new JSONObject(s);
                     if(response.getBoolean("error")){
                         Toast.makeText(getApplicationContext(),response.getString("message"),Toast.LENGTH_SHORT).show();

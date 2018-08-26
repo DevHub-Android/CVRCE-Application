@@ -1,6 +1,7 @@
 package com.android.devhub.use.cvrceapplication.Fragments;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
-import com.android.devhub.use.cvrceapplication.HomeActivity;
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.StudentHomeActivity;
 import com.android.devhub.use.cvrceapplication.URLs;
@@ -29,8 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
 
 
-public class FragmentInstitute extends Fragment {
-
+public class FragmentPlacemnt extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -40,16 +40,18 @@ public class FragmentInstitute extends Fragment {
     static RequestQueue myQueue;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    public FragmentInstitute() {
+
+    public FragmentPlacemnt() {
         // Required empty public constructor
     }
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StudentHomeActivity activity = (StudentHomeActivity) getActivity();
-        complaints_data =  activity.getInstiComplains();
+        complaints_data =  activity.getPlacementComplains();
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)activity.getApplication();
         serverAddress = URLs.SERVER_ADDR;
@@ -73,6 +75,7 @@ public class FragmentInstitute extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
+        //  mAdapter.notifyDataSetChanged();
         callAdapters();
 
         swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
@@ -99,23 +102,26 @@ public class FragmentInstitute extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                String url = serverAddress.concat("/public/institute_complaints.php?user_id="+ UserModel.REGID);
+                String url = serverAddress.concat("/public/placement_complaints.php?user_id="+ UserModel.REGID);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
                         //Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
+
                         complaints_data = response;
                         Log.d("Chutiya data dekh", "onResponse: " + response);
                         //mAdapter.notifyDataSetChanged();
                         callUpdatedAdapters(complaints_data);
                         swipeRefreshLayout.setRefreshing(false);
+                        Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
+
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("Bhai Bhai",error.toString());
-                        Toast toast = Toast.makeText(getContext(), "in insi Fragements"+error.getMessage(), Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(getContext(), "in Fragements"+error.getMessage(), Toast.LENGTH_LONG);
                         toast.show();
                     }
                 });
@@ -127,16 +133,6 @@ public class FragmentInstitute extends Fragment {
         fetchData.execute();
     }
 
-    private void callAdapters(){
-        // specify an adapter (see also next example)
-        StudentHomeActivity activity = (StudentHomeActivity) getActivity();
-        Context context = (StudentHomeActivity) getContext();
-        complaints_data =  activity.getInstiComplains();
-        mAdapter = new Adapter_Complaints(complaints_data,activity,context);
-        //Log.i("hagga",complaints_data.toString());
-
-        mRecyclerView.setAdapter(mAdapter);
-    }
     private void callUpdatedAdapters(JSONObject complaints) {
         Log.e("Hehe ho gya sayad!!",complaints.toString());
         StudentHomeActivity activity = (StudentHomeActivity) getActivity();
@@ -145,12 +141,24 @@ public class FragmentInstitute extends Fragment {
         //Log.i("hagga",complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
+
+    private void callAdapters(){
+        // specify an adapter (see also next example)
+        StudentHomeActivity activity = (StudentHomeActivity) getActivity();
+        Context context = (StudentHomeActivity) getContext();
+        complaints_data =  activity.getPlacementComplains();
+        mAdapter = new Adapter_Complaints(complaints_data,activity,context);
+        //Log.i("hagga",complaints_data.toString());
+
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         updateData();
         mAdapter.notifyDataSetChanged();
     }
-
 }

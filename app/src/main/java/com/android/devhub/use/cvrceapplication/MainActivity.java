@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Globals global;
     static String serverAddress;
     static RequestQueue myQueue;
-    JSONObject userComplains,hostelComplains,instiComplains,notificationData;
+    JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplaints,examComplaints,placementComplaints;
     String first_name;
     String last_name;
     String hostel;
@@ -146,7 +146,12 @@ public class MainActivity extends AppCompatActivity {
                         String url_user_complaints = serverAddress.concat("/public/user_complaints.php?user_id=").concat(regid);
                         String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php?user_id=").concat(regid);
                         String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php?user_id=").concat(regid);
+                        String url_food_complaints = serverAddress.concat("/public/food_complaints.php?user_id=").concat(regid);
+                        String url_exam_complaints = serverAddress.concat("/public/exam_complaints.php?user_id=").concat(regid);
+                        String url_placement_complaints = serverAddress.concat("/public/placement_complaints.php?user_id=").concat(regid);
                         Log.e("URL_NOTIFY",url_login);
+
+
                         final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
 
                             @Override
@@ -221,7 +226,58 @@ public class MainActivity extends AppCompatActivity {
                                 toast.show();
                             }
                         }) ;
+                        final JsonObjectRequest request5 = new JsonObjectRequest(Request.Method.GET,url_food_complaints,null, new Response.Listener<JSONObject>() {
 
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            foodComplaints = response;
+                            myQueue.add(request1);
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                            Log.e("request1",error.getMessage());
+                            progressDialog.hide();
+                            toast.show();
+                        }
+                    }) ;
+
+                        final JsonObjectRequest request6 = new JsonObjectRequest(Request.Method.GET,url_exam_complaints,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                examComplaints = response;
+                                myQueue.add(request5);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                                Log.e("request1",error.getMessage());
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
+                        final JsonObjectRequest request7 = new JsonObjectRequest(Request.Method.GET,url_placement_complaints,null, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                placementComplaints = response;
+                                myQueue.add(request6);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                                Log.e("request1",error.getMessage());
+                                progressDialog.hide();
+                                toast.show();
+                            }
+                        }) ;
                         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_login,null, new Response.Listener<JSONObject>() {
 
                             @Override
@@ -253,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                                         global.setIs_loggedin(true);
                                         Log.d("hello", "onResponse: " + details);
                                         //add the next request in the queue
-                                        myQueue.add(request1);
+                                        myQueue.add(request7);
 
                                     }
                                 } catch (JSONException e) {
@@ -302,6 +358,9 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("UserComplains",userComplains.toString());
         bundle.putString("HostelComplains",hostelComplains.toString());
         bundle.putString("InstiComplains",instiComplains.toString());
+        bundle.putString("foodComplains",foodComplaints.toString());
+        bundle.putString("examComplains",examComplaints.toString());
+        bundle.putString("placementComplains",placementComplaints.toString());
 
 
         //hide progressBar here

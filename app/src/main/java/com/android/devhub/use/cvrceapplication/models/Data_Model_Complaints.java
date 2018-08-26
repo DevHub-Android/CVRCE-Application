@@ -52,10 +52,6 @@ public class Data_Model_Complaints {
             int complaint_id1 = object1.getInt("complaint_id");
             Log.i("hagga2", String.valueOf(complaint_id1));
             int isresolved1 = object1.getInt("is_resolved");
-            int faculty_visibility1 = object1.getInt("faculty_visibility");
-            int student_visibility1 = object1.getInt("student_visibility");
-            int upvote=object1.getInt("up_vote");
-            int downvote=object1.getInt("down_vote");
             int type=object1.getInt("type");
             int priority = object1.getInt("priority");
             String date= object1.getString("created_at");
@@ -70,10 +66,7 @@ public class Data_Model_Complaints {
             String positionSeen = object1.getString("position_seen");
             this.complaint_id = complaint_id1;
             this.isresolved = isresolved1;
-            this.faculty_visibility = faculty_visibility1;
-            this.student_visibility = student_visibility1;
-            this.up_vote = upvote;
-            this.down_vote = downvote;
+
             this.type = type;
             this.date = date;
             this.description = description;
