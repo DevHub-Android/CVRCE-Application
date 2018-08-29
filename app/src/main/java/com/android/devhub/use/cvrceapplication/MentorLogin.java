@@ -65,7 +65,7 @@ public class MentorLogin extends AppCompatActivity  {
                                 String empid = userJson.getString("empid");
                                 String name = userJson.getString("name");
                                 String department = userJson.getString("department");
-                                Intent intent = new Intent(getApplicationContext(),MentorActivity.class);
+                                Intent intent = new Intent(getApplicationContext(),MentorGrid.class);
                                 intent.putExtra("empid",empid);
                                 intent.putExtra("name",name);
                                 startActivity(intent);

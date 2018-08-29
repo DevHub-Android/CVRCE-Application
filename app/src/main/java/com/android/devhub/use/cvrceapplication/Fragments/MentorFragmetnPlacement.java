@@ -1,6 +1,7 @@
 package com.android.devhub.use.cvrceapplication.Fragments;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints_Authority;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
-
 import com.android.devhub.use.cvrceapplication.MentorHome;
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.URLs;
@@ -27,8 +27,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
-public class MentorFragmentInstitute extends Fragment {
 
+public class MentorFragmetnPlacement extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -38,16 +38,18 @@ public class MentorFragmentInstitute extends Fragment {
     static RequestQueue myQueue;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    public MentorFragmentInstitute() {
+
+    public MentorFragmetnPlacement() {
         // Required empty public constructor
     }
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MentorHome activity = (MentorHome) getActivity();
-        complaints_data =  activity.getInstiComplains();
+        complaints_data =  activity.getPlacementComplains();
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)activity.getApplication();
         serverAddress = URLs.SERVER_ADDR;
@@ -98,7 +100,7 @@ public class MentorFragmentInstitute extends Fragment {
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
                 MentorHome activity = (MentorHome) getActivity();
-                String url = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(activity.getMentorId());
+                String url = serverAddress.concat("/public/mentor_placement_complaints.php").concat("?mentor_id=").concat(activity.getMentorId());
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -132,7 +134,7 @@ public class MentorFragmentInstitute extends Fragment {
         // specify an adapter (see also next example)
         MentorHome activity = (MentorHome) getActivity();
         Context context = (MentorHome) getContext();
-        complaints_data =  activity.getInstiComplains();
+        complaints_data =  activity.getPlacementComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
         //Log.i("hagga", complaints_data.toString());
 
@@ -143,12 +145,11 @@ public class MentorFragmentInstitute extends Fragment {
         // specify an adapter (see also next example)
         MentorHome activity = (MentorHome) getActivity();
         Context context = (MentorHome) getContext();
-        complaints_data =  activity.getInstiComplains();
+        complaints_data =  activity.getPlacementComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
         //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
     }
-
 
 }

@@ -17,7 +17,8 @@ import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.android.devhub.use.cvrceapplication.Adapters.Adapter_Complaints_Authority;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.HomeActivity;
-import com.android.devhub.use.cvrceapplication.MentorActivity;
+import com.android.devhub.use.cvrceapplication.MentorHome;
+import com.android.devhub.use.cvrceapplication.MentorHome;
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.URLs;
 import com.android.volley.Request;
@@ -45,7 +46,7 @@ public class MentorFragmentIndividual extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MentorActivity activity = (MentorActivity) getActivity();
+        MentorHome activity= (MentorHome) getActivity();
         complaints_data =  activity.getUserComplains();
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)activity.getApplication();
@@ -98,7 +99,7 @@ public class MentorFragmentIndividual extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                MentorActivity activity = (MentorActivity) getActivity();
+                MentorHome activity = (MentorHome) getActivity();
                 String url = serverAddress.concat("/public/mentor_individual_complaints.php").concat("?mentor_id=").concat(activity.getMentorId());
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
@@ -131,8 +132,8 @@ public class MentorFragmentIndividual extends Fragment {
 
     private void callUpdatedAdapters(JSONObject complaints) {
         // specify an adapter (see also next example)
-        MentorActivity activity = (MentorActivity) getActivity();
-        Context context = (MentorActivity) getContext();
+        MentorHome activity = (MentorHome) getActivity();
+        Context context = (MentorHome) getContext();
         complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
         //Log.i("hagga", complaints_data.toString());
@@ -142,8 +143,8 @@ public class MentorFragmentIndividual extends Fragment {
 
     private void callAdapters(){
         // specify an adapter (see also next example)
-        MentorActivity activity = (MentorActivity) getActivity();
-        Context context = (MentorActivity) getContext();
+        MentorHome activity = (MentorHome) getActivity();
+        Context context = (MentorHome) getContext();
         complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
         //Log.i("hagga", complaints_data.toString());
