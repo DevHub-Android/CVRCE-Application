@@ -62,14 +62,17 @@ public class EmployeeLogin extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(s);
                             if(!jsonObject.getBoolean("error")){
                                 JSONObject userJson =jsonObject.getJSONObject("user");
-                                String empid = userJson.getString("reg_id");
+                                String empid = userJson.getString("empId");
                                 String position = userJson.getString("position");
                                 String domain = userJson.getString("domain");
                                 int priority = userJson.getInt("priority");
+                                String first_name = userJson.getString("name");
                                 Intent intent = new Intent(getApplicationContext(),HostelAuthorityActivity.class);
                                 intent.putExtra("domain",domain);
                                 intent.putExtra("priority",priority);
                                 intent.putExtra("position",position);
+                                intent.putExtra("first_name",first_name);
+                                intent.putExtra("reg_id",empid);
                                 startActivity(intent);
                                 //  finish();
                             }else
