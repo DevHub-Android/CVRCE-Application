@@ -133,8 +133,8 @@ public class MentorFragmentInstitute extends Fragment {
         MentorHome activity = (MentorHome) getActivity();
         Context context = (MentorHome) getContext();
         complaints_data =  activity.getInstiComplains();
-        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
-        //Log.i("hagga", complaints_data.toString());
+        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,activity.getMentorId(),activity.getFirst_name(),
+                activity.getLast_name());        //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -144,8 +144,8 @@ public class MentorFragmentInstitute extends Fragment {
         MentorHome activity = (MentorHome) getActivity();
         Context context = (MentorHome) getContext();
         complaints_data =  activity.getInstiComplains();
-        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor");
-        //Log.i("hagga", complaints_data.toString());
+        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,activity.getMentorId(),activity.getFirst_name(),
+                activity.getLast_name());        //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
     }

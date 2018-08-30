@@ -52,7 +52,7 @@ public class addCommentFragment extends android.support.v4.app.DialogFragment im
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (EditorInfo.IME_ACTION_DONE == actionId) {
             // Return input text to activity
-            ComplaintsActivity activity = (ComplaintsActivity) getActivity();
+            ComplaintsAuthorityActivity activity = (ComplaintsAuthorityActivity) getActivity();
             activity.onFinishEditDialog(mEditText.getText().toString());
             this.dismiss();
             return true;

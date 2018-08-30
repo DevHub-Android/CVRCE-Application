@@ -43,7 +43,7 @@ import org.json.JSONObject;
 
 public class MentorHome extends AppCompatActivity {
     private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains;
-    String choose;
+    String choose,first_name,last_name;
     String mentorId;
     String studRegId;
 
@@ -73,6 +73,8 @@ public class MentorHome extends AppCompatActivity {
     public JSONObject getExamComplains(){
         return examComplains;
     }
+    public String getFirst_name(){return first_name;}
+    public String getLast_name(){return last_name;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,8 @@ public class MentorHome extends AppCompatActivity {
         Intent intent = getIntent();
         choose = intent.getStringExtra("choose");
         mentorId = intent.getStringExtra("mentorId");
+        first_name = intent.getStringExtra("first_name");
+        last_name = "Mentor";
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 

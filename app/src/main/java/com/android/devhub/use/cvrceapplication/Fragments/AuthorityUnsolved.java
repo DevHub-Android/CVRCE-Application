@@ -49,7 +49,8 @@ public class AuthorityUnsolved extends Fragment {
        unsolved_complaints_data = authorityActivity.getUnsolvedComplaints();
         Log.e("UNSOLVED_COMPLAINTS",unsolved_complaints_data.toString());
        Context context = (HostelAuthorityActivity)getContext();
-       mRecyclerViewAdapter = new Adapter_Complaints_Authority(unsolved_complaints_data,authorityActivity,context,"authority");
+       mRecyclerViewAdapter = new Adapter_Complaints_Authority(unsolved_complaints_data,authorityActivity,context,"authority",authorityActivity.getPriority(),
+               authorityActivity.getEmp_Id(),authorityActivity.getFirst_name(),authorityActivity.getLast_name());
        mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
 

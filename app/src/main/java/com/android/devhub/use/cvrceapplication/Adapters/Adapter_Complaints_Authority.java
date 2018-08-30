@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.devhub.use.cvrceapplication.ComplaintsActivity;
+import com.android.devhub.use.cvrceapplication.ComplaintsAuthorityActivity;
 import com.android.devhub.use.cvrceapplication.Globals.Globals;
 import com.android.devhub.use.cvrceapplication.R;
 import com.android.devhub.use.cvrceapplication.URLs;
@@ -49,13 +50,18 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
     //we pass the complaints_data to the next activity
     JSONObject complaint_details;
     Activity parent;
+    int priority;
+    String emp_id;
+    String first_name;
+    String last_name;
     public static final String my_pref = "CHECKED_DATA";
     public static final String CHECKED_KEY = "is_checked";
 
     private ArrayList<Data_Model_Complaints> ComplaintsData ;
 
 
-    public Adapter_Complaints_Authority(JSONObject ndata, Activity a, Context c,String domain) {
+    public Adapter_Complaints_Authority(JSONObject ndata, Activity a, Context c,String domain,int priority,String emp_id,String first_name,
+                                        String last_name) {
 
         JSONArray object1 = null;
         JSONArray object2 = null;
@@ -69,11 +75,15 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         }
         ComplaintsData = Data_Model_Complaints.fromJson(object1, object2);
 
+        this.emp_id = emp_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
         context = c;
         parent = a;
         is_seen_domain = domain;
         global = ((Globals) a.getApplication());
         serverAddress = URLs.SERVER_ADDR;
+        this.priority = priority;
         myQueue = global.getVolleyQueue();
 
 
@@ -215,14 +225,22 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
 
             });
         }else{
-            SharedPreferences myPreferences = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE);
-
-            String is_checked = myPreferences.getString(CHECKED_KEY,null);
-            if(is_checked!=null){
+//            SharedPreferences myPreferences = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE);
+//
+//            String is_checked = myPreferences.getString(CHECKED_KEY,null);
+//            if(is_checked!=null){
+//                holder.is_seen.setChecked(true);
+//            }else if(is_checked==null){
+//                holder.is_seen.setChecked(false);
+//            }
+            if(item.positon_seen.isEmpty()==false&&priority==item.priority){
                 holder.is_seen.setChecked(true);
-            }else if(is_checked==null){
+            }else{
                 holder.is_seen.setChecked(false);
             }
+
+
+
 
             holder.is_seen.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -239,9 +257,9 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                         @Override
                         public void onResponse(JSONObject response) {
                             Log.i("hagga3", "response");
-                            SharedPreferences.Editor editor = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE).edit();
-                            editor.putString(CHECKED_KEY,"Not Null");
-                            editor.apply();
+//                            SharedPreferences.Editor editor = context.getSharedPreferences(my_pref,Context.MODE_PRIVATE).edit();
+//                            editor.putString(CHECKED_KEY,"Not Null");
+//                            editor.apply();
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -277,7 +295,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                     @Override
                     public void onResponse(JSONObject response) {
                         complaint_details = response;
-                        Intent intent = new Intent(v.getContext(),ComplaintsActivity.class);
+                        Intent intent = new Intent(v.getContext(),ComplaintsAuthorityActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("complaint_details", complaint_details.toString());
                         bundle.putString("title",item.title);
@@ -288,6 +306,9 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                         bundle.putString("upvote", String.valueOf(item.up_vote));
                         bundle.putString("downvote", String.valueOf(item.down_vote));
                         bundle.putString("id", String.valueOf(item.complaint_id));
+                        bundle.putString("emp_id",emp_id);
+                        bundle.putString("first_name",first_name);
+                        bundle.putString("last_name",last_name);
                         intent.putExtras(bundle);
                         v.getContext().startActivity(intent);
 

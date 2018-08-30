@@ -23,7 +23,7 @@ public class Adapter_Comment extends RecyclerView.Adapter<Adapter_Comment.ViewHo
 
     public Adapter_Comment(JSONObject ndata) {
         try {
-            CommentsData = Data_Model_Comment.fromJson(ndata.getJSONObject("root"));
+            CommentsData = Data_Model_Comment.fromJson(ndata);
         }catch(Exception e){
             Log.d("comment_error", "Adapter_Comment: " + e.getMessage());
         }

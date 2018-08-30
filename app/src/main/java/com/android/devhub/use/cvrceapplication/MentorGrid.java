@@ -39,6 +39,7 @@ public class MentorGrid extends AppCompatActivity {
     Context context;
     Globals global;
     String serverAddress;
+    String first_name;
     static RequestQueue myQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,12 @@ public class MentorGrid extends AppCompatActivity {
 
         Bundle bundle1 = getIntent().getExtras();
         mentorId = bundle1.getString("empid");
+        first_name = bundle1.getString("name");
         final Intent intent = getIntent();
         myQueue = global.getVolleyQueue();
         bundle = new Bundle();
         bundle.putString("mentorId",mentorId);
+        bundle.putString("first_name",first_name);
         cardIntent = new Intent(getApplicationContext(),MentorHome.class);
 
 

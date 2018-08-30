@@ -34,7 +34,6 @@
         <activity android:name=".AddComplaint" />
         <activity android:name=".ShowStudentsActivity" />
         <activity android:name=".MentorLogin" />
-
         <activity
             android:name=".webHome_mainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -63,10 +62,13 @@
             android:name=".StudentGrid"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".StudentHomeActivity" />
-        <activity android:name=".MentorGrid"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MentorHome"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MentorGrid"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MentorHome"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ComplaintsAuthorityActivity"></activity>
     </application>
 
 </manifest>

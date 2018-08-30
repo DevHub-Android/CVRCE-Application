@@ -27,15 +27,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-
-public class ComplaintsActivity extends AppCompatActivity {
+public class ComplaintsAuthorityActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     JSONObject complaintDetails;
-    String  postedBy, createdAt, upvote, downvote,title,description,id,user_id;
+    String  postedBy, createdAt, upvote, downvote,title,description,id,user_id,first_name,last_name,emp_id;
     Globals global;
     static String serverAddress;
     static RequestQueue myQueue;
@@ -63,6 +61,13 @@ public class ComplaintsActivity extends AppCompatActivity {
             upvote = intent.getStringExtra("upvote");
             downvote = intent.getStringExtra("downvote");
             id = intent.getStringExtra("id");
+            emp_id = intent.getStringExtra("emp_id");
+            first_name = intent.getStringExtra("first_name");
+            last_name = intent.getStringExtra("last_name");
+            Log.e("fname",first_name);
+            Log.e("lname",last_name);
+            Log.e("empid",emp_id);
+
         }
         catch (JSONException e){
 
@@ -226,20 +231,23 @@ public class ComplaintsActivity extends AppCompatActivity {
         String url_add_comment = serverAddress.concat("/public/post_comment.php?complaint_id=").
                 concat(String.valueOf(id)).concat("&comment=").concat(inputText)
                 .concat("&user_id=")
-                .concat(user.getRegid())
+                .concat(emp_id)
                 .concat("&first_name=")
-                .concat(user.getFirst_name())
+                .concat(first_name)
                 .concat("&last_name=")
-                .concat(user.getLast_name());
+                .concat(last_name);
         url_add_comment = url_add_comment.replaceAll("\\s+","%20");
         Log.e("@Complaint Activity 231",url_add_comment);
-
+        Log.e("@Complaint Activity 231",url_add_comment);
+        Log.e("@Complaint Activity 231",url_add_comment);
+        Log.e("@Complaint Activity 231",url_add_comment);
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_add_comment,null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
 
                 complaintDetails = response;
+                Log.e("asfasf",response.toString());
                 mAdapter = new Adapter_Comment(complaintDetails);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();

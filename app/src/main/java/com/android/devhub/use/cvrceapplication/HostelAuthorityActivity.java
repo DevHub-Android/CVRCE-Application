@@ -45,7 +45,7 @@ public class HostelAuthorityActivity extends AppCompatActivity {
     String facultyId;
     int priority;
     String domain;
-    String position;
+    String position,first_name,last_name,emp_Id;
     ProgressDialog progressDialog;
     RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -62,6 +62,10 @@ public class HostelAuthorityActivity extends AppCompatActivity {
     public JSONObject getUnsolvedComplaints(){
         return unsolvedComplaints;
     }
+    public int getPriority(){return priority;}
+    public String getFirst_name(){return first_name;}
+    public String getLast_name(){return last_name;}
+    public String getEmp_Id(){return emp_Id;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +90,9 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         priority = bundle.getInt("priority");
         domain = bundle.getString("domain");
         position = bundle.getString("position");
+        first_name = bundle.getString("first_name");
+        last_name = position;
+        emp_Id = bundle.getString("reg_id");
         Log.e("INFO ABOUT EMPLOYEE :",Integer.toString(priority)+"/ "+domain+"/ "+position);
 
          type = "";
