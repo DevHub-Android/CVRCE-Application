@@ -41,7 +41,8 @@
             android:background="@drawable/border_fields"
             android:hint=" User ID"
             android:drawableLeft="@drawable/icon_uid"
-            android:inputType="text" />
+            android:inputType="text"
+            />
 
 
 

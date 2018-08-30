@@ -22,12 +22,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Submit"
+            android:background="@color/white"
             android:id="@+id/submit"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Back"
+            android:background="@color/white"
             android:id="@+id/back"/>
 
 
