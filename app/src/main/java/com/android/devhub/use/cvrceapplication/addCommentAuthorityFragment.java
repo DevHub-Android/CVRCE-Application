@@ -1,4 +1,5 @@
 package com.android.devhub.use.cvrceapplication;
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -9,13 +10,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
-public class addCommentFragment extends android.support.v4.app.DialogFragment implements TextView.OnEditorActionListener {
+public class addCommentAuthorityFragment  extends android.support.v4.app.DialogFragment implements TextView.OnEditorActionListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private EditText mEditText;
 
-    public addCommentFragment() {
+    public addCommentAuthorityFragment() {
         // Required empty public constructor
     }
 
@@ -35,8 +35,8 @@ public class addCommentFragment extends android.support.v4.app.DialogFragment im
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_comment, container, false);
-       view.setMinimumHeight(300);
-       view.setMinimumWidth(1000);
+        view.setMinimumHeight(300);
+        view.setMinimumWidth(1000);
         mEditText = (EditText) view.findViewById(R.id.add_comment);
         getDialog().setTitle("Comment");
         mEditText.requestFocus();
@@ -46,19 +46,15 @@ public class addCommentFragment extends android.support.v4.app.DialogFragment im
         return view;
     }
 
-
-
-
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (EditorInfo.IME_ACTION_DONE == actionId) {
             // Return input text to activity
-            ComplaintsActivity activity = (ComplaintsActivity) getActivity();
+            ComplaintsAuthorityActivity activity = (ComplaintsAuthorityActivity) getActivity();
             activity.onFinishEditDialog(mEditText.getText().toString());
             this.dismiss();
             return true;
         }
         return false;
     }
-
 }

@@ -77,7 +77,7 @@ public class MentorHome extends AppCompatActivity {
     public String getLast_name(){return last_name;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor_home);
         Intent intent = getIntent();
         choose = intent.getStringExtra("choose");
@@ -113,7 +113,7 @@ public class MentorHome extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
+             super.onPostExecute(aVoid);
                 progressDialog.dismiss();
                 Log.d("inside", "successCallback: " + "inside the method");
                 String url_user_complaints = serverAddress.concat("/public/mentor_individual_complaints.php").concat("?mentor_id=").concat(mentorId);
@@ -266,29 +266,29 @@ public class MentorHome extends AppCompatActivity {
         {
             MentorFragmentFood fragment = new MentorFragmentFood();
             fragmentTransaction.add(R.id.container,fragment);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }else if(choose.equals("other"))
         {
             MentorFragmentIndividual fragment = new MentorFragmentIndividual();
             fragmentTransaction.add(R.id.container,fragment);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }
         else if(choose.equals("exam"))
         {
             MentorFragmentExam fragment = new MentorFragmentExam();
             fragmentTransaction.add(R.id.container,fragment);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }
         else if(choose.equals("placement"))
         {
              MentorFragmetnPlacement fragment = new MentorFragmetnPlacement();
             fragmentTransaction.add(R.id.container,fragment);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }else if(choose.equals("dsw"))
         {
             MentorFragmentInstitute fragment = new MentorFragmentInstitute();
             fragmentTransaction.add(R.id.container,fragment);
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }
 
 

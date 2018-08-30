@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -14,290 +15,303 @@
         android:isScrollContainer="true"
 
         >
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            android:layout_height="50dp">
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            </android.support.v7.widget.Toolbar>
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                </android.support.v7.widget.Toolbar>
 
 
-        </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.AppBarLayout>
 
-        <GridLayout
+        </LinearLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:columnCount="4"
-            android:padding="0dp"
-            android:rowCount="3"
-
-            >
-            <!--col 0,row 0-->
-            <android.support.v7.widget.CardView
-
-                android:clickable="true"
-
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="0"
-                android:id="@+id/hostelCard"
-                android:elevation="8dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:foreground="?android:attr/selectableItemBackground"
+
+                android:columnCount="4"
+                android:padding="0dp"
+                android:rowCount="3"
 
                 >
+                <!--col 0,row 0-->
+                <android.support.v7.widget.CardView
 
-                <LinearLayout
+                    android:clickable="true"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_row="0"
+                    android:id="@+id/hostelCard"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:foreground="?android:attr/selectableItemBackground"
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/hostel"/>
+                    >
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
                         android:gravity="center"
-                        android:padding="10dp"
-                        android:text="Hostel"
-                        android:textAlignment="center"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-            </android.support.v7.widget.CardView>
-            <!--col 1,row 0-->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="0"
-                android:elevation="8dp"
-                android:id="@+id/foodCard"
-                android:layout_gravity="center"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/hostel"/>
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="Hostel"
+                            android:textAlignment="center"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <!--col 1,row 0-->
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_row="0"
+                    android:elevation="8dp"
+                    android:id="@+id/foodCard"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/food"/>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:text="Food"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
 
-            </android.support.v7.widget.CardView>
-            <!--col 0,row 1-->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="1"
-                android:elevation="8dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
-                android:id="@+id/examCard"
-                android:layout_gravity="center">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/food"/>
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="Food"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <!--col 0,row 1-->
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_row="1"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
+                    android:id="@+id/examCard"
+                    android:layout_gravity="center">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/exams"/>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:text="Exam"
-                        android:textStyle="bold"
-                        android:textAlignment="center"
-                        />
-                </LinearLayout>
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
 
-            </android.support.v7.widget.CardView>
-            <!--col 1,row 1-->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="1"
-                android:elevation="8dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
-                android:layout_gravity="center"
-                android:id="@+id/placementCard">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/exams"/>
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="Exam"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <!--col 1,row 1-->
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_row="1"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/placementCard">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/placement"/>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:textStyle="bold"
-                        android:text="Placement"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
 
-            </android.support.v7.widget.CardView>
-            <!--col 0,row 2-->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="2"
-                android:elevation="8dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
-                android:layout_gravity="center"
-                android:id="@+id/dswCard">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/placement"/>
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:textStyle="bold"
+                            android:text="Placement"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <!--col 0,row 2-->
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_row="2"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/dswCard">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/dsw"/>
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:text="DSW"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
 
-            </android.support.v7.widget.CardView>
-            <!--col 1,row 2-->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="2"
-                android:elevation="8dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
-                android:layout_gravity="center"
-                android:id="@+id/moreCard">
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/dsw"/>
 
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="DSW"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <!--col 1,row 2-->
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_row="2"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/moreCard">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/more"/>
-
-                    <TextView
-                        android:gravity="center"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:text="Others"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
 
-            </android.support.v7.widget.CardView>
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/more"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="Others"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
 
 
 
 
-        </GridLayout>
+            </GridLayout>
+
+        </ScrollView>
+
+
 
     </LinearLayout>
-</ScrollView>
+</RelativeLayout>
+
+

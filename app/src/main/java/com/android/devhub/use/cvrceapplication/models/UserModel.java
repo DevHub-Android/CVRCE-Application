@@ -41,20 +41,20 @@ public class UserModel {
 
 
     public String getFirst_name() {
-        return regid;
+        return first_name;
     }
 
-    public void setFirst_name(String regid) {
-        this.regid = regid;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
 
     public String getLast_name() {
-        return regid;
+        return last_name;
     }
 
     public void setLast_name(String regid) {
-        this.regid = regid;
+        this.last_name = last_name;
     }
 
 

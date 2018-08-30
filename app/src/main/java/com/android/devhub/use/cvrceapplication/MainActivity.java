@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(getApplicationContext(),"Comming Here!!",Toast.LENGTH_LONG).show();
                         Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
+                        Log.e("First_Name",userJson.getString("firstname"));
                         UserModel user = new UserModel(
                                 userJson.getString("reg_id"),
                                 userJson.getString("username"),

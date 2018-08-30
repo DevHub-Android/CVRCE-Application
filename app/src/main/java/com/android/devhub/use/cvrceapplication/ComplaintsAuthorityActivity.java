@@ -128,8 +128,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
         description_ = (TextView) findViewById(R.id.complain_detail_description);
         posted_By = (TextView) findViewById(R.id.complain_detail_posted_by);
         created_At = (TextView) findViewById(R.id.complain_detail_created_at);
-        upvote_ = (Button) findViewById(R.id.complain_detail_upvote);
-        downvote_ = (Button) findViewById(R.id.complain_detail_downvote);
+
 
 
         String a = createdAt;
@@ -140,8 +139,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
         created_At.setText(a);
         posted_By.setText(b);
         description_.setText(description);
-        upvote_.setText(c);
-        downvote_.setText(d);
+
         final String complaint_id = id;
         final int duration = Toast.LENGTH_LONG;
 
@@ -156,61 +154,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
         });
 
 
-        upvote_.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                String upvote = String.valueOf(Integer.parseInt(upvote_.getText().toString())+1);
-                Log.i("hagga3",upvote);
-                upvote_.setText(upvote);
-                upvote_.setClickable(false);
-
-                String url_upvote = serverAddress.concat("/complaint/up_vote.json?complaint_id=").concat(String.valueOf(complaint_id));
-
-                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_upvote,null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i("hagga3","response");
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Network Error", duration);
-                        toast.show();
-                    }
-                }) ;
-                //Add the first request in the queue
-                myQueue.add(request0);
-            }
-        });
-
-        downvote_.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String downvote = String.valueOf(Integer.parseInt(downvote_.getText().toString()) + 1);
-                downvote_.setText(downvote);
-                downvote_.setClickable(false);
-                String url_downvote = serverAddress.concat("/complaint/down_vote.php?complaint_id=").concat(String.valueOf(complaint_id));
-
-                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_downvote, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast toast = Toast.makeText(getApplicationContext(), "Network Error", duration);
-                        toast.show();
-                    }
-                });
-                //Add the first request in the queue
-                myQueue.add(request0);
-            }
-        });
 
 
 
@@ -219,7 +163,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
 
     private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        addCommentFragment dialog = new addCommentFragment();
+        addCommentAuthorityFragment dialog = new addCommentAuthorityFragment();
         dialog.show(fm, "fragment_edit_comment");
     }
 
@@ -246,7 +190,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
 
-                complaintDetails = response;
+                //complaintDetails = response;
                 Log.e("asfasf",response.toString());
                 mAdapter = new Adapter_Comment(complaintDetails);
                 mRecyclerView.setAdapter(mAdapter);

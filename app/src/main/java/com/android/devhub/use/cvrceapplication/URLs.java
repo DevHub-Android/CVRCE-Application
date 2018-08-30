@@ -10,11 +10,10 @@ public class URLs {
 
      // public static final String ROOT_URL = "http://172.29.8.90:8080/cvrce/api.php?apicall=";
     //public static final String ROOT_URL ="http://192.168.1.4/www/public/api.php?apicall=";
-<<<<<<< HEAD
+
     // public static final String ROOT_URL ="http://192.168.1.4/www/public/api.php?apicall=";
-=======
-     //public static final String ROOT_URL ="http://192.168.1.4/www/public/api.php?apicall=";
->>>>>>> d35825058bdb85477b0ef665240a30400213e88c
+
+
     //  public static final String ROOT_URL = "http://172.29.8.90:8080/cvrce/api.php?apicall=";
      public static final String ROOT_URL ="http://engigyan.com/cvrce/www/public/api.php?apicall=";
     public static final String URL_REGISTER=ROOT_URL+"signup";

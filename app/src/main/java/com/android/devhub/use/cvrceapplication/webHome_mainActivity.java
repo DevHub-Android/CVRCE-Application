@@ -17,8 +17,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.android.devhub.use.cvrceapplication.WebFragments.Admission;
+import com.android.devhub.use.cvrceapplication.WebFragments.GalleryFragment;
 import com.android.devhub.use.cvrceapplication.WebFragments.HomePage;
 import com.android.devhub.use.cvrceapplication.WebFragments.NoticeFragment;
+import com.android.devhub.use.cvrceapplication.WebFragments.ResearchAndDevelopement;
+import com.android.devhub.use.cvrceapplication.WebFragments.ResultFragment;
 
 public class webHome_mainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -90,27 +93,8 @@ public class webHome_mainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.option_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -118,16 +102,12 @@ public class webHome_mainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.grievance_id) {
-           // mTextMessage.setText("grievance_id");
-//            Intent intent = new Intent(getApplicationContext(),Grievance_form.class);
-//            startActivity(intent);
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-           // mTextMessage.setText("nav_gallery");
-
-        } else if (id == R.id.nav_slideshow) {
-
+        if (id == R.id.nav_gallery) {
+            // mTextMessage.setText("nav_gallery");
+            GalleryFragment fragment = new GalleryFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         } else if(id == R.id.student_login){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
@@ -141,6 +121,19 @@ public class webHome_mainActivity extends AppCompatActivity
         else if(id==R.id.developers)
         {
             startActivity(new Intent(getApplicationContext(),Developers.class));
+        }
+        else if(id==R.id.result)
+        {
+            ResultFragment fragment = new ResultFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
+        }else if(id==R.id.nav_rnd)
+        {
+            ResearchAndDevelopement fragment = new ResearchAndDevelopement();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
