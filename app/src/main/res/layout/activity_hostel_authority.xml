@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.android.devhub.use.cvrceapplication.HomeActivity">
+    tools:context="com.devhub.use.cvrceapplication.HomeActivity">
 
 
 
