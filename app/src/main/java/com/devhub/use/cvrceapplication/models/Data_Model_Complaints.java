@@ -26,6 +26,7 @@ public class Data_Model_Complaints {
     public String reg_id;
     public int priority;
     public int mentor_seen;
+    public String contact;
     public String positon_seen;
 
     public Data_Model_Complaints(String description, int isresolved, int faculty_visibility, int
@@ -41,6 +42,7 @@ public class Data_Model_Complaints {
         this.date = date;
         this.email = email;
         this.name = name;
+
     }
 
 
@@ -60,13 +62,13 @@ public class Data_Model_Complaints {
             String name = name1.concat(" ").concat(object2.getString("last_name"));
             String email = object2.getString("email");
             String reg_id = object2.getString("REGID");
-
+            String contact = object2.getString("contact");
             this.title = object1.getString("title");
             int mentorSeen = object1.getInt("mentor_seen");
             String positionSeen = object1.getString("position_seen");
             this.complaint_id = complaint_id1;
             this.isresolved = isresolved1;
-
+            this.contact  = contact;
             this.type = type;
             this.date = date;
             this.description = description;

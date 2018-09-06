@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -99,6 +100,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         public TextView createdAt;
         public TextView registrationNumaber;
         public CheckBox is_seen;
+        public Button callBtn;
         public ViewHolder(final View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.complaint_title);
@@ -108,6 +110,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
             cardView = (CardView) v.findViewById(R.id.complaint_card_view);
             registrationNumaber = (TextView)v.findViewById(R.id.reg_no);
             is_seen = (CheckBox)v.findViewById(R.id.is_seen_checkbox);
+            callBtn = v.findViewById(R.id.callBtn);
         }
     }
 
@@ -131,6 +134,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         String a = "At: "+item.date;
         String b = "By: "+item.name;
         String registration = "Regid: " + item.reg_id;
+        final String contact = item.contact;
         holder.title.setText(item.title);
         holder.createdAt.setText(a);
         holder.postedBy.setText(b);
@@ -184,6 +188,14 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                    Toast.makeText(context, "Complaint is at its Highest level possible!", Toast.LENGTH_SHORT).show();
                }
                return true;
+           }
+       });
+       holder.callBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(Intent.ACTION_DIAL);
+               intent.setData(Uri.parse("tel:"+contact));
+               view.getContext().startActivity(intent);
            }
        });
 
