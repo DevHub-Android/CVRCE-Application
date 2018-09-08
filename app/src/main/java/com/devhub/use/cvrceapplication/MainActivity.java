@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
         serverAddress = URLs.SERVER_ADDR;
 
         myQueue = global.getVolleyQueue();
-
+        if(SharedPrefManager.getInstance(this).isLoggedIn())
+        {
+            Log.e("It","works");
+        }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

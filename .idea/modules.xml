@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CVRCE_BETA.iml" filepath="$PROJECT_DIR$/CVRCE_BETA.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cvrceApp.iml" filepath="$PROJECT_DIR$/cvrceApp.iml" />
     </modules>
   </component>
 </project>
