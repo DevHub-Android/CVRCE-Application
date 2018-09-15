@@ -19,6 +19,7 @@
             android:background="@color/colorPrimary"
             android:isScrollContainer="true"
 
+
             >
 
             <GridLayout
@@ -279,16 +280,18 @@
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
+                <!--col 0,row 3-->
                 <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
-                    android:layout_row="3"
                     android:layout_columnWeight="1"
                     android:layout_marginBottom="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-
+                    android:layout_row="3"
                     android:elevation="8dp"
                     app:cardCornerRadius="6dp"
                     app:cardElevation="8dp"
@@ -312,26 +315,29 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:padding="10dp"
-                            android:text="Add Complaint"
+                            android:text="New"
                             android:textStyle="bold"
                             android:textAlignment="center" />
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
+                <!--col 1 , row3 -->
                 <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
-                    android:layout_row="3"
                     android:layout_columnWeight="1"
                     android:layout_marginBottom="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:id="@+id/logout_btn"
+                    android:layout_row="3"
                     android:elevation="8dp"
                     app:cardCornerRadius="6dp"
                     app:cardElevation="8dp"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:id="@+id/logout_btn">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -342,8 +348,7 @@
                         <android.support.v7.widget.AppCompatImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/logout_btn"
-                            />
+                            android:src="@drawable/logout_btn"/>
 
                         <TextView
                             android:gravity="center"
@@ -351,13 +356,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:padding="10dp"
-                            android:text="Log Out"
+                            android:text="Logout"
                             android:textStyle="bold"
                             android:textAlignment="center" />
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
-
 
 
 
