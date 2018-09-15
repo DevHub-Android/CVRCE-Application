@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
 import com.devhub.use.cvrceapplication.Globals.Globals;
 import com.devhub.use.cvrceapplication.R;
+import com.devhub.use.cvrceapplication.SharedPrefManager;
 import com.devhub.use.cvrceapplication.StudentHomeActivity;
 import com.devhub.use.cvrceapplication.URLs;
 import com.devhub.use.cvrceapplication.models.UserModel;
@@ -101,7 +102,7 @@ public class FragmentFood extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                String url = serverAddress.concat("/public/food_complaints.php?user_id="+ UserModel.REGID);
+                String url = serverAddress.concat("/public/food_complaints.php?user_id="+  SharedPrefManager.getInstance(getActivity()).getUser().getRegid());
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override

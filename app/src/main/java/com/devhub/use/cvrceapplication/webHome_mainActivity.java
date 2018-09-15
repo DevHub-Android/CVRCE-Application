@@ -109,7 +109,7 @@ public class webHome_mainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         } else if(id == R.id.student_login){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(),StudentGrid.class);
             startActivity(intent);
         }else if(id == R.id.Faculty_Login){
             Intent intent = new Intent(getApplicationContext(),MentorLogin.class);

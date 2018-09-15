@@ -27,7 +27,7 @@
 
                 android:columnCount="4"
                 android:padding="0dp"
-                android:rowCount="3"
+                android:rowCount="4"
 
                 >
                 <!--col 0,row 0-->
@@ -279,52 +279,91 @@
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_row="3"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/addComplaint">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/add"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="Add Complaint"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_row="3"
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:id="@+id/logout_btn"
+                    android:elevation="8dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="8dp"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/logout_btn"
+                            />
+
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:padding="10dp"
+                            android:text="Log Out"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
 
 
 
 
             </GridLayout>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_row="2"
-                android:elevation="8dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="8dp"
-                android:layout_gravity="center"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:id="@+id/addComplaint"
-                >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/add"/>
 
-                    <TextView
-                        android:gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="10dp"
-                        android:text="ADD COMPLAINT"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
