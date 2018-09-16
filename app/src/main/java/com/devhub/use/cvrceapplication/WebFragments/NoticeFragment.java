@@ -1,11 +1,14 @@
 package com.devhub.use.cvrceapplication.WebFragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -34,6 +37,12 @@ WebView mWebView;
         webSettings.setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        mWebView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String s, String s1, String s2, String s3, long l) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(s)));
+            }
+        });
 
         return v;
     }

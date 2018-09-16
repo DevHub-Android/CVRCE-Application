@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_student_login);
         progressDialog = new ProgressDialog(this);
        // userName = (EditText)findViewById(R.id.uname);
         regId = (EditText)findViewById(R.id.regId);

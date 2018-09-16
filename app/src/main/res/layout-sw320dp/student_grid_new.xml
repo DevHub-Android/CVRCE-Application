@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/line"
+            android:orientation="horizontal"
+            >
+            <View
+
+                android:foregroundGravity="center"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="1dp"
+                android:background="#c0c0c0"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/studentGrid"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_2sdp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grievance Redressal"
+                />
+            <View
+
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:foregroundGravity="center"
+                android:layout_width="210dp"
+                android:layout_height="1dp"
+                android:background="#c0c0c0"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/studentGrid"/>
+        </LinearLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:padding="5dp"
+            android:id="@+id/studentGrid"
+            android:foregroundGravity="center"
+            android:background="@color/white"
+            android:layout_below="@+id/line"
+            android:layout_marginTop="@dimen/_20sdp">
+            <!--Row 0,Col 0 -->
+            <LinearLayout
+                android:id="@+id/hostelCard"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:background="@color/white"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/hostel_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hostel"
+                    android:textStyle="bold"/>
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to hostel"/>
+
+
+            </LinearLayout>
+            <!--Row 0,Col 1 -->
+            <LinearLayout
+                android:id="@+id/dswCard"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:background="@color/white"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/dsw_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DSW"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to institute"/>
+
+            </LinearLayout>
+            <!--Row 0,Col 2 -->
+            <LinearLayout
+                android:layout_column="2"
+                android:layout_row="0"
+                android:background="@color/white"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/foodCard">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/food_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Food"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to food"/>
+
+
+            </LinearLayout>
+            <!--Row 1,Col 0 -->
+            <LinearLayout
+                android:layout_column="0"
+                android:layout_row="1"
+                android:background="@color/white"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:id="@+id/examCard"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/exam_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Exams"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to exam"/>
+
+
+            </LinearLayout>
+            <!--Row 1,Col 1 -->
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/placementCard">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/job_new" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Placement"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to \nplacement" />
+
+
+            </LinearLayout>
+            <!--Row 1,Col 2 -->
+            <LinearLayout
+                android:layout_column="2"
+                android:layout_row="1"
+                android:background="@color/white"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:id="@+id/moreCard"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/more_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Others"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to \nother issues"/>
+
+
+            </LinearLayout>
+
+
+
+        </GridLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lineTwo"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_below="@+id/studentGrid"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            >
+            <View
+
+                android:foregroundGravity="center"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="1dp"
+                android:background="#c0c0c0"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/studentGrid"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other Features"
+                />
+            <View
+
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:foregroundGravity="center"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="1dp"
+                android:background="#c0c0c0"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/studentGrid"/>
+        </LinearLayout>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:padding="@dimen/_10sdp"
+            android:id="@+id/otherFeatures"
+            android:foregroundGravity="center"
+            android:background="@color/white"
+            android:layout_below="@+id/lineTwo"
+            android:layout_marginTop="@dimen/_20sdp">
+            <!--Row 0,Col 0 -->
+            <LinearLayout
+                android:layout_column="0"
+                android:layout_row="0"
+                android:background="@color/white"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:id="@+id/addComplaint"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/add_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New"
+                    android:textStyle="bold"/>
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Add new\ncomplaints here"/>
+
+
+            </LinearLayout>
+            <!--Row 0,Col 1 -->
+            <LinearLayout
+                android:layout_column="1"
+                android:layout_row="0"
+                android:background="@color/white"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:id="@+id/logout_btn"
+                android:foreground="?android:attr/selectableItemBackground">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/logout_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Logout from\nthe application"/>
+
+            </LinearLayout>
+
+
+
+        </GridLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

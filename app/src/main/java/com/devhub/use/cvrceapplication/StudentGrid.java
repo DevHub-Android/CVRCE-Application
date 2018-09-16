@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class StudentGrid extends AppCompatActivity {
-    private CardView addComplaintBtn,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
+    private LinearLayout addComplaintBtn,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
     placementComplaints,examComplaints,logout;
     private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains;
     Bundle bundle;
@@ -53,7 +54,7 @@ public class StudentGrid extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_grid);
+        setContentView(R.layout.student_grid_new);
         addComplaintBtn = findViewById(R.id.addComplaint);
         hostelComplaints = findViewById(R.id.hostelCard);
         foodComplaints = findViewById(R.id.foodCard);
