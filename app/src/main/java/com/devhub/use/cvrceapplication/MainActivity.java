@@ -153,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
                         // finish();
 
 
+                    }else{
+                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e)
                 {
