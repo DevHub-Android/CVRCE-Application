@@ -34,7 +34,7 @@
 
                 android:hint="Enter Your RegnNo"
                 android:inputType="number"
-
+                android:textSize="16dp"
 
                 />
         </android.support.design.widget.TextInputLayout>
@@ -63,6 +63,7 @@
                 android:hint="Enter Your Password"
 
                 android:inputType="textPassword"
+                android:textSize="16dp"
                 />
         </android.support.design.widget.TextInputLayout>
 
@@ -89,7 +90,7 @@
             android:layout_marginEnd="87dp"
             android:layout_marginStart="87dp"
             android:layout_marginTop="14dp"
-            android:text="New user?Register here"
+            android:text="New user?"
             android:textColor="@color/backgroundBlue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +118,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Forget Password?"
+            android:text="Forgot Password?"
             android:textColor="@color/backgroundBlue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

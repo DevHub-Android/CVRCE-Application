@@ -57,14 +57,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         super.onCreate(savedInstanceState);
         progressDialog = new ProgressDialog(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_new);
 
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
 
-        mSpinner = findViewById(R.id.spinner);
+        mSpinner = findViewById(R.id.spinnerBranch);
 
 
-        mSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+      mSpinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
 
 
@@ -86,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
+        categories.add("Select Your Branch");
         categories.add("CHEM");
         categories.add("CE");
         categories.add("CSE");
@@ -160,6 +161,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             editcnfPass.requestFocus();
             return;
         }
+        if(mBranch.equals("Select Your Branch"))
+        {
+            Toast.makeText(getApplicationContext(),"Please Select Your Branch",Toast.LENGTH_SHORT).show();
+            return;
+        }
         class RegistetUser extends AsyncTask<Void,Void,String>{
 
             @Override
@@ -223,12 +229,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         // On selecting a spinner item ..
         mBranch = parent.getItemAtPosition(position).toString();
-        ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+        ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+        ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
 
     }
 }
