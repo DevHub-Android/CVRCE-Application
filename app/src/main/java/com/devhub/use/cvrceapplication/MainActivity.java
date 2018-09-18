@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     int usertype;
     static boolean proceed;
     static String REGID;
+    TextView forgetPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         global = (Globals)this.getApplication();
 
-
+        forgetPassword = findViewById(R.id.forgetPassword);
 
         //global.setServerAddress("http://192.168.1.4/www");
        // global.setServerAddress("http://172.29.8.90:8080/cvrce");
@@ -90,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),ForgetPasswordActivity.class));
             }
         });
 

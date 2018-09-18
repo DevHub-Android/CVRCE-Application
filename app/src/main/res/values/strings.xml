@@ -124,4 +124,14 @@
     </string>
     <string name="title_activity_resolve">resolve</string>
     <string name="title_activity_add_complaint">add_complaint</string>
+    <string name="forget_password">
+        A password reset link will be sent to your registered email address.
+
+        The link will be activated for 2 hours.
+    </string>
+    <string name="reset_password">
+        A link has been sent to your registered mail.
+        Please click on the link to reset your password.
+        Thank you.
+    </string>
 </resources>

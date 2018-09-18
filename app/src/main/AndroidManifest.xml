@@ -35,13 +35,7 @@
         <activity android:name=".MentorLogin" />
         <activity
             android:name=".webHome_mainActivity"
-<<<<<<< HEAD
-            android:theme="@style/AppTheme.NoActionBar">
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-=======
-            android:theme="@style/AppTheme.NoActionBar"></activity>
->>>>>>> 3921afddd531e59837c97c7ce0f696a17b8fb211
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HostelAuthorityActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -55,10 +49,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-<<<<<<< HEAD
-=======
-
->>>>>>> 3921afddd531e59837c97c7ce0f696a17b8fb211
         </activity>
         <activity
             android:name=".Developers"
@@ -74,16 +64,15 @@
             android:name=".MentorHome"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ComplaintsAuthorityActivity" />
-<<<<<<< HEAD
-        <activity android:name=".PrincipalGridActivity"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
-        <activity android:name=".PrincipalHome"></activity>
-=======
-        <activity android:name=".TestActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
->>>>>>> 3921afddd531e59837c97c7ce0f696a17b8fb211
+        <activity
+            android:name=".TestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PrincipalGridActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PrincipalHome" />
+        <activity android:name=".ForgetPasswordActivity" />
+        <activity android:name=".ShowReset"></activity>
     </application>
 
 </manifest>
