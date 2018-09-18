@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_student_login);
         progressDialog = new ProgressDialog(this);
        // userName = (EditText)findViewById(R.id.uname);
         regId = (EditText)findViewById(R.id.regId);
@@ -73,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
         serverAddress = URLs.SERVER_ADDR;
 
         myQueue = global.getVolleyQueue();
-
+        if(SharedPrefManager.getInstance(this).isLoggedIn())
+        {
+            Log.e("It","works");
+        }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,13 +125,12 @@ public class MainActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 try{
                     JSONObject jsonObject = new JSONObject(s);
-                    if(!jsonObject.getBoolean("error"))
-                    {
-                        UserModel.REGID=regid;
+                    if(!jsonObject.getBoolean("error")) {
+                        UserModel.REGID = regid;
                         //Toast.makeText(getApplicationContext(),"Comming Here!!",Toast.LENGTH_LONG).show();
-                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         JSONObject userJson = jsonObject.getJSONObject("user");
-                        Log.e("First_Name",userJson.getString("firstname"));
+                        Log.e("First_Name", userJson.getString("firstname"));
                         UserModel user = new UserModel(
                                 userJson.getString("reg_id"),
                                 userJson.getString("username"),
@@ -135,205 +138,14 @@ public class MainActivity extends AppCompatActivity {
                                 userJson.getString("lastname"),
                                 userJson.getString("email"),
                                 userJson.getString("branch"),
-                                userJson.getString("hostel")
+                                userJson.getString("hostel"),
+                                userJson.getString("password")
                         );
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                       // finish();
+                        successCallback();
+                        // finish();
 
 
-                        String url_login = serverAddress.concat("/public/login.php?userid=");
-                        url_login = url_login.concat(regid).concat("&password=").concat(pass);
-                        String url_notification = serverAddress.concat("/public/notifications.php");
-                        String url_user_complaints = serverAddress.concat("/public/user_complaints.php?user_id=").concat(regid);
-                        String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php?user_id=").concat(regid);
-                        String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php?user_id=").concat(regid);
-                        String url_food_complaints = serverAddress.concat("/public/food_complaints.php?user_id=").concat(regid);
-                        String url_exam_complaints = serverAddress.concat("/public/exam_complaints.php?user_id=").concat(regid);
-                        String url_placement_complaints = serverAddress.concat("/public/placement_complaints.php?user_id=").concat(regid);
-                        Log.e("URL_NOTIFY",url_login);
-
-
-                        final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                instiComplains = response;
-                                successCallback();
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request4",error.getMessage());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-
-
-
-                        final JsonObjectRequest request3 = new JsonObjectRequest(Request.Method.GET,url_hostel_complaints,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                hostelComplains = response;
-                                myQueue.add(request4 );
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request3 hostel ",error.getMessage());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-
-
-                        final JsonObjectRequest request2 = new JsonObjectRequest(Request.Method.GET,url_user_complaints,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                                userComplains = response;
-                                myQueue.add(request3 );
-
-
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage() , duration);
-                                Log.e("request2 user",error.getMessage());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-
-                        final JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,url_notification,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                                notificationData = response;
-                                myQueue.add(request2);
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request1",error.getMessage());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-                        final JsonObjectRequest request5 = new JsonObjectRequest(Request.Method.GET,url_food_complaints,null, new Response.Listener<JSONObject>() {
-
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            foodComplaints = response;
-                            myQueue.add(request1);
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                            Log.e("request1",error.getMessage());
-                            progressDialog.hide();
-                            toast.show();
-                        }
-                    }) ;
-
-                        final JsonObjectRequest request6 = new JsonObjectRequest(Request.Method.GET,url_exam_complaints,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                                examComplaints = response;
-                                myQueue.add(request5);
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request1",error.getMessage());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-                        final JsonObjectRequest request7 = new JsonObjectRequest(Request.Method.GET,url_placement_complaints,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                                placementComplaints = response;
-                                myQueue.add(request6);
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.getMessage(), duration);
-                                Log.e("request1",error.getMessage());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-                        JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_login,null, new Response.Listener<JSONObject>() {
-
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                                try {
-                                    proceed = true;
-                                    if(!proceed){
-                                        Toast toast = Toast.makeText(context, "Invalid Username or Password", duration);
-                                        progressDialog.hide();
-                                        toast.show();
-                                    }
-                                    else if(proceed){
-                                        JSONObject details;
-                                        //Get the user details from the server response
-                                        details = response.getJSONObject("users");
-                                        first_name = details.getString("first_name");
-                                        last_name = details.getString("last_name");
-                                        email = details.getString("email");
-//                                        reg_id = details.getString("REGID");
-//                                        Toast.makeText(context, reg_id, Toast.LENGTH_LONG).show();
-//                                        usertype = details.getInt("usertype");
-//                                        hostel = details.getString("hostel");
-                                        //After getting the user details, set the global variables in app for this session
-                                        global.setName(first_name.concat(" ").concat(last_name));
-                                        global.setEmail(email);
-                                        global.setHostel("boys");
-                                        global.setUser_type(1);
-                                        global.setIs_loggedin(true);
-                                        Log.d("hello", "onResponse: " + details);
-                                        //add the next request in the queue
-                                        myQueue.add(request7);
-
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast toast = Toast.makeText(context, error.toString(), duration);
-                                Log.e("request0",error.toString());
-                                progressDialog.hide();
-                                toast.show();
-                            }
-                        }) ;
-                        //Add the first request in the queue
-                        myQueue.add(request0);
-
-
-                    }else
-                    {
-                        Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
                     }
                 }catch (Exception e)
                 {
@@ -354,20 +166,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void successCallback() {
         Intent intent = new Intent(this,StudentGrid.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("NotificationList", notificationData.toString());
-        bundle.putString("UserComplains",userComplains.toString());
-        bundle.putString("HostelComplains",hostelComplains.toString());
-        bundle.putString("InstiComplains",instiComplains.toString());
-        bundle.putString("foodComplains",foodComplaints.toString());
-        bundle.putString("examComplains",examComplaints.toString());
-        bundle.putString("placementComplains",placementComplaints.toString());
+
 
 
         //hide progressBar here
         progressDialog.hide();
 
-        intent.putExtras(bundle);
+
         startActivity(intent);
         finish();
 

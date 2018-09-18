@@ -63,6 +63,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
 
 
         }catch (JSONException e) {
+            Toast.makeText(c,"Nothing To Show",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         ComplaintsData = Data_Model_Complaints.fromJson(object1, object2);

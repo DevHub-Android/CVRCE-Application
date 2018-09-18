@@ -18,6 +18,7 @@ import com.devhub.use.cvrceapplication.Globals.Globals;
 import com.devhub.use.cvrceapplication.HomeActivity;
 import com.devhub.use.cvrceapplication.MainActivity;
 import com.devhub.use.cvrceapplication.R;
+import com.devhub.use.cvrceapplication.SharedPrefManager;
 import com.devhub.use.cvrceapplication.StudentHomeActivity;
 import com.devhub.use.cvrceapplication.URLs;
 import com.devhub.use.cvrceapplication.models.UserModel;
@@ -105,7 +106,7 @@ public class FragmentIndividual extends Fragment  {
                 super.onPostExecute(aVoid);
                // UserModel userModel = new UserModel();
                // URLs.ROOT_URL = "";
-                String url = serverAddress.concat("/public/user_complaints.php?user_id="+UserModel.REGID);
+                String url = serverAddress.concat("/public/user_complaints.php?user_id="+ SharedPrefManager.getInstance(getActivity()).getUser().getRegid());
                 Log.e("url",url);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
