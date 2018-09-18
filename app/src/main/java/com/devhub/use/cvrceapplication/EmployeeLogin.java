@@ -28,6 +28,7 @@ public class EmployeeLogin extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(TextUtils.isEmpty(empId.getText())){
                     empId.setError("Enter Employee ID");
                     empId.requestFocus();
@@ -67,7 +68,12 @@ public class EmployeeLogin extends AppCompatActivity {
                                 String domain = userJson.getString("domain");
                                 int priority = userJson.getInt("priority");
                                 String first_name = userJson.getString("username");
-                                Intent intent = new Intent(getApplicationContext(),HostelAuthorityActivity.class);
+                                Intent intent = null;
+                                if(domain.equals("all")){
+                                    intent = new Intent(getApplicationContext(),PrincipalGridActivity.class);
+                                }else {
+                                    intent = new Intent(getApplicationContext(), HostelAuthorityActivity.class);
+                                }
                                 intent.putExtra("domain",domain);
                                 intent.putExtra("priority",priority);
                                 intent.putExtra("position",position);

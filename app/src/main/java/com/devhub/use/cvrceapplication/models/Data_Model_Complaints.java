@@ -25,6 +25,7 @@ public class Data_Model_Complaints {
     public String title;
     public String reg_id;
     public int priority;
+    public int max_priority;
     public int mentor_seen;
     public String contact;
     public String positon_seen;
@@ -56,6 +57,7 @@ public class Data_Model_Complaints {
             int isresolved1 = object1.getInt("is_resolved");
             int type=object1.getInt("type");
             int priority = object1.getInt("priority");
+            int max_priority = object1.getInt("max_priority");
             String date= object1.getString("created_at");
             String description = object1.getString("description");
             String name1 = object2.getString("first_name");
@@ -78,6 +80,7 @@ public class Data_Model_Complaints {
             this.priority = priority;
             this.mentor_seen = mentorSeen;
             this.positon_seen = positionSeen;
+            this.max_priority = max_priority;
 
 
         } catch (JSONException e) {
@@ -100,6 +103,7 @@ public class Data_Model_Complaints {
                     Log.e("BUT DEFINATELY","IN ARRAY LIST ");
                     Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(i).getString("user_id"));
                     Log.e("JSON OBJECT",object2.toString());
+                    Log.e("JSON OBJECT",object1.toString());
                     String user_id = object1.getJSONObject(i).getString("user_id");
                     for(int j=0;j<object2.length();j++)
                     {

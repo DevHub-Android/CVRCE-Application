@@ -70,6 +70,8 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
 
             object1 = ndata.getJSONObject("root").getJSONArray("complaints");
             object2 = ndata.getJSONObject("root").getJSONArray("users");
+            Log.e("obj1",object1.toString());
+            Log.e("obj2",object2.toString());
 
         }catch (JSONException e) {
             e.printStackTrace();
@@ -135,6 +137,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         String b = "By: "+item.name;
         String registration = "Regid: " + item.reg_id;
         final String contact = item.contact;
+        //Toast.makeText(parent, item.title, Toast.LENGTH_SHORT).show();
         holder.title.setText(item.title);
         holder.createdAt.setText(a);
         holder.postedBy.setText(b);
@@ -146,7 +149,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
            @Override
            public boolean onLongClick(View v) {
-               if(item.priority<3){
+               if(item.priority<=item.max_priority){
                    final AlertDialog.Builder builder;
                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                        builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
