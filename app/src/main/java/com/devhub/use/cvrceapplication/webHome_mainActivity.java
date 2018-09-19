@@ -112,7 +112,7 @@ public class webHome_mainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(),StudentGrid.class);
             startActivity(intent);
         }else if(id == R.id.Faculty_Login){
-            Intent intent = new Intent(getApplicationContext(),MentorLogin.class);
+            Intent intent = new Intent(getApplicationContext(),MentorGrid.class);
             startActivity(intent);
         }else if(id == R.id.admin_Login)
         {

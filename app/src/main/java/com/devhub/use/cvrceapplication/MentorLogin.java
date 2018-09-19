@@ -1,6 +1,7 @@
 package com.devhub.use.cvrceapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.devhub.use.cvrceapplication.models.MentorModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,10 +68,10 @@ public class MentorLogin extends AppCompatActivity  {
                                 String empid = userJson.getString("empid");
                                 String name = userJson.getString("name");
                                 String department = userJson.getString("department");
-                                Intent intent = new Intent(getApplicationContext(),MentorGrid.class);
-                                intent.putExtra("empid",empid);
-                                intent.putExtra("name",name);
-                                startActivity(intent);
+                                MentorModel mentorModel = new MentorModel(name,empid);
+                                SharedPrefMentor.getmInstance(getApplicationContext()).userLogin(mentorModel);
+                                successCallback();
+
                               //  finish();
                             }else
                             {
@@ -87,6 +90,13 @@ public class MentorLogin extends AppCompatActivity  {
         });
 
 
+    }
+    public void successCallback()
+    {
+        Intent intent = new Intent(getApplicationContext(),MentorGrid.class);
+
+
+        startActivity(intent);
     }
 
 

@@ -83,7 +83,9 @@ public class EmployeeLogin extends AppCompatActivity {
                                 //  finish();
                             }else
                             {
-                                Toast.makeText(getApplicationContext(),jsonObject.getString("message"),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),jsonObject.getString("message"),
+                                        Toast.LENGTH_LONG).
+                                        show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -41,7 +41,8 @@
         <activity
             android:name=".HostelAuthorityActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EmployeeLogin" />
+        <activity android:name=".EmployeeLogin"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MentorResolvedComplaintsActivity" />
         <activity
             android:name=".SplashScreen"

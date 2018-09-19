@@ -33,7 +33,15 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     JSONObject complaintDetails;
-    String  postedBy, createdAt, upvote, downvote,title,description,id,user_id,first_name,last_name,emp_id;
+    String  postedBy,
+            createdAt,
+            upvote,
+            downvote,
+            title,
+            description,id,user_id,
+            first_name,
+            last_name,
+            emp_id;
     Globals global;
     static String serverAddress;
     static RequestQueue myQueue;

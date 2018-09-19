@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.devhub.use.cvrceapplication.Globals.Globals;
@@ -22,12 +23,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.devhub.use.cvrceapplication.models.MentorModel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MentorGrid extends AppCompatActivity {
-    private CardView addComplaintBtn,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
+    private LinearLayout logout,resolvedComplaints, addStudents,myStudents,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
             placementComplaints,examComplaints;
 
     Bundle bundle;
@@ -44,7 +46,7 @@ public class MentorGrid extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mentor_grid);
+        setContentView(R.layout.mentor_grid_new);
        // addComplaintBtn = findViewById(R.id.addComplaint);
         hostelComplaints = findViewById(R.id.hostelCard);
         foodComplaints = findViewById(R.id.foodCard);
@@ -52,6 +54,11 @@ public class MentorGrid extends AppCompatActivity {
         dswComplaints = findViewById(R.id.dswCard);
         examComplaints = findViewById(R.id.examCard);
         placementComplaints = findViewById(R.id.placementCard);
+        addStudents = findViewById(R.id.addStudent);
+        myStudents = findViewById(R.id.myStudents);
+        resolvedComplaints = findViewById(R.id.solvedComplaints);
+        logout = findViewById(R.id.logout);
+
          Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         context = this;
         global = (Globals)this.getApplication();
@@ -59,8 +66,18 @@ public class MentorGrid extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Bundle bundle1 = getIntent().getExtras();
-        mentorId = bundle1.getString("empid");
-        first_name = bundle1.getString("name");
+        if(!SharedPrefMentor.getmInstance(this).isLoggedIn())
+        {
+            startActivity(new Intent(this,MentorLogin.class));
+            finish();
+        }else{
+            MentorModel mentorModel = SharedPrefMentor.getmInstance(getApplicationContext()).getMentor();
+            Log.e("empid",mentorModel.getEmpid());
+            Log.e("name",mentorModel.getName());
+            mentorId = mentorModel.getEmpid();
+                    first_name = mentorModel.getName();
+        }
+
         final Intent intent = getIntent();
         myQueue = global.getVolleyQueue();
         bundle = new Bundle();
@@ -119,7 +136,32 @@ public class MentorGrid extends AppCompatActivity {
                 startActivity(cardIntent);
             }
         });
-
+        addStudents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addStudent();
+            }
+        });
+        myStudents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showStudents();
+            }
+        });
+        resolvedComplaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Show Resolved Complaints",Toast.LENGTH_SHORT).show();
+                showResolvedComplaints();
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                SharedPrefManager.getInstance(getApplicationContext()).logout();
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
