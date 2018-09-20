@@ -62,6 +62,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:clickable="true"
+                android:id="@+id/hostelCard"
                 android:foreground="?android:attr/selectableItemBackground">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -83,6 +84,7 @@
             </LinearLayout>
             <!--Row 0,Col 1 -->
             <LinearLayout
+                android:id="@+id/dswCard"
                 android:layout_column="1"
                 android:layout_row="0"
                 android:background="@color/white"
@@ -110,6 +112,7 @@
             </LinearLayout>
             <!--Row 0,Col 2 -->
             <LinearLayout
+                android:id="@+id/foodCard"
                 android:layout_column="2"
                 android:layout_row="0"
                 android:background="@color/white"
@@ -136,6 +139,7 @@
             </LinearLayout>
             <!--Row 1,Col 0 -->
             <LinearLayout
+                android:id="@+id/examCard"
                 android:layout_column="0"
                 android:layout_row="1"
                 android:background="@color/white"
@@ -168,6 +172,7 @@
                 android:layout_height="150dp"
                 android:layout_column="1"
                 android:layout_row="1"
+                android:id="@+id/placementCard"
                 android:background="@color/white"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -193,6 +198,7 @@
             </LinearLayout>
             <!--Row 1,Col 2 -->
             <LinearLayout
+                android:id="@+id/moreCard"
                 android:layout_column="2"
                 android:layout_row="1"
                 android:background="@color/white"
@@ -270,6 +276,7 @@
             android:layout_marginTop="@dimen/_20sdp">
             <!--Row 0,Col 0 -->
             <LinearLayout
+                android:id="@+id/addComplaint"
                 android:layout_column="0"
                 android:layout_row="0"
                 android:background="@color/white"
@@ -307,6 +314,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:clickable="true"
+                android:id="@+id/logout_btn"
                 android:foreground="?android:attr/selectableItemBackground">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"

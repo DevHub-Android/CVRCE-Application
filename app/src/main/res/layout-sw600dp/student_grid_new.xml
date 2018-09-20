@@ -54,6 +54,7 @@
             android:layout_marginTop="@dimen/_20sdp">
             <!--Row 0,Col 0 -->
             <LinearLayout
+                android:id="@+id/hostelCard"
                 android:layout_column="0"
                 android:layout_row="0"
                 android:background="@color/white"
@@ -88,6 +89,7 @@
                 android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:gravity="center"
+                android:id="@+id/dswCard"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -113,6 +115,7 @@
                 android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:gravity="center"
+                android:id="@+id/foodCard"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -139,6 +142,7 @@
                 android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:gravity="center"
+                android:id="@+id/examCard"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -165,6 +169,7 @@
                 android:layout_row="1"
                 android:background="@color/white"
                 android:gravity="center"
+                android:id="@+id/placementCard"
                 android:orientation="vertical">
 
                 <ImageView
@@ -194,6 +199,8 @@
                 android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:gravity="center"
+                android:id="@+id/moreCard"
+
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -261,6 +268,7 @@
             android:layout_marginTop="@dimen/_20sdp">
             <!--Row 0,Col 0 -->
             <LinearLayout
+                android:id="@+id/addComplaint"
                 android:layout_column="0"
                 android:layout_row="0"
                 android:background="@color/white"
@@ -294,6 +302,7 @@
                 android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:gravity="center"
+                android:id="@+id/logout_btn"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
