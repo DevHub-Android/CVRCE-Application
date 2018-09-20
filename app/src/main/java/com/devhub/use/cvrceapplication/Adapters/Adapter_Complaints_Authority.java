@@ -101,6 +101,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         public TextView postedBy;
         public TextView createdAt;
         public TextView registrationNumaber;
+        public TextView complaint_id_view;
         public CheckBox is_seen;
         public Button callBtn;
         public ViewHolder(final View v) {
@@ -113,6 +114,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
             registrationNumaber = (TextView)v.findViewById(R.id.reg_no);
             is_seen = (CheckBox)v.findViewById(R.id.is_seen_checkbox);
             callBtn = v.findViewById(R.id.callBtn);
+            complaint_id_view = (TextView)v.findViewById(R.id.complaint_id);
         }
     }
 
@@ -143,6 +145,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         holder.postedBy.setText(b);
         holder.description.setText(item.description);
         holder.registrationNumaber.setText(registration);
+        holder.complaint_id_view.setText("Complaint id: "+item.complaint_id);
         int is_resolved = item.isresolved;
         final int complaint_id = item.complaint_id;
 

@@ -196,7 +196,7 @@ public class ComplaintsActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("ERROR IN POST COMMENT",error.toString());
-                Toast toast = Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Comment Added", Toast.LENGTH_LONG);
                 toast.show();
             }
         }) ;

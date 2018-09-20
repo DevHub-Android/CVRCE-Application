@@ -35,6 +35,19 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:background="#c6e2ff"
                 android:textColor="#f6546a"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Complaint_id"
+                android:padding="5dp"
+                android:id="@+id/complaint_id"
+                android:textColor="#666666"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/complaint_title"
+                android:layout_alignParentStart="true" />
+
+
 
 
             <TextView
@@ -57,7 +70,7 @@
                 android:id="@+id/complaint_created_at"
                 android:textColor="#666666"
                 android:layout_marginLeft="10dp"
-                android:layout_below="@+id/complaint_title"
+                android:layout_below="@+id/complaint_id"
                 android:layout_alignParentStart="true" />
 
             <TextView

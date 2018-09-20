@@ -102,7 +102,8 @@ public class FragmentFood extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                String url = serverAddress.concat("/public/food_complaints.php?user_id="+  SharedPrefManager.getInstance(getActivity()).getUser().getRegid());
+                String url = serverAddress.concat("/public/food_complaints.php?user_id="+SharedPrefManager.getInstance(getActivity()).getUser().getRegid());
+                Log.e("food_url",url);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -110,7 +111,7 @@ public class FragmentFood extends Fragment {
                         //Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
 
                         complaints_data = response;
-                        Log.d("Chutiya data dekh", "onResponse: " + response);
+                        Log.e("food Response",response.toString());
                         //mAdapter.notifyDataSetChanged();
                         callUpdatedAdapters(complaints_data);
                         swipeRefreshLayout.setRefreshing(false);

@@ -31,6 +31,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -88,6 +89,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         public CheckBox reslovedCheckBox;
         public CheckBox mentor_seen_checkbox;
         public TextView position_seen_textview;
+        public TextView complaint_id_view;
         public ViewHolder(final View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.complaint_title);
@@ -98,6 +100,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             reslovedCheckBox = (CheckBox)v.findViewById(R.id.is_reslove_box);
             mentor_seen_checkbox = (CheckBox)v.findViewById(R.id.seen_mentor_box);
             position_seen_textview = (TextView)v.findViewById(R.id.position_seen_textview);
+            complaint_id_view = (TextView)v.findViewById(R.id.complaint_id);
         }
     }
 
@@ -126,6 +129,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         holder.createdAt.setText(a);
         holder.postedBy.setText(b);
         holder.description.setText(item.description);
+        holder.complaint_id_view.setText("Complaint id: "+item.complaint_id);
         int is_resolved = item.isresolved;
         int is_seen_mentor = item.mentor_seen;
         String position_seen = item.positon_seen;
@@ -195,7 +199,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             }
 
         });
-
+        Log.e("mentor seen",Integer.toString(item.mentor_seen));
         if(is_seen_mentor==1) {
             holder.mentor_seen_checkbox.setChecked(true);
         }
