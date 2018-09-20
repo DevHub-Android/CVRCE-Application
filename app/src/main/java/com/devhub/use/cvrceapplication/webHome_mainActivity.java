@@ -134,6 +134,9 @@ public class webHome_mainActivity extends AppCompatActivity
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.webview_id, fragment).commit();
+        }else if(id==R.id.admin)
+        {
+            startActivity(new Intent(getApplicationContext(),AdminLogin.class));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

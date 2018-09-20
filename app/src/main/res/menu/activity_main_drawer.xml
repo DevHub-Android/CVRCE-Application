@@ -42,6 +42,10 @@
                 android:title="Developers"
                 android:id="@+id/developers"
                 android:icon="@drawable/student1"/>
+            <item
+                android:title="Admin"
+                android:id="@+id/admin"
+                android:icon="@drawable/admin"/>
 
         </menu>
     </item>

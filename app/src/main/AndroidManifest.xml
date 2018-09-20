@@ -32,17 +32,18 @@
         </activity>
         <activity android:name=".AddComplaint" />
         <activity android:name=".ShowStudentsActivity" />
-        <activity android:name=".MentorLogin"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+        <activity
+            android:name=".MentorLogin"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".webHome_mainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HostelAuthorityActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EmployeeLogin"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".EmployeeLogin"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MentorResolvedComplaintsActivity" />
         <activity
             android:name=".SplashScreen"
@@ -75,7 +76,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PrincipalHome" />
         <activity android:name=".ForgetPasswordActivity" />
-        <activity android:name=".ShowReset"></activity>
+        <activity android:name=".ShowReset" />
+        <activity android:name=".AdminActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".AdminLogin"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
