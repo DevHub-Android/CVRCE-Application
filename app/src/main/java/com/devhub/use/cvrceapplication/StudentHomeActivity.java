@@ -97,8 +97,8 @@ public class StudentHomeActivity extends AppCompatActivity {
 
         try {
             Log.e("comming","into try");
-            Log.e("Hostel Complaints", intent.getStringExtra("HostelComplains"));
-            Log.e("Exam Complaints", intent.getStringExtra("examComplains"));
+          //  Log.e("Hostel Complaints", intent.getStringExtra("HostelComplains"));
+          //  Log.e("Exam Complaints", intent.getStringExtra("examComplains"));
             userComplains = new JSONObject(intent.getStringExtra("UserComplains"));
             hostelComplains = new JSONObject(intent.getStringExtra("HostelComplains"));
             instiComplains = new JSONObject(intent.getStringExtra("InstiComplains"));

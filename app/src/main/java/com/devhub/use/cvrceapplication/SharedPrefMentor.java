@@ -40,8 +40,9 @@ public class SharedPrefMentor {
     public MentorModel getMentor(){
        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
        return new MentorModel(
-               sharedPreferences.getString(KEY_NAME,null),
-               sharedPreferences.getString(KEY_EMPID,null)
+               sharedPreferences.getString(KEY_EMPID,null),
+               sharedPreferences.getString(KEY_NAME,null)
+
        )
        ;
 

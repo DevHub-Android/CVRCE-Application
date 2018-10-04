@@ -2,11 +2,13 @@ package com.devhub.use.cvrceapplication.Adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -15,15 +17,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devhub.use.cvrceapplication.ComplaintsActivity;
 import com.devhub.use.cvrceapplication.ComplaintsAuthorityActivity;
 import com.devhub.use.cvrceapplication.Globals.Globals;
+import com.devhub.use.cvrceapplication.MentorGrid;
 import com.devhub.use.cvrceapplication.R;
 import com.devhub.use.cvrceapplication.URLs;
 import com.devhub.use.cvrceapplication.models.Data_Model_Complaints;
@@ -38,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_Complaints_Authority.ViewHolder>{
 
@@ -53,10 +60,14 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
     Activity parent;
     int priority;
     String emp_id;
+    int complaint_id;
     String first_name;
     String last_name;
+
+    AlertDialog alertDialog;
     public static final String my_pref = "CHECKED_DATA";
     public static final String CHECKED_KEY = "is_checked";
+    ViewGroup parentView;
 
     private ArrayList<Data_Model_Complaints> ComplaintsData ;
 
@@ -88,6 +99,8 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         serverAddress = URLs.SERVER_ADDR;
         this.priority = priority;
         myQueue = global.getVolleyQueue();
+        Log.e("domain",is_seen_domain);
+
 
 
     }
@@ -104,6 +117,10 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         public TextView complaint_id_view;
         public CheckBox is_seen;
         public Button callBtn;
+        ImageButton forward;
+        public TextView domain_text_view;
+        private ImageButton changeDomain;
+        ProgressDialog progressDialogNew;
         public ViewHolder(final View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.complaint_title);
@@ -115,6 +132,11 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
             is_seen = (CheckBox)v.findViewById(R.id.is_seen_checkbox);
             callBtn = v.findViewById(R.id.callBtn);
             complaint_id_view = (TextView)v.findViewById(R.id.complaint_id);
+            forward = v.findViewById(R.id.forward);
+            domain_text_view = (TextView)v.findViewById(R.id.domain);
+            changeDomain = v.findViewById(R.id.change_domain);
+            progressDialogNew = new ProgressDialog(v.getContext());
+
         }
     }
 
@@ -123,8 +145,18 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
     public Adapter_Complaints_Authority.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.element_complaints_faculty, parent, false);
+        View v;
+        parentView = parent;
+        if(is_seen_domain.equals("mentor"))
+        {
+            v= LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.element_complaints_faculty, parent, false);
+
+        }else
+        {
+          v=LayoutInflater.from(parent.getContext()).inflate(R.layout.element_auth_complaint,parent,false)   ;
+        }
+
         Adapter_Complaints_Authority.ViewHolder vh = new Adapter_Complaints_Authority.ViewHolder(v);
         return vh;
     }
@@ -139,6 +171,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         String b = "By: "+item.name;
         String registration = "Regid: " + item.reg_id;
         final String contact = item.contact;
+        complaint_id = item.complaint_id;
         //Toast.makeText(parent, item.title, Toast.LENGTH_SHORT).show();
         holder.title.setText(item.title);
         holder.createdAt.setText(a);
@@ -146,56 +179,151 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         holder.description.setText(item.description);
         holder.registrationNumaber.setText(registration);
         holder.complaint_id_view.setText("Complaint id: "+item.complaint_id);
+                //cid = String.valueOf(item.complaint_id);
         int is_resolved = item.isresolved;
-        final int complaint_id = item.complaint_id;
 
-       holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-           @Override
-           public boolean onLongClick(View v) {
-               if(item.priority<=item.max_priority){
-                   final AlertDialog.Builder builder;
-                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                       builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
-                   } else {
-                       builder = new AlertDialog.Builder(context);
-                   }
-                   builder.setTitle("Pass on Complaint")
-                           .setMessage("Are you sure you want to Pass this complaint to higher authority!!")
-                           .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                               public void onClick(DialogInterface dialog, int which) {
-                                   String url_pass_on = serverAddress.concat("/admin/complaint_pass_on.php")
-                                           .concat("?complaint_id=")
-                                           .concat(String.valueOf(item.complaint_id));
-                                   JsonObjectRequest requestPassOn = new JsonObjectRequest(Request.Method.GET, url_pass_on, null, new Response.Listener<JSONObject>() {
+        int type = item.type;
+        Log.e("DOMAIN TYPE",String.valueOf(type));
+        String domain = "";
+        if(type==0)
+        {
+            domain = "Domain: Other";
+        }else if(type==1)
+        {
+            domain = "Domain: Hostel";
+        }else if(type==2)
+        {
+            domain = "Domain: DSW";
+        }else if(type==3)
+        {
+            domain = "Domain: Placement";
+        }else if(type==4)
+        {
+            domain = "Domain: Exam";
+        }
+        else if(type==5)
+        {
+            domain = "Domain: Food";
+        }
+        holder.domain_text_view.setText(domain);
 
-                                       @Override
-                                       public void onResponse(JSONObject response) {
-                                           Log.e("pass ho gaya na",response.toString());
-                                       }
-                                   }, new Response.ErrorListener() {
-                                       @Override
-                                       public void onErrorResponse(VolleyError error) {
-                                           Toast toast = Toast.makeText(context, "Network Error", duration);
-                                           toast.show();
-                                       }
-                                   });
-                                   //Add the first request in the queue
-                                   myQueue.add(requestPassOn);
-                               }
-                           })
-                           .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                               public void onClick(DialogInterface dialog, int which) {
-                                   dialog.dismiss();
-                               }
-                           })
-                           .setIcon(android.R.drawable.ic_dialog_alert)
-                           .show();
-               }else{
-                   Toast.makeText(context, "Complaint is at its Highest level possible!", Toast.LENGTH_SHORT).show();
-               }
-               return true;
-           }
-       });
+
+        holder.forward.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             if(item.priority<=item.max_priority){
+                 final AlertDialog.Builder builder;
+                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                     builder = new AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+                 } else {
+                     builder = new AlertDialog.Builder(context);
+                 }
+                 builder.setTitle("Pass on Complaint")
+                         .setMessage("Are you sure you want to Pass this complaint to higher authority!!")
+                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int which) {
+                                 String url_pass_on = serverAddress.concat("/admin/complaint_pass_on.php")
+                                         .concat("?complaint_id=")
+                                         .concat(String.valueOf(item.complaint_id));
+                                 JsonObjectRequest requestPassOn = new JsonObjectRequest(Request.Method.GET, url_pass_on, null, new Response.Listener<JSONObject>() {
+
+                                     @Override
+                                     public void onResponse(JSONObject response) {
+                                         Log.e("pass ho gaya na",response.toString());
+                                         Toast.makeText(context,"Complaint is passed on to the higher authority",Toast.LENGTH_SHORT).show();
+                                     }
+                                 }, new Response.ErrorListener() {
+                                     @Override
+                                     public void onErrorResponse(VolleyError error) {
+                                         Toast toast = Toast.makeText(context, "Network Error", duration);
+                                         toast.show();
+                                     }
+                                 });
+                                 //Add the first request in the queue
+                                 myQueue.add(requestPassOn);
+                             }
+                         })
+                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int which) {
+                                 dialog.dismiss();
+                             }
+                         })
+                         .setIcon(android.R.drawable.ic_dialog_alert)
+                         .show();
+             }else{
+                 Toast.makeText(context, "Complaint is at its Highest level possible!", Toast.LENGTH_SHORT).show();
+             }
+         }
+     });
+        holder.changeDomain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("BUILDIGN DIALOGUE","coming here");
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(parentView.getContext());
+            //LayoutInflater layoutInflater =  ((Activity)context).getLayoutInflater()
+            String cidText = holder.complaint_id_view.getText().toString();
+            final  String cid = cidText.substring(cidText.lastIndexOf(':')+2);
+
+
+               Log.e("CID",cid);
+            View mView = LayoutInflater.from(parent.getApplicationContext()).inflate(R.layout.custom_dialouge_spinner,parentView,false);
+            alertBuilder.setTitle("Choose Domain");
+                final Spinner mSpinner = mView.findViewById(R.id.spinner_domain);
+                List<String> categories = new ArrayList<String>();
+                categories.add("Select A Domain");
+                categories.add("Hostel");
+                categories.add("DSW");
+                categories.add("Placement");
+                categories.add("Exam");
+                categories.add("Food");
+                categories.add("Others");
+
+                ArrayAdapter<String> mAdapter = new ArrayAdapter<>(parent.getApplicationContext(),android.R.layout.simple_spinner_item,categories);
+                mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSpinner.setAdapter(mAdapter);
+                alertBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                       String selectedItem = mSpinner.getSelectedItem().toString();
+                       if(selectedItem.equals("Select A Domain"))
+                       {
+                           Toast.makeText(context,"Please Select A Domain!",Toast.LENGTH_SHORT).show();
+                       }else
+                       {
+                           String type="" ;
+                           if(selectedItem.equals("Hostel"))
+                           {
+                                type = "1";
+                           }else if(selectedItem.equals("Others"))
+                           {
+                               type ="0";
+                           }else if(selectedItem.equals("DSW"))
+                           {
+                               type ="2";
+                           }else if(selectedItem.equals("Placement"))
+                           {
+                               type ="3";
+                           }else if(selectedItem.equals("Exam"))
+                           {
+                               type ="4";
+                           }else if(selectedItem.equals("Food"))
+                           {
+                               type ="5";
+                           }
+                           updateDomain(type,cid);
+                       }
+
+
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context,"HI",Toast.LENGTH_SHORT).show();
+                    }
+                }).setView(mView).show();
+
+            }
+        });
        holder.callBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -347,7 +475,55 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
 
 
     }
+    public void updateDomain(String type,String cid){
+        //int cid = complaint_id;
+        final ProgressDialog progressDialog = new ProgressDialog(context);
 
+       final String url_update_domain = serverAddress.concat("/public/mentor_change_domain.php?complaint_id=").concat(cid)
+                .concat("&domain=").concat(type);
+       Log.e("URL_DOMAIN",url_update_domain);
+        class UpdateAsync extends AsyncTask<Void,Void,Void>{
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog.setMessage("Updating domain!");
+                progressDialog.show();
+            }
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                JsonObjectRequest newRequest = new JsonObjectRequest(Request.Method.GET, url_update_domain, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        try {
+                            progressDialog.dismiss();
+                            Toast.makeText(context,jsonObject.getString("msg"),Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+                    }
+                });
+                myQueue.add(newRequest);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                ((Activity)context).finish();
+
+
+            }
+        }
+        UpdateAsync updateAsync = new UpdateAsync();
+        updateAsync.execute();
+
+    }
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {

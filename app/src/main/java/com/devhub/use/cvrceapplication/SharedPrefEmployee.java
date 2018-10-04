@@ -8,22 +8,22 @@ import com.devhub.use.cvrceapplication.models.AuthorityModel;
 import com.devhub.use.cvrceapplication.models.MentorModel;
 
 public class SharedPrefEmployee {
-    public static final String SHARED_PREF_NAME ="cvrcementor";
+    public static final String SHARED_PREF_NAME ="cvrceemployee";
     public static final String KEY_NAME = "keyname";
     public static final String KEY_POSITION = "keypostion";
     public static final String KEY_PRIORITY = "keyprioriyt";
     public static final String KEY_EMPID = "keyempid";
     public static final String KEY_DOMAIN = "keydomain";
-    public static SharedPrefMentor mInstance;
+    public static SharedPrefEmployee mInstance;
     public static Context mCtx;
 
     public SharedPrefEmployee(Context context){
         mCtx = context;
     }
-    public static  synchronized SharedPrefMentor getmInstance(Context context){
+    public static  synchronized SharedPrefEmployee getmInstance(Context context){
         if(mInstance==null)
         {
-            mInstance = new SharedPrefMentor(context);
+            mInstance = new SharedPrefEmployee(context);
         }
         return  mInstance;
 

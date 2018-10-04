@@ -1,5 +1,6 @@
 package com.devhub.use.cvrceapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 public class MentorLogin extends AppCompatActivity  {
     EditText empId,password;
     Button signIn;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public class MentorLogin extends AppCompatActivity  {
         password = findViewById(R.id.pass);
         empId = findViewById(R.id.empId);
         signIn = findViewById(R.id.login);
+        context = this;
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,8 +71,8 @@ public class MentorLogin extends AppCompatActivity  {
                                 String empid = userJson.getString("empid");
                                 String name = userJson.getString("name");
                                 String department = userJson.getString("department");
-                                MentorModel mentorModel = new MentorModel(name,empid);
-                                SharedPrefMentor.getmInstance(getApplicationContext()).userLogin(mentorModel);
+                                MentorModel mentorModel = new MentorModel(empid,name);
+                                SharedPrefMentor.getmInstance(context).userLogin(mentorModel);
                                 successCallback();
 
                               //  finish();

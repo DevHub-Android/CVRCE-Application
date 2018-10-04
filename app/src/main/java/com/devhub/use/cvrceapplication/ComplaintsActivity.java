@@ -1,5 +1,6 @@
 package com.devhub.use.cvrceapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -189,7 +190,7 @@ public class ComplaintsActivity extends AppCompatActivity {
                 mAdapter = new Adapter_Comment(complaintDetails);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
-                restartActivity();
+                //restartActivity();
 
             }
         }, new Response.ErrorListener() {
@@ -204,9 +205,6 @@ public class ComplaintsActivity extends AppCompatActivity {
         myQueue.add(request0);
 
     }
-    public void restartActivity(){
-        Intent mIntent = getIntent();
-        finish();
-        startActivity(mIntent);
-    }
+
+
 }

@@ -40,7 +40,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HostelAuthorityActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".EmployeeLogin"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -77,12 +77,13 @@
         <activity android:name=".PrincipalHome" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".ShowReset" />
-        <activity android:name=".AdminActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".AdminLogin"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".AdminActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminLogin"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AuthorityTypeCheck"></activity>
     </application>
 
 </manifest>

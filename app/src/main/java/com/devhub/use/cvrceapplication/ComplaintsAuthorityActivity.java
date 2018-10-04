@@ -203,7 +203,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
                 mAdapter = new Adapter_Comment(complaintDetails);
                 mRecyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
-                restartActivity();
+                //restartActivity();
 
             }
         }, new Response.ErrorListener() {
@@ -218,9 +218,5 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
         myQueue.add(request0);
 
     }
-    public void restartActivity(){
-        Intent mIntent = getIntent();
-        finish();
-        startActivity(mIntent);
-    }
+
 }

@@ -159,7 +159,7 @@ public class MentorGrid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                SharedPrefManager.getInstance(getApplicationContext()).logout();
+                SharedPrefMentor.getmInstance(getApplicationContext()).logout();
             }
         });
     }

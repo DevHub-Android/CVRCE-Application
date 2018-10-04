@@ -1,5 +1,6 @@
 package com.devhub.use.cvrceapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.devhub.use.cvrceapplication.models.AuthorityModel;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,6 +21,7 @@ import java.util.HashMap;
 public class EmployeeLogin extends AppCompatActivity {
     EditText password,empId;
     Button signIn;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,7 @@ public class EmployeeLogin extends AppCompatActivity {
         password = findViewById(R.id.pass);
         empId = findViewById(R.id.empId);
         signIn = findViewById(R.id.login);
+        context = this;
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,17 +74,12 @@ public class EmployeeLogin extends AppCompatActivity {
                                 int priority = userJson.getInt("priority");
                                 String first_name = userJson.getString("username");
                                 Intent intent = null;
-                                if(domain.equals("all")){
-                                    intent = new Intent(getApplicationContext(),PrincipalGridActivity.class);
-                                }else {
-                                    intent = new Intent(getApplicationContext(), HostelAuthorityActivity.class);
-                                }
-                                intent.putExtra("domain",domain);
-                                intent.putExtra("priority",priority);
-                                intent.putExtra("position",position);
-                                intent.putExtra("first_name",first_name);
-                                intent.putExtra("reg_id",empid);
+                                intent = new Intent(getApplicationContext(),AuthorityTypeCheck.class);
+                                AuthorityModel authorityModel = new AuthorityModel(empid,position,domain,priority,first_name);
+                                SharedPrefEmployee.getmInstance(context).userLogin(authorityModel);
+
                                 startActivity(intent);
+                                finish();
                                 //  finish();
                             }else
                             {

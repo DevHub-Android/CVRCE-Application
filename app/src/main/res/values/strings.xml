@@ -22,7 +22,7 @@
         <item>Other</item>
     </string-array>
     <integer name="swing_anim_time">1000</integer>
-
+        
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">home</string>
 
@@ -135,4 +135,12 @@
         Please click on the link to reset your password.
         Thank you.
     </string>
+    <string-array name="domainlist">
+        <item>Hostel</item>
+        <item>DSW</item>
+        <item>Food</item>
+        <item>Placement</item>
+        <item>Exam</item>
+        <item>Others</item>
+    </string-array>
 </resources>

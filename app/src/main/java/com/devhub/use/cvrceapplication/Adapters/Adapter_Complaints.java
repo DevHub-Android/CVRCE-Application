@@ -1,8 +1,11 @@
 package com.devhub.use.cvrceapplication.Adapters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,6 +94,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         public CheckBox mentor_seen_checkbox;
         public TextView position_seen_textview;
         public TextView complaint_id_view;
+
+       // public ImageButton forward;
         public ViewHolder(final View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.complaint_title);
@@ -101,6 +107,9 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             mentor_seen_checkbox = (CheckBox)v.findViewById(R.id.seen_mentor_box);
             position_seen_textview = (TextView)v.findViewById(R.id.position_seen_textview);
             complaint_id_view = (TextView)v.findViewById(R.id.complaint_id);
+
+
+           // forward = v.findViewById(R.id.forward);
         }
     }
 
@@ -123,11 +132,13 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         final Data_Model_Complaints item =  ComplaintsData.get(position);
         String a = "At: "+item.date;
         String b = "By: "+item.name;
+
         String c = String.valueOf(item.up_vote);
         String d = String.valueOf(item.down_vote);
         holder.title.setText(item.title);
         holder.createdAt.setText(a);
         holder.postedBy.setText(b);
+
         holder.description.setText(item.description);
         holder.complaint_id_view.setText("Complaint id: "+item.complaint_id);
         int is_resolved = item.isresolved;
@@ -141,7 +152,6 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         else if(is_resolved==0){
             holder.reslovedCheckBox.setChecked(false);
         }
-
 
 
         holder.reslovedCheckBox.setOnClickListener(new View.OnClickListener() {

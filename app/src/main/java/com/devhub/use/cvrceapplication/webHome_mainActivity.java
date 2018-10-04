@@ -116,7 +116,7 @@ public class webHome_mainActivity extends AppCompatActivity
             startActivity(intent);
         }else if(id == R.id.admin_Login)
         {
-            startActivity(new Intent(getApplicationContext(),EmployeeLogin.class));
+            startActivity(new Intent(getApplicationContext(),AuthorityTypeCheck.class));
         }
         else if(id==R.id.developers)
         {

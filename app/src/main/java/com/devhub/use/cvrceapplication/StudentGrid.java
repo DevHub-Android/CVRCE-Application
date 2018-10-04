@@ -50,7 +50,8 @@ public class StudentGrid extends AppCompatActivity {
    // Bundle bundle;
     static boolean proceed;
     static String REGID;
-
+    boolean check=false;
+    ProgressDialog progressDialogOne;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +65,15 @@ public class StudentGrid extends AppCompatActivity {
         placementComplaints = findViewById(R.id.placementCard);
         logout = findViewById(R.id.logout_btn);
         progressDialog = new ProgressDialog(StudentGrid.this);
+        progressDialogOne = new ProgressDialog(StudentGrid.this);
+
         global = (Globals) this.getApplication();
 
         serverAddress = URLs.SERVER_ADDR;
         bundle = new Bundle();
         myQueue = global.getVolleyQueue();
+        progressDialogOne.setMessage("Fetching Data...");
+        progressDialogOne.show();
         if(!SharedPrefManager.getInstance(this).isLoggedIn())
         {
             startActivity(new Intent(StudentGrid.this,MainActivity.class));
@@ -82,8 +87,10 @@ public class StudentGrid extends AppCompatActivity {
 
             if(regid!=null&&pass!=null)
             {
-                Log.e("password in grid",pass);
+                //();
                 getData();
+                Log.e("password in grid",pass);
+
             }else{
                 startActivity(new Intent(StudentGrid.this,MainActivity.class));
                 finish();
@@ -91,6 +98,7 @@ public class StudentGrid extends AppCompatActivity {
 
 
         }
+
 //        final Intent intent = getIntent();
 //        try{
 //            userComplains = new JSONObject(intent.getStringExtra("UserComplains"));
@@ -119,9 +127,16 @@ public class StudentGrid extends AppCompatActivity {
         foodComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bundle.putString("choose","food");
-                cardIntent.putExtras(bundle);
-                startActivity(cardIntent);
+               if(check)
+               {
+                   bundle.putString("choose","food");
+                   cardIntent.putExtras(bundle);
+                   startActivity(cardIntent);
+               }else
+               {
+                   Toast.makeText(getApplicationContext(),"Wait for data to load",Toast.LENGTH_SHORT).show();
+               }
+
             }
         });
         hostelComplaints.setOnClickListener(new View.OnClickListener() {
@@ -369,7 +384,9 @@ public class StudentGrid extends AppCompatActivity {
 
     }
     public  void successCallback(){
-
+        check=true;
+        progressDialogOne.dismiss();
+        Log.e("Comming","here");
         //  Log.e("EXAM COMPLAINTS",examComplains.toString());
         bundle.putString("NotificationList", notificationData.toString());
         bundle.putString("UserComplains",userComplains.toString());

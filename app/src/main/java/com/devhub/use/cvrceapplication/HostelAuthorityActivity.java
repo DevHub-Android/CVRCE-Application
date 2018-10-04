@@ -12,6 +12,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.devhub.use.cvrceapplication.Adapters.Adapter_Complaints;
@@ -250,7 +253,26 @@ public class HostelAuthorityActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
     }
-//
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.authority_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+       if(item.getItemId()==R.id.logout)
+       {
+           finish();
+           SharedPrefEmployee.getmInstance(getApplicationContext()).logout();
+           return true;
+       }
+       return super.onOptionsItemSelected(item);
+
+    }
+    //
 //    private void setRecyclerViewAdapter() {
 //
 //        Log.d("jklasjdlkjla", "setRecyclerViewAdapter: inside adapter");
