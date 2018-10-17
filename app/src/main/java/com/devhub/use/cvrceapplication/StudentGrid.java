@@ -27,9 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class StudentGrid extends AppCompatActivity {
-    private LinearLayout addComplaintBtn,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
+    private LinearLayout addComplaintBtn,hostelComplaints,foodComplaints,academicsComplaints,otherComplaints,dswComplaints,
     placementComplaints,examComplaints,logout;
-    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains;
+    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains,academicsComplains;
     Bundle bundle;
    Intent cardIntent;
     EditText password, regId;
@@ -62,6 +62,7 @@ public class StudentGrid extends AppCompatActivity {
         otherComplaints = findViewById(R.id.moreCard);
         dswComplaints = findViewById(R.id.dswCard);
         examComplaints = findViewById(R.id.examCard);
+        academicsComplaints=findViewById(R.id.academicsCard);
         placementComplaints = findViewById(R.id.placementCard);
         logout = findViewById(R.id.logout_btn);
         progressDialog = new ProgressDialog(StudentGrid.this);
@@ -181,6 +182,14 @@ public class StudentGrid extends AppCompatActivity {
                 startActivity(cardIntent);
             }
         });
+        academicsComplaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bundle.putString("choose","academics");
+                cardIntent.putExtras(bundle);
+                startActivity(cardIntent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,6 +209,8 @@ public class StudentGrid extends AppCompatActivity {
         String url_hostel_complaints = serverAddress.concat("/public/hostel_complaints.php?user_id=").concat(regid);
         String url_insti_complaints = serverAddress.concat("/public/institute_complaints.php?user_id=").concat(regid);
         String url_food_complaints = serverAddress.concat("/public/food_complaints.php?user_id=").concat(regid);
+        String url_academics_complaints = serverAddress.concat("/public/academics_complaints.php?user_id=").concat(regid);
+
         String url_exam_complaints = serverAddress.concat("/public/exam_complaints.php?user_id=").concat(regid);
         String url_placement_complaints = serverAddress.concat("/public/placement_complaints.php?user_id=").concat(regid);
         Log.e("URL_NOTIFY", url_login);
@@ -330,6 +341,23 @@ public class StudentGrid extends AppCompatActivity {
                 toast.show();
             }
         });
+        final JsonObjectRequest request8 = new JsonObjectRequest(Request.Method.GET, url_academics_complaints, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+
+                academicsComplains = response;
+                myQueue.add(request7);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast toast = Toast.makeText(context, error.getMessage(), duration);
+                Log.e("request1", error.getMessage());
+                progressDialog.hide();
+                toast.show();
+            }
+        });
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -360,7 +388,7 @@ public class StudentGrid extends AppCompatActivity {
                         global.setIs_loggedin(true);
                         Log.d("hello", "onResponse: " + details);
                         //add the next request in the queue
-                        myQueue.add(request7);
+                        myQueue.add(request8);
 
                     }
                 } catch (JSONException e) {
@@ -395,5 +423,8 @@ public class StudentGrid extends AppCompatActivity {
         bundle.putString("foodComplains",foodComplains.toString());
         bundle.putString("examComplains",examComplains.toString());
         bundle.putString("placementComplains",placementComplains.toString());
+        bundle.putString("academicsComplains",academicsComplains.toString());
+        Log.e("academics",academicsComplains.toString());
+
     }
 }

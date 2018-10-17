@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="3"
-            android:rowCount="2"
+            android:rowCount="3"
             android:padding="2dp"
             android:id="@+id/studentGrid"
             android:foregroundGravity="center"
@@ -204,10 +204,44 @@
 
 
             </LinearLayout>
+
             <!--Row 1,Col 2 -->
             <LinearLayout
+                android:id="@+id/academicsCard"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
                 android:layout_column="2"
                 android:layout_row="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/academics" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Academics"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Your complaints\n\related to \nacademics" />
+
+
+            </LinearLayout>
+
+            <!--Row 1,Col 2 -->
+            <LinearLayout
+                android:layout_column="0"
+                android:layout_row="2"
                 android:background="@color/white"
                 android:layout_width="@dimen/_105sdp"
                 android:layout_height="150dp"
@@ -233,6 +267,7 @@
 
 
             </LinearLayout>
+
 
 
 

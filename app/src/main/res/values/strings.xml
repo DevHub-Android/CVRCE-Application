@@ -19,6 +19,8 @@
         <item>Exam</item>
         <item>Placement</item>
         <item>DSW</item>
+        <item>Academics</item>
+
         <item>Other</item>
     </string-array>
     <integer name="swing_anim_time">1000</integer>

@@ -67,6 +67,10 @@ public class AddComplaint extends AppCompatActivity {
                {
                    typeInInt="5";
                }
+               else if(typeInString.equals("Academics"))
+               {
+                   typeInInt="6";
+               }
             }
 
             @Override

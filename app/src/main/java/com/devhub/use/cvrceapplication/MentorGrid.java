@@ -30,7 +30,7 @@ import org.json.JSONObject;
 
 public class MentorGrid extends AppCompatActivity {
     private LinearLayout logout,resolvedComplaints, addStudents,myStudents,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
-            placementComplaints,examComplaints;
+            placementComplaints,examComplaints,pending,academics;
 
     Bundle bundle;
     Intent cardIntent;
@@ -57,6 +57,8 @@ public class MentorGrid extends AppCompatActivity {
         addStudents = findViewById(R.id.addStudent);
         myStudents = findViewById(R.id.myStudents);
         resolvedComplaints = findViewById(R.id.solvedComplaints);
+        pending=findViewById(R.id.pending);
+        academics=findViewById(R.id.academicsCard);
         logout = findViewById(R.id.logout);
 
          Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -128,6 +130,14 @@ public class MentorGrid extends AppCompatActivity {
                 startActivity(cardIntent);
             }
         });
+        academics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bundle.putString("choose","academics");
+                cardIntent.putExtras(bundle);
+                startActivity(cardIntent);
+            }
+        });
         placementComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,6 +163,14 @@ public class MentorGrid extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Show Resolved Complaints",Toast.LENGTH_SHORT).show();
                 showResolvedComplaints();
+            }
+        });
+        pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pendingIntent =new Intent(MentorGrid.this,PendingActivity.class);
+                pendingIntent.putExtras(bundle);
+                startActivity(pendingIntent);
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

@@ -25,6 +25,7 @@ import com.devhub.use.cvrceapplication.Fragments.FragmentHostel;
 import com.devhub.use.cvrceapplication.Fragments.FragmentIndividual;
 import com.devhub.use.cvrceapplication.Fragments.FragmentInstitute;
 import com.devhub.use.cvrceapplication.Fragments.FragmentPlacemnt;
+import com.devhub.use.cvrceapplication.Fragments.MentorFragmentAcademics;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentExam;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentFood;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentHostel;
@@ -42,7 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MentorHome extends AppCompatActivity {
-    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains;
+    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains,academicsComplaints;
     String choose,first_name,last_name;
     String mentorId;
     String studRegId;
@@ -55,6 +56,9 @@ public class MentorHome extends AppCompatActivity {
     String addUrl;
     ProgressDialog progressDialog;
     String name;
+    public JSONObject getAcademicsComplaints(){
+        return academicsComplaints;
+    }
     public JSONObject getUserComplains(){
         return userComplains;
     }
@@ -121,6 +125,8 @@ public class MentorHome extends AppCompatActivity {
                 String url_insti_complaints = serverAddress.concat("/public/mentor_institute_complaints.php").concat("?mentor_id=").concat(mentorId);
                 String url_exam_complaints = serverAddress.concat("/public/mentor_exam_complaints.php").concat("?mentor_id=").concat(mentorId);
                 String url_food_complaints = serverAddress.concat("/public/mentor_food_complaints.php").concat("?mentor_id=").concat(mentorId);
+                String url_academics_complaints = serverAddress.concat("/public/mentor_academics_complaints.php").concat("?mentor_id=").concat(mentorId);
+
                 String url_placement_complaints = serverAddress.concat("/public/mentor_placement_complaints.php").concat("?mentor_id=").concat(mentorId);
                 Log.e("HOSTEL LINK MENTOR",url_food_complaints);
                 final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
@@ -237,7 +243,26 @@ public class MentorHome extends AppCompatActivity {
                         toast.show();
                     }
                 }) ;
-                myQueue.add(request7);
+                final JsonObjectRequest request8 = new JsonObjectRequest(Request.Method.GET,url_academics_complaints,null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        academicsComplaints = response;
+                        //  Log.d("usercomplaints", "onResponse: " + userComplains);
+                        myQueue.add(request7 );
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast toast = Toast.makeText(context, error.getMessage() , Toast.LENGTH_LONG);
+                        Log.e("ERROR IN academics",error.getMessage());
+                        toast.show();
+                    }
+                }) ;
+                myQueue.add(request8);
             }
 
             @Override
@@ -290,7 +315,12 @@ public class MentorHome extends AppCompatActivity {
             fragmentTransaction.add(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }
-
+        else if(choose.equals("academics"))
+        {
+            MentorFragmentAcademics fragment = new MentorFragmentAcademics();
+            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.commitAllowingStateLoss();
+        }
 
 
 

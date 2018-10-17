@@ -20,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.devhub.use.cvrceapplication.Fragments.FragmentAcademics;
 import com.devhub.use.cvrceapplication.Fragments.FragmentExam;
 import com.devhub.use.cvrceapplication.Fragments.FragmentFood;
 import com.devhub.use.cvrceapplication.Fragments.FragmentHostel;
@@ -35,7 +36,7 @@ import org.json.JSONObject;
 import static com.devhub.use.cvrceapplication.R.id.studentHomeFrame;
 
 public class StudentHomeActivity extends AppCompatActivity {
-    private JSONObject userComplains, hostelComplains, instiComplains, notificationData, foodComplains, examComplains, placementComplains;
+    private JSONObject userComplains, hostelComplains, instiComplains, notificationData, foodComplains, examComplains, placementComplains,academicsComplains;
     String choose;
 
     EditText password, regId;
@@ -75,6 +76,10 @@ public class StudentHomeActivity extends AppCompatActivity {
     public JSONObject getPlacementComplains() {
         return placementComplains;
     }
+    public JSONObject getAcademicsComplains() {
+        return academicsComplains;
+    }
+
 
     public JSONObject getExamComplains() {
         return examComplains;
@@ -106,6 +111,7 @@ public class StudentHomeActivity extends AppCompatActivity {
             examComplains = new JSONObject(intent.getStringExtra("examComplains"));
             placementComplains = new JSONObject(intent.getStringExtra("placementComplains"));
              notificationData = new JSONObject(intent.getStringExtra("NotificationList"));
+            academicsComplains=new JSONObject(intent.getStringExtra("academicsComplains"));
 
 
         } catch (JSONException e) {
@@ -141,6 +147,11 @@ public class StudentHomeActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         } else if (choose.equals("dsw")) {
             FragmentInstitute fragment = new FragmentInstitute();
+            fragmentTransaction.add(R.id.studentHomeFrame, fragment);
+            fragmentTransaction.commit();
+        }
+        else if (choose.equals("academics")) {
+            FragmentAcademics fragment = new FragmentAcademics();
             fragmentTransaction.add(R.id.studentHomeFrame, fragment);
             fragmentTransaction.commit();
         }

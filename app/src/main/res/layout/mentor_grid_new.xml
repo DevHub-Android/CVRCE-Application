@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="3"
-                android:rowCount="2"
+                android:rowCount="3"
                 android:padding="@dimen/_10sdp"
                 android:id="@+id/studentGrid"
                 android:foregroundGravity="center"
@@ -132,7 +132,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Food"
+                        android:text="Food "
                         android:textStyle="bold"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -205,9 +205,41 @@
                 </LinearLayout>
                 <!--Row 1,Col 2 -->
                 <LinearLayout
-                    android:id="@+id/moreCard"
+                    android:id="@+id/academicsCard"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
                     android:layout_column="2"
                     android:layout_row="1"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/academics" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Academics"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="Your complaints\n\related to \nacademics" />
+
+
+                </LinearLayout>
+                <!--Row 2,Col 0 -->
+                <LinearLayout
+                    android:id="@+id/moreCard"
+                    android:layout_column="0"
+                    android:layout_row="2"
                     android:background="@color/white"
                     android:layout_width="120dp"
                     android:layout_height="150dp"
@@ -365,9 +397,37 @@
                         android:text="Solved complaints"/>
 
                 </LinearLayout>
+                <!--row 1 col 0-->
+                <LinearLayout
+                    android:id="@+id/pending"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:background="@color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <ImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/pending"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pending"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12dp"
+                        android:text="Pending grievances "/>
+
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/logout"
-                    android:layout_column="0"
+                    android:layout_column="1"
                     android:layout_row="1"
                     android:background="@color/white"
                     android:layout_width="120dp"
@@ -392,6 +452,9 @@
                         android:text="Logout from here "/>
 
                 </LinearLayout>
+
+
+
 
 
 

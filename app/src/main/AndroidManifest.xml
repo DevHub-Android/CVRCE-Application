@@ -65,6 +65,9 @@
             android:name=".MentorGrid"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".PendingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MentorHome"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ComplaintsAuthorityActivity" />
