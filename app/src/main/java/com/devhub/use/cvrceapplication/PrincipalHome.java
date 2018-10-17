@@ -17,12 +17,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.devhub.use.cvrceapplication.Fragments.MentorFragmentAcademics;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentExam;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentFood;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentHostel;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentIndividual;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentInstitute;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmetnPlacement;
+import com.devhub.use.cvrceapplication.Fragments.PrinciFragmentAcademics;
 import com.devhub.use.cvrceapplication.Fragments.PrinciFragmentExam;
 import com.devhub.use.cvrceapplication.Fragments.PrinciFragmentExamHostel;
 import com.devhub.use.cvrceapplication.Fragments.PrinciFragmentExamIndividual;
@@ -34,7 +36,7 @@ import com.devhub.use.cvrceapplication.Globals.Globals;
 import org.json.JSONObject;
 
 public class PrincipalHome extends AppCompatActivity {
-    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains;
+    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains,academicsComplaints;
     String choose,first_name,last_name;
     String emp_id;
     int priority;
@@ -48,6 +50,9 @@ public class PrincipalHome extends AppCompatActivity {
     String addUrl;
     ProgressDialog progressDialog;
     String name;
+    public JSONObject getAcademicsComplaints(){
+        return academicsComplaints;
+    }
     public JSONObject getUserComplains(){
         return userComplains;
     }
@@ -121,6 +126,8 @@ public class PrincipalHome extends AppCompatActivity {
                 String url_insti_complaints = serverAddress.concat("/public/princi_institute_complaints.php");
                 String url_exam_complaints = serverAddress.concat("/public/princi_exam_complaints.php");
                 String url_food_complaints = serverAddress.concat("/public/princi_food_complaints.php");
+                String url_academics_complaints = serverAddress.concat("/public/mentor_academics_complaints.php");
+
                 String url_placement_complaints = serverAddress.concat("/public/princi_placement_complaints.php");
                 Log.e("HOSTEL LINK MENTOR",url_food_complaints);
                 final JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET,url_insti_complaints,null, new Response.Listener<JSONObject>() {
@@ -237,7 +244,27 @@ public class PrincipalHome extends AppCompatActivity {
                         toast.show();
                     }
                 }) ;
-                myQueue.add(request7);
+                final JsonObjectRequest request8 = new JsonObjectRequest(Request.Method.GET,url_academics_complaints,null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        academicsComplaints = response;
+                        //  Log.d("usercomplaints", "onResponse: " + userComplains);
+                        myQueue.add(request7 );
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast toast = Toast.makeText(context, error.getMessage() , Toast.LENGTH_LONG);
+                        Log.e("ERROR IN academics",error.getMessage());
+                        toast.show();
+                    }
+                }) ;
+                myQueue.add(request8);
+
             }
 
             @Override
@@ -292,7 +319,12 @@ public class PrincipalHome extends AppCompatActivity {
             fragmentTransaction.commitAllowingStateLoss();
         }
 
-
+        else if(choose.equals("academics"))
+        {
+            PrinciFragmentAcademics fragment = new PrinciFragmentAcademics();
+            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.commitAllowingStateLoss();
+        }
 
 
 

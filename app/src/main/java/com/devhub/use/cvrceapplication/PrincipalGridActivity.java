@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,8 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PrincipalGridActivity extends AppCompatActivity {
-    private CardView addComplaintBtn,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
-            placementComplaints,examComplaints;
+    private LinearLayout logout,resolvedComplaints,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
+            placementComplaints,examComplaints,pending,academics;;
 
     Bundle bundle;
     Intent cardIntent;
@@ -44,14 +45,19 @@ public class PrincipalGridActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mentor_grid);
+        setContentView(R.layout.principal_grid_new);
         // addComplaintBtn = findViewById(R.id.addComplaint);
+        logout = findViewById(R.id.logout);
+        resolvedComplaints = findViewById(R.id.solvedComplaints);
+
         hostelComplaints = findViewById(R.id.hostelCard);
         foodComplaints = findViewById(R.id.foodCard);
         otherComplaints = findViewById(R.id.moreCard);
         dswComplaints = findViewById(R.id.dswCard);
         examComplaints = findViewById(R.id.examCard);
         placementComplaints = findViewById(R.id.placementCard);
+        pending=findViewById(R.id.pending);
+        academics=findViewById(R.id.academicsCard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         context = this;
         global = (Globals)this.getApplication();
@@ -115,12 +121,42 @@ public class PrincipalGridActivity extends AppCompatActivity {
                 startActivity(cardIntent);
             }
         });
+        academics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bundle.putString("choose","academics");
+                cardIntent.putExtras(bundle);
+                startActivity(cardIntent);
+            }
+        });
         placementComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bundle.putString("choose","placement");
                 cardIntent.putExtras(bundle);
                 startActivity(cardIntent);
+            }
+        });
+        resolvedComplaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Show Resolved Complaints",Toast.LENGTH_SHORT).show();
+                showResolvedComplaints();
+            }
+        });
+        pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pendingIntent =new Intent(PrincipalGridActivity.this,PendingActivity.class);
+                pendingIntent.putExtras(bundle);
+                startActivity(pendingIntent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                SharedPrefMentor.getmInstance(getApplicationContext()).logout();
             }
         });
 
@@ -135,6 +171,7 @@ public class PrincipalGridActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+
             case R.id.resolvedComplaints:
                 Toast.makeText(getApplicationContext(),"Show Resolved Complaints",Toast.LENGTH_SHORT).show();
                 showResolvedComplaints();
@@ -151,5 +188,7 @@ public class PrincipalGridActivity extends AppCompatActivity {
         intent.putExtra("mentor_id",mentorId);
         startActivity(intent);
     }
+
+
 
 }
