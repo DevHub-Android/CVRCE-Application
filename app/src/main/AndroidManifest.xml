@@ -85,8 +85,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminLogin"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".AuthorityTypeCheck"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AuthorityTypeCheck" />
+        <activity
+            android:name=".HodGrid"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HodLogin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".HodLoginNew" />
+        <activity android:name=".HodHome"></activity>
     </application>
 
 </manifest>

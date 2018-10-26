@@ -19,6 +19,10 @@
                 android:id="@+id/admin_Login"
                 android:icon="@drawable/elearning"
                 android:title="Authority" />
+            <item
+                android:id="@+id/hod_Login"
+                android:icon="@drawable/hod"
+                android:title="HOD" />
         </menu>
     </item>
     <group android:checkableBehavior="single">

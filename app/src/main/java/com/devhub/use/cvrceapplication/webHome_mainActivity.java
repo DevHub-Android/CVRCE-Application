@@ -12,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -121,6 +120,10 @@ public class webHome_mainActivity extends AppCompatActivity
         else if(id==R.id.developers)
         {
             startActivity(new Intent(getApplicationContext(),Developers.class));
+        }
+        else if(id==R.id.hod_Login)
+        {
+            startActivity(new Intent(getApplicationContext(),HodLoginNew.class));
         }
         else if(id==R.id.result)
         {
