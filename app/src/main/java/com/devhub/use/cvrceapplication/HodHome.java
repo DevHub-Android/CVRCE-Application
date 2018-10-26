@@ -292,9 +292,10 @@ public class HodHome extends AppCompatActivity {
             fragmentTransaction.commit();
         }else if(choose.equals("food"))
         {
+            Log.e("HodHOme","in food");
             HodFragmentFood fragment = new HodFragmentFood();
             fragment.SetMntr(mentorId);
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }else if(choose.equals("other"))
         {

@@ -56,6 +56,7 @@ public class HodFragmentFood extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         HodHome activity = (HodHome) getActivity();
         complaints_data = activity.getFoodComplains();
@@ -63,12 +64,14 @@ public class HodFragmentFood extends Fragment {
         global = (Globals)activity.getApplication();
         serverAddress = URLs.SERVER_ADDR;
         myQueue = global.getVolleyQueue();
+        Log.e("viewerr",mentorId);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("view err","in oncreate view");
+        Log.e("viewerr","in oncreate view");
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_complaints, container, false);
 
@@ -154,7 +157,7 @@ public class HodFragmentFood extends Fragment {
     }
 
     private void callAdapters(){
-        Log.e("view err","in oncr adapterupdate waala");
+        Log.e("viewerr","in oncr adapterupdate waala");
 
         // specify an adapter (see also next example)
         HodHome activity = (HodHome) getActivity();
