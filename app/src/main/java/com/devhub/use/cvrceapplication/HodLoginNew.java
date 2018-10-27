@@ -78,7 +78,7 @@ public class HodLoginNew extends AppCompatActivity  {
                                 empid = userJson.getString("empid");
                                 name = userJson.getString("name");
                                 department = userJson.getString("department");
-
+                                Log.e("line81HOdloginnew",name);
                                 successCallback();
 
                                 //  finish();
@@ -107,7 +107,7 @@ public class HodLoginNew extends AppCompatActivity  {
         intent.putExtra("name",name);
         intent.putExtra("department",department);
         Log.e("deptLOGIN",department);
-
+        Log.e("Loginname",name);
         startActivity(intent);
     }
 

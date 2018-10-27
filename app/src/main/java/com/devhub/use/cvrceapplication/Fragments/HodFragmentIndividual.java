@@ -29,7 +29,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
 
 
-public class HodFragmentFood extends Fragment {
+public class HodFragmentIndividual extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -38,20 +38,20 @@ public class HodFragmentFood extends Fragment {
     Globals global;
     static RequestQueue myQueue;
     SwipeRefreshLayout swipeRefreshLayout;
- String mentorId;
+    String mentorId;
 
-    public HodFragmentFood() {
+    public HodFragmentIndividual() {
 
     }
 
     public void SetMntr(String mntor) {
-     mentorId=mntor;
+        mentorId=mntor;
         // Required empty public constructor
         Log.e("view err",mentorId);
 
     }
 
-      //  Log.e("view err","in oncr adapterupdate waala");
+    //  Log.e("view err","in oncr adapterupdate waala");
 
 
     @Override
@@ -59,7 +59,7 @@ public class HodFragmentFood extends Fragment {
 
         super.onCreate(savedInstanceState);
         HodHome activity = (HodHome) getActivity();
-        complaints_data = activity.getFoodComplains();
+        complaints_data = activity.getUserComplains();
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)activity.getApplication();
         serverAddress = URLs.SERVER_ADDR;
@@ -114,7 +114,7 @@ public class HodFragmentFood extends Fragment {
                 super.onPostExecute(aVoid);Log.e("view err","in onPostExe");
 
                 HodHome activity = (HodHome) getActivity();
-                String url = serverAddress.concat("/public/hod_food_complaints.php").concat("?mentor_id=").concat(mentorId);
+                String url = serverAddress.concat("/public/hod_individual_complaints.php").concat("?mentor_id=").concat(mentorId);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -149,7 +149,7 @@ public class HodFragmentFood extends Fragment {
         Log.e("view err","in oncr adapterupdate waala");
         HodHome activity = (HodHome) getActivity();
         Context context = (HodHome) getContext();
-        complaints_data =  activity.getFoodComplains();
+        complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,mentorId,activity.getFirst_name(),
                 activity.getLast_name());        //Log.i("hagga", complaints_data.toString());
 
@@ -162,7 +162,7 @@ public class HodFragmentFood extends Fragment {
         // specify an adapter (see also next example)
         HodHome activity = (HodHome) getActivity();
         Context context = (HodHome) getContext();
-        complaints_data =  activity.getFoodComplains();
+        complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,
                 mentorId,
                 activity.getFirst_name(),

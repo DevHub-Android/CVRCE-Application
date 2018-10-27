@@ -55,6 +55,7 @@ public class HodGrid extends AppCompatActivity {
         Log.e("HODID",mentorId);
 
         name=intent.getStringExtra("name");
+        Log.e("HODNAME",name);
 
         hostelComplaints = findViewById(R.id.hostelCard);
         foodComplaints = findViewById(R.id.foodCard);

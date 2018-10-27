@@ -25,7 +25,13 @@ import com.devhub.use.cvrceapplication.Fragments.FragmentHostel;
 import com.devhub.use.cvrceapplication.Fragments.FragmentIndividual;
 import com.devhub.use.cvrceapplication.Fragments.FragmentInstitute;
 import com.devhub.use.cvrceapplication.Fragments.FragmentPlacemnt;
+import com.devhub.use.cvrceapplication.Fragments.HodFragmentAcademics;
+import com.devhub.use.cvrceapplication.Fragments.HodFragmentExam;
 import com.devhub.use.cvrceapplication.Fragments.HodFragmentFood;
+import com.devhub.use.cvrceapplication.Fragments.HodFragmentHostel;
+import com.devhub.use.cvrceapplication.Fragments.HodFragmentIndividual;
+import com.devhub.use.cvrceapplication.Fragments.HodFragmentInstitute;
+import com.devhub.use.cvrceapplication.Fragments.HodFragmentPlacement;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentAcademics;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentExam;
 import com.devhub.use.cvrceapplication.Fragments.MentorFragmentFood;
@@ -82,14 +88,15 @@ public class HodHome extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hod_login_new);
+        setContentView(R.layout.activity_hod_home);
         Intent intent = getIntent();
         choose = intent.getStringExtra("choose");
         mentorId = intent.getStringExtra("mentorId");
         department=intent.getStringExtra("department");
 
-        first_name = intent.getStringExtra("name");
-        last_name = "Mentor";
+        first_name = intent.getStringExtra("first_name");
+        Log.e("firstname",first_name+" is firstnm");
+        last_name = "Hod";
         // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -286,51 +293,51 @@ public class HodHome extends AppCompatActivity {
                 = fragmentManager.beginTransaction();
         if(choose.equals("hostel"))
         {
-            HodFragmentFood fragment = new HodFragmentFood();
+            HodFragmentHostel fragment = new HodFragmentHostel();
             fragment.SetMntr(mentorId);
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commit();
         }else if(choose.equals("food"))
         {
             Log.e("HodHOme","in food");
             HodFragmentFood fragment = new HodFragmentFood();
-            fragment.SetMntr(mentorId);
             fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
+            fragment.SetMntr(mentorId);
         }else if(choose.equals("other"))
         {
-            HodFragmentFood fragment = new HodFragmentFood();
+            HodFragmentIndividual fragment = new HodFragmentIndividual();
             fragment.SetMntr(mentorId);
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }
         else if(choose.equals("exam"))
         {
-            HodFragmentFood fragment = new HodFragmentFood();
+            HodFragmentExam fragment = new HodFragmentExam();
             fragment.SetMntr(mentorId);
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }
         else if(choose.equals("placement"))
         {
-            HodFragmentFood fragment = new HodFragmentFood();
+            HodFragmentPlacement fragment = new HodFragmentPlacement();
             fragment.SetMntr(mentorId);
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }else if(choose.equals("dsw"))
         {
-            HodFragmentFood fragment = new HodFragmentFood();
+            HodFragmentInstitute fragment = new HodFragmentInstitute();
             fragment.SetMntr(mentorId);
             Log.e("view err","in hodhome");
 
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }
         else if(choose.equals("academics"))
         {
-            HodFragmentFood fragment = new HodFragmentFood();
+            HodFragmentAcademics fragment = new HodFragmentAcademics();
             fragment.SetMntr(mentorId);
-            fragmentTransaction.add(R.id.container,fragment);
+            fragmentTransaction.replace(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
         }
 

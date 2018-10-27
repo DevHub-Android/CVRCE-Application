@@ -205,6 +205,10 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         {
             domain = "Domain: Food";
         }
+        else if(type==6)
+        {
+            domain = "Domain: Academics";
+        }
         holder.domain_text_view.setText(domain);
 
 

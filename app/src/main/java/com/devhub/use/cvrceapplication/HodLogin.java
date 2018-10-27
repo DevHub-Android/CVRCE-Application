@@ -74,8 +74,9 @@ public class HodLogin extends AppCompatActivity  {
                                 JSONObject userJson =jsonObject.getJSONObject("user");
                                  empid = userJson.getString("empid");
                                  name = userJson.getString("name");
+                                 Log.e("line77loginHod",name);
                                  department = userJson.getString("department");
-                                 Log.e("deptLOGINBEFORESUCCESS",department);
+                               //  Log.e("deptLOGINBEFORESUCCESS",department);
                                 HodModel hodModel = new HodModel(empid,name,department);
                                 //SharedPrefMentor.getmInstance(context).userLogin(hodModel);
                                 successCallback();
@@ -107,9 +108,11 @@ public class HodLogin extends AppCompatActivity  {
         intent.putExtra("empId",empid);
         intent.putExtra("name",name);
         intent.putExtra("department",department);
-        Log.e("deptLOGIN",department);
+      //  Log.e("deptLOGIN",department);
+        Log.e("nameLOGIN",name);
 
-     //   startActivity(intent);
+
+        //   startActivity(intent);
     }
 
 
