@@ -129,10 +129,10 @@ public class PrinciFragmentExamIndividual extends android.support.v4.app.Fragmen
     }
 
     private void callUpdatedAdapters(JSONObject complaints) {
-        // specify an adapter (see also next example)
+        // specify an adapter (see also next Userple)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());
@@ -142,10 +142,10 @@ public class PrinciFragmentExamIndividual extends android.support.v4.app.Fragmen
     }
 
     private void callAdapters(){
-        // specify an adapter (see also next example)
+        // specify an adapter (see also next Userple)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getUserComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());

@@ -150,7 +150,7 @@ public class HodFragmentPlacement extends Fragment {
         HodHome activity = (HodHome) getActivity();
         Context context = (HodHome) getContext();
         complaints_data =  activity.getPlacementComplains();
-        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,mentorId,activity.getFirst_name(),
+        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"HOD",1,mentorId,activity.getFirst_name(),
                 activity.getLast_name());        //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
@@ -163,7 +163,7 @@ public class HodFragmentPlacement extends Fragment {
         HodHome activity = (HodHome) getActivity();
         Context context = (HodHome) getContext();
         complaints_data =  activity.getPlacementComplains();
-        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,
+        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"HOD",1,
                 mentorId,
                 activity.getFirst_name(),
                 activity.getLast_name());        //Log.i("hagga", complaints_data.toString());

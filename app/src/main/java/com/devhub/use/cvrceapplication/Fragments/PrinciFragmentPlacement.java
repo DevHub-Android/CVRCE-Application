@@ -132,7 +132,7 @@ public class PrinciFragmentPlacement extends Fragment {
         // specify an adapter (see also next example)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getPlacementComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());
@@ -145,7 +145,7 @@ public class PrinciFragmentPlacement extends Fragment {
         // specify an adapter (see also next example)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getPlacementComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());

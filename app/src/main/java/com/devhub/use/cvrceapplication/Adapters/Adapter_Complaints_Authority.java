@@ -43,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,6 +137,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
             domain_text_view = (TextView)v.findViewById(R.id.domain);
             changeDomain = v.findViewById(R.id.change_domain);
             progressDialogNew = new ProgressDialog(v.getContext());
+           // changeDomain.setVisibility(View.GONE);
 
         }
     }
@@ -147,7 +149,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         // create a new view
         View v;
         parentView = parent;
-        if(is_seen_domain.equals("mentor"))
+      /*  if(is_seen_domain.equals("mentor"))
         {
             v= LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.element_complaints_faculty, parent, false);
@@ -157,6 +159,9 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
           v=LayoutInflater.from(parent.getContext()).inflate(R.layout.element_auth_complaint,parent,false)   ;
         }
 
+*/
+        v= LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.element_complaints_faculty, parent, false);
         Adapter_Complaints_Authority.ViewHolder vh = new Adapter_Complaints_Authority.ViewHolder(v);
         return vh;
     }
@@ -208,6 +213,16 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         else if(type==6)
         {
             domain = "Domain: Academics";
+        }
+        if(is_seen_domain.equals("Principal")){
+            holder.changeDomain.setVisibility(View.GONE);
+            holder.is_seen.setVisibility(View.GONE);
+            holder.forward.setVisibility(View.GONE);
+        }
+        if(is_seen_domain.equals("HOD")){
+            holder.changeDomain.setVisibility(View.GONE);
+            holder.is_seen.setVisibility(View.GONE);
+            holder.forward.setVisibility(View.GONE);
         }
         holder.domain_text_view.setText(domain);
 

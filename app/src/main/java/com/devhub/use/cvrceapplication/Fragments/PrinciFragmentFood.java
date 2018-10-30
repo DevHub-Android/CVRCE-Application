@@ -129,12 +129,14 @@ public class PrinciFragmentFood extends Fragment {
     }
 
     private void callUpdatedAdapters(JSONObject complaints) {
-        // specify an adapter (see also next example)
+        // specify an adapter (see also next Foodple)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getFoodComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
-                activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
+                activity.getPriority(),
+                activity.getEmp_id(),
+                activity.getFirst_name(),
                 activity.getLast_name());
         //Log.i("hagga", complaints_data.toString());
 
@@ -142,13 +144,13 @@ public class PrinciFragmentFood extends Fragment {
     }
 
     private void callAdapters(){
-        // specify an adapter (see also next example)
+        // specify an adapter (see also next Foodple)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getFoodComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
-                activity.getLast_name());
+                "principal");
         //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);

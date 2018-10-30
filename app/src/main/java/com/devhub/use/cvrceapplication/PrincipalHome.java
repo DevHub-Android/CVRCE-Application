@@ -71,7 +71,9 @@ public class PrincipalHome extends AppCompatActivity {
     public JSONObject getExamComplains(){
         return examComplains;
     }
-    public String getFirst_name(){return first_name;}
+    public String getFirst_name(){
+        Log.e("ingetFirstNAME",first_name);
+        return first_name;}
     public String getLast_name(){return last_name;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +83,12 @@ public class PrincipalHome extends AppCompatActivity {
         choose = intent.getStringExtra("choose");
         //mentorId = intent.getStringExtra("mentorId");
         first_name = intent.getStringExtra("first_name");
+        Log.e("firstnameprinci",first_name);
         emp_id = intent.getStringExtra("reg_id");
         priority = Integer.parseInt(intent.getStringExtra("priority"));
+        String c=intent.getStringExtra("priority");
+        Log.e("principrinci",c);
+
         last_name = "Principal";
         // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -126,7 +132,7 @@ public class PrincipalHome extends AppCompatActivity {
                 String url_insti_complaints = serverAddress.concat("/public/princi_institute_complaints.php");
                 String url_exam_complaints = serverAddress.concat("/public/princi_exam_complaints.php");
                 String url_food_complaints = serverAddress.concat("/public/princi_food_complaints.php");
-                String url_academics_complaints = serverAddress.concat("/public/mentor_academics_complaints.php");
+                String url_academics_complaints = serverAddress.concat("/public/princi_academics_complaints.php");
 
                 String url_placement_complaints = serverAddress.concat("/public/princi_placement_complaints.php");
                 Log.e("HOSTEL LINK MENTOR",url_food_complaints);
@@ -285,7 +291,7 @@ public class PrincipalHome extends AppCompatActivity {
         FragmentTransaction fragmentTransaction
                 = fragmentManager.beginTransaction();
         if(choose.equals("hostel"))
-        {
+        { Log.d("inkk","hi");
             PrinciFragmentExamHostel fragment = new PrinciFragmentExamHostel();
             fragmentTransaction.add(R.id.container,fragment);
             fragmentTransaction.commit();

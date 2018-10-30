@@ -128,10 +128,10 @@ public class PrinciFragmentExamInstitute extends Fragment {
     }
 
     private void callUpdatedAdapters(JSONObject complaints) {
-        // specify an adapter (see also next example)
+        // specify an adapter (see also nexttInstiple)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getInstiComplains();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());
@@ -141,10 +141,11 @@ public class PrinciFragmentExamInstitute extends Fragment {
     }
 
     private void callAdapters(){
-        // specify an adapter (see also next example)
+        // specify an adapter (see also nexttInstiple)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getInstiComplains();
+        Log.e("complainsdata",complaints_data.toString());
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());

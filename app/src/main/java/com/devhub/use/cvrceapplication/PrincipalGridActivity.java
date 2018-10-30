@@ -45,7 +45,7 @@ public class PrincipalGridActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.principal_grid_new);
+        setContentView(R.layout.activity_principal_grid);
         // addComplaintBtn = findViewById(R.id.addComplaint);
         logout = findViewById(R.id.logout);
         resolvedComplaints = findViewById(R.id.solvedComplaints);

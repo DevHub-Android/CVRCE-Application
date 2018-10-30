@@ -54,7 +54,7 @@ public class PrinciFragmentAcademics extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PrincipalHome activity = (PrincipalHome) getActivity();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getAcademicsComplaints();
         serverAddress = URLs.SERVER_ADDR;
         global = (Globals)activity.getApplication();
         serverAddress = URLs.SERVER_ADDR;
@@ -142,7 +142,7 @@ public class PrinciFragmentAcademics extends Fragment {
         // specify an adapter (see also next example)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getAcademicsComplaints();
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 activity.getLast_name());
@@ -155,7 +155,7 @@ public class PrinciFragmentAcademics extends Fragment {
         // specify an adapter (see also next example)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
-        complaints_data =  activity.getExamComplains();
+        complaints_data =  activity.getAcademicsComplaints();
         Log.e("pexamcomplaints",complaints_data.toString());
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
