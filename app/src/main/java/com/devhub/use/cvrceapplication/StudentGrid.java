@@ -29,7 +29,19 @@ import org.json.JSONObject;
 public class StudentGrid extends AppCompatActivity {
     private LinearLayout addComplaintBtn,hostelComplaints,foodComplaints,academicsComplaints,otherComplaints,dswComplaints,
     placementComplaints,examComplaints,logout;
-    private JSONObject userComplains,hostelComplains,instiComplains,notificationData,foodComplains,examComplains,placementComplains,academicsComplains;
+    private JSONObject
+
+            userComplains,
+            hostelComplains,
+            instiComplains,
+            notificationData,
+            foodComplains,
+            examComplains,
+            placementComplains,
+            academicsComplains;
+
+
+
     Bundle bundle;
    Intent cardIntent;
     EditText password, regId;
@@ -213,6 +225,8 @@ public class StudentGrid extends AppCompatActivity {
 
         String url_exam_complaints = serverAddress.concat("/public/exam_complaints.php?user_id=").concat(regid);
         String url_placement_complaints = serverAddress.concat("/public/placement_complaints.php?user_id=").concat(regid);
+       // Log.e("URL_ACADEMICS",);
+
         Log.e("URL_NOTIFY", url_login);
 
 
@@ -377,9 +391,9 @@ public class StudentGrid extends AppCompatActivity {
                         last_name = details.getString("last_name");
                         email = details.getString("email");
 //                                        reg_id = details.getString("REGID");
-//                                        Toast.makeText(context, reg_id, Toast.LENGTH_LONG).show();
-//                                        usertype = details.getInt("usertype");
-//                                        hostel = details.getString("hostel");
+////                                        Toast.makeText(context, reg_id, Toast.LENGTH_LONG).show();
+////                                        usertype = details.getInt("usertype");
+////                                        hostel = details.getString("hostel");
                         //After getting the user details, set the global variables in app for this session
                         global.setName(first_name.concat(" ").concat(last_name));
                         global.setEmail(email);

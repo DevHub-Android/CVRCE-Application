@@ -114,6 +114,9 @@ public class HostelAuthorityActivity extends AppCompatActivity {
             type ="5";
         }else if(domain.equals("placement")){
             type ="3";
+        } else if(domain.equals("academics"))
+        {
+            type = "6";
         }
         hostelSuccessCallBack();
 

@@ -102,8 +102,7 @@ public class Data_Model_Complaints {
                 try {
                     Log.e("BUT DEFINATELY","IN ARRAY LIST ");
                     Log.e("Data Model OBJECT1", "fromJson: " + object1.getJSONObject(i).getString("user_id"));
-                    Log.e("JSON OBJECT",object2.toString());
-                    Log.e("JSON OBJECT",object1.toString());
+
                     String user_id = object1.getJSONObject(i).getString("user_id");
                     for(int j=0;j<object2.length();j++)
                     {

@@ -141,6 +141,7 @@ public class PrincipalHome extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         instiComplains = response;
+
                         Log.e("institute complaint", "onResponse: " + instiComplains);
                         addFragment();
 
@@ -199,7 +200,7 @@ public class PrincipalHome extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         foodComplains = response;
-                        //   Log.d("usercomplaints", "onResponse: " + userComplains);
+                         Log.e("prinici food ", "onResponse: " + foodComplains);
                         myQueue.add(request2 );
 
 
@@ -297,6 +298,7 @@ public class PrincipalHome extends AppCompatActivity {
             fragmentTransaction.commit();
         }else if(choose.equals("food"))
         {
+            Log.e("CHOOSEN :","FOOD");
             PrinciFragmentFood fragment = new PrinciFragmentFood();
             fragmentTransaction.add(R.id.container,fragment);
             fragmentTransaction.commitAllowingStateLoss();
@@ -308,6 +310,7 @@ public class PrincipalHome extends AppCompatActivity {
         }
         else if(choose.equals("exam"))
         {
+            Log.e("CHOOSEN :","EXAM");
             Toast.makeText(getApplicationContext(), "Going to exam", Toast.LENGTH_SHORT).show();
             PrinciFragmentExam fragment = new PrinciFragmentExam();
             fragmentTransaction.add(R.id.container,fragment);

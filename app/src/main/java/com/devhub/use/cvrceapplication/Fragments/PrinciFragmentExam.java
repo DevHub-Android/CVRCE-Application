@@ -153,7 +153,7 @@ public class PrinciFragmentExam extends Fragment {
     }
 
     private void callAdapters(){
-        // specify an adapter (see also next example)
+        //specify an adapter (see also next example)
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
         complaints_data =  activity.getExamComplains();

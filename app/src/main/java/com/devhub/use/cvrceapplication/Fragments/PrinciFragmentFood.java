@@ -148,6 +148,7 @@ public class PrinciFragmentFood extends Fragment {
         PrincipalHome activity = (PrincipalHome) getActivity();
         Context context = (PrincipalHome) getContext();
         complaints_data =  activity.getFoodComplains();
+        Log.e("Princi Data",complaints_data.toString());
         mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"Principal",
                 activity.getPriority(),activity.getEmp_id(),activity.getFirst_name(),
                 "principal");

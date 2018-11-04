@@ -367,8 +367,10 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                 public void onClick(View v) {
                     item.mentor_seen = 1;
                     holder.is_seen.setChecked(true);
+                    String cidText = holder.complaint_id_view.getText().toString();
+                    final  String cid = cidText.substring(cidText.lastIndexOf(':')+2);
                     int complains_id = complaint_id;
-                    String url_upvote = serverAddress.concat("/public/is_seen_mentor.php?complaint_id=").concat(String.valueOf(complains_id));
+                    String url_upvote = serverAddress.concat("/public/is_seen_mentor.php?complaint_id=").concat(String.valueOf(cid));
                     Log.i("haggax",url_upvote);
                     JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET, url_upvote, null, new Response.Listener<JSONObject>() {
 
