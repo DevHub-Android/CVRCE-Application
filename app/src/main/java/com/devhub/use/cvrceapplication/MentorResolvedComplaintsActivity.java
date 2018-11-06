@@ -55,8 +55,12 @@ public class MentorResolvedComplaintsActivity extends AppCompatActivity {
 
        // mentor_id = "5678";
 
+        if(mentor_id.equals("1601225123")){
+            successCallBackForPrincipal();
+        }else{
+            successCallBack();
+        }
 
-        successCallBack();
 
 
 
@@ -90,6 +94,7 @@ public class MentorResolvedComplaintsActivity extends AppCompatActivity {
                 String addUrl = serverAddress.concat("/public/get_resolved_complaints.php")
                         .concat("?mentor_id=")
                         .concat(mentor_id);
+                Log.e("Mentor resolved",addUrl);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,addUrl, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -106,6 +111,66 @@ public class MentorResolvedComplaintsActivity extends AppCompatActivity {
                         }
 
                       //  Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("MENTOR RESOLVED",error.toString());
+                        Toast toast = Toast.makeText(context, "error in mentor add students"+error.getMessage(), Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                });
+                //Add the first request in the queue
+                myQueue.add(request0);
+
+            }
+        }
+        FetchData fetchData = new FetchData();
+        fetchData.execute();
+
+
+    }
+
+
+    private void successCallBackForPrincipal() {
+
+        class FetchData extends AsyncTask<Void,Void,Void>{
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                return null;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                dialog.setMessage("Loading Please Wait...");
+                dialog.show();
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                dialog.dismiss();
+                String addUrl = serverAddress.concat("/public/princi_resolved_complaints.php");
+
+                Log.e("Mentor resolved",addUrl);
+                JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,addUrl, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("asasdadsad", "onResponse: " + response);
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("root");
+                            for(int i = 0;i<jsonArray.length();i++){
+                                items.add(jsonArray.getJSONObject(i));
+                            }
+                            setAdapters();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        //  Toast.makeText(global, "Student added Successfully", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override

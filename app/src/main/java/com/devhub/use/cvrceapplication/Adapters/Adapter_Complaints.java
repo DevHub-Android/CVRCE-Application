@@ -230,11 +230,12 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-
+                String cidText = holder.complaint_id_view.getText().toString();
+                final  String cid = cidText.substring(cidText.lastIndexOf(':')+2);
                 Log.i("haggaxx","getting here1");
                 String url_complaints_detail = serverAddress.concat("/public/comment_details.php?complaint_id=").
-                        concat(String.valueOf(complaint_id));
-
+                        concat(String.valueOf(cid));
+            Log.e("COMMENT DETAILS",url_complaints_detail);
                 JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_complaints_detail,
                         null, new Response.Listener<JSONObject>() {
 

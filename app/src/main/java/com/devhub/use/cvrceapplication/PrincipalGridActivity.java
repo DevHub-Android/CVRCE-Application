@@ -144,19 +144,12 @@ public class PrincipalGridActivity extends AppCompatActivity {
                 showResolvedComplaints();
             }
         });
-        pending.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent pendingIntent =new Intent(PrincipalGridActivity.this,PendingActivity.class);
-                pendingIntent.putExtras(bundle);
-                startActivity(pendingIntent);
-            }
-        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-                SharedPrefMentor.getmInstance(getApplicationContext()).logout();
+                SharedPrefEmployee.getmInstance(getApplicationContext()).logout();
             }
         });
 
@@ -184,8 +177,8 @@ public class PrincipalGridActivity extends AppCompatActivity {
 
     private void showResolvedComplaints() {
         Intent intent = new Intent(PrincipalGridActivity.this,MentorResolvedComplaintsActivity.class);
-        Log.e("mentor_ID",mentorId);
-        intent.putExtra("mentor_id",mentorId);
+        Log.e("mentor_ID",emp_Id);
+        intent.putExtra("mentor_id",emp_Id);
         startActivity(intent);
     }
 
