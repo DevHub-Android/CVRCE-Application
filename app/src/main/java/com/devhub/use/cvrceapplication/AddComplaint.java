@@ -29,7 +29,8 @@ public class AddComplaint extends AppCompatActivity {
     Button submit;
     String typeInInt;
     ProgressDialog progressDialog;
-   ;
+    String f_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,8 @@ public class AddComplaint extends AppCompatActivity {
         entTittle = findViewById(R.id.entTittle);
         entDes = findViewById(R.id.entDes);
         progressDialog = new ProgressDialog(this);
+        //Bundle bundle = getIntent().getExtras();
+        f_name = getIntent().getExtras().getString("name");
       // type.setOnIt  emSelectedListener((AdapterView.OnItemSelectedListener) this);
         ArrayAdapter aa = ArrayAdapter.createFromResource(this,R.array.typeOfProblem,android.R.layout.simple_spinner_item);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -124,6 +127,7 @@ public class AddComplaint extends AppCompatActivity {
                 params.put("description",description);
                 params.put("type",type);
                 params.put("title",title);
+                params.put("name",f_name);
                 return requestHandler.sendPostRequest(URLs.URL_COMPLAINT,params);
             }
 

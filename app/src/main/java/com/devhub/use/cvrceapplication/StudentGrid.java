@@ -134,7 +134,9 @@ public class StudentGrid extends AppCompatActivity {
         addComplaintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),AddComplaint.class));
+                Intent intent = new Intent(getApplicationContext(),AddComplaint.class);
+                intent.putExtra("name",first_name);
+                startActivity(intent);
             }
         });
         foodComplaints.setOnClickListener(new View.OnClickListener() {
