@@ -39,9 +39,9 @@ public class MentorPending extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
 
     public MentorPending() {
-        // Required empty public constructor
+
     }
-    //// added mentor pending
+    
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -131,9 +131,9 @@ public class MentorPending extends Fragment {
     private void callUpdatedAdapters(JSONObject complaints) {
         // specify an adapter (see also next example)
         PendingActivity activity = (PendingActivity) getActivity();
-        Context context = (MentorHome) getContext();
-        complaints_data =  activity.getPendingComplaints();
-        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,activity.getMentorId(),activity.getFirst_name(),
+        Context context = getContext();
+       // complaints_data =  activity.getPendingComplaints();
+        mAdapter = new Adapter_Complaints_Authority(complaints,activity,context,"mentor",1,activity.getMentorId(),activity.getFirst_name(),
                 activity.getLast_name());        //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);
@@ -144,7 +144,8 @@ public class MentorPending extends Fragment {
         PendingActivity activity = (PendingActivity) getActivity();
         Context context = (PendingActivity) getContext();
         complaints_data =  activity.getPendingComplaints();
-        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,"mentor",1,activity.getMentorId(),activity.getFirst_name(),
+        mAdapter = new Adapter_Complaints_Authority(complaints_data,activity,context,
+                "mentor",1,activity.getMentorId(),activity.getFirst_name(),
                 activity.getLast_name());        //Log.i("hagga", complaints_data.toString());
 
         mRecyclerView.setAdapter(mAdapter);

@@ -7,12 +7,14 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.devhub.use.cvrceapplication.models.MentorModel;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +58,13 @@ public class MentorLogin extends AppCompatActivity  {
                         RequestHandler requestHandler = new RequestHandler();
                         HashMap<String,String> hashMap = new HashMap<>();
                         hashMap.put("reg_id",empId.getText().toString());
+                        Log.e("mentor empId",empId.getText().toString());
+                        String token = FirebaseInstanceId.getInstance().getToken();
+
+
+                        Log.e("firebase_token",token);
                         hashMap.put("password",password.getText().toString());
+                        hashMap.put("token",token);
                         return requestHandler.sendPostRequest(URLs.URL_MENTOR_LOGIN,hashMap);
                         //return null;
                     }
