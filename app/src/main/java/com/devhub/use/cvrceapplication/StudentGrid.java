@@ -79,7 +79,8 @@ public class StudentGrid extends AppCompatActivity {
         logout = findViewById(R.id.logout_btn);
         progressDialog = new ProgressDialog(StudentGrid.this);
         progressDialogOne = new ProgressDialog(StudentGrid.this);
-
+        progressDialogOne.setCanceledOnTouchOutside(false);
+        progressDialog.setCanceledOnTouchOutside(false);
         global = (Globals) this.getApplication();
 
         serverAddress = URLs.SERVER_ADDR;
@@ -89,10 +90,12 @@ public class StudentGrid extends AppCompatActivity {
         progressDialogOne.show();
         if(!SharedPrefManager.getInstance(this).isLoggedIn())
         {
+            Log.e("Not","Logged in");
             startActivity(new Intent(StudentGrid.this,MainActivity.class));
             finish();
         }else
         {
+            Log.e("It's","Logged in");
             UserModel user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
 
             regid = user.getRegid();
@@ -149,7 +152,7 @@ public class StudentGrid extends AppCompatActivity {
                    startActivity(cardIntent);
                }else
                {
-                   Toast.makeText(getApplicationContext(),"Wait for data to load",Toast.LENGTH_SHORT).show();
+                   Toast.makeText(StudentGrid.this,"Wait for data to load",Toast.LENGTH_SHORT).show();
                }
 
             }
@@ -158,9 +161,10 @@ public class StudentGrid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                bundle.putString("choose","hostel");
-                cardIntent.putExtras(bundle);
-                startActivity(cardIntent);
+//                bundle.putString("choose","hostel");
+//                cardIntent.putExtras(bundle);
+//
+                Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
             }
         });
         dswComplaints.setOnClickListener(new View.OnClickListener() {
@@ -169,14 +173,16 @@ public class StudentGrid extends AppCompatActivity {
                 bundle.putString("choose","dsw");
                 cardIntent.putExtras(bundle);
                 startActivity(cardIntent);
+
             }
         });
         otherComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bundle.putString("choose","other");
-                cardIntent.putExtras(bundle);
-                startActivity(cardIntent);
+//                bundle.putString("choose","other");
+//                cardIntent.putExtras(bundle);
+//                startActivity(cardIntent);
+                Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -191,9 +197,10 @@ public class StudentGrid extends AppCompatActivity {
         placementComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bundle.putString("choose","placement");
-                cardIntent.putExtras(bundle);
-                startActivity(cardIntent);
+//                bundle.putString("choose","placement");
+//                cardIntent.putExtras(bundle);
+//                startActivity(cardIntent);
+                Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
             }
         });
         academicsComplaints.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rakesh Swain"
+        android:padding="10dp"
+        android:id="@+id/nameTextView"
+        android:textSize="@dimen/_25sdp"
+        android:textColor="#000"/>
+    <TextView
+        android:text="REG: 1501227305"
+        android:padding="10dp"
+        android:id="@+id/regidTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameTextView"/>
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/nameTextView"
+       android:padding="10dp"
+       android:id="@+id/phoneNumber"
+       android:text="Branch: Computer Science"
+       android:layout_toRightOf="@+id/regidTextView"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/callStudent"
+        android:layout_margin="10dp"
+        android:text="CALL STUDENT"
+        android:layout_below="@+id/phoneNumber"/>
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Block Student"
+       android:layout_margin="10dp"
+       android:layout_toRightOf="@+id/callStudent"
+       android:layout_below="@id/regidTextView"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        android:layout_below="@+id/callStudent"
+
+        ></View>
+
+
+</RelativeLayout>

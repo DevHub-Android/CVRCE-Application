@@ -1,62 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".Grievance_form"
-    android:gravity="center">
-
-    <android.support.design.widget.TextInputLayout
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Problem title"
-            android:textStyle="bold"
-            android:id="@+id/entTittle"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".Grievance_form"
+        android:gravity="center">
 
-            />
-        <Spinner
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Problem title"
+                android:textStyle="bold"
+                android:id="@+id/entTittle"
+
+                />
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/typeOfProblem"
+                android:prompt="@string/choose"
+                android:id="@+id/type">
+
+            </Spinner>
+        </android.support.design.widget.TextInputLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/typeOfProblem"
-            android:prompt="@string/choose"
-            android:id="@+id/type">
+            android:text="Dear sir/ma'am,"
+            android:layout_marginTop="10dp"/>
 
-        </Spinner>
-    </android.support.design.widget.TextInputLayout>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Dear sir/madam,"
-    android:layout_marginTop="10dp"/>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/problem">
-        <android.support.design.widget.TextInputEditText
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical"
-            android:minHeight="170dp"
-            android:id="@+id/entDes"
-            android:hint="Description of your problem"
-            />
-    </android.support.design.widget.TextInputLayout>
+            android:id="@+id/problem">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:minHeight="170dp"
+                android:id="@+id/entDes"
+                android:hint="Description of your problem"
+                />
+        </android.support.design.widget.TextInputLayout>
 
-   <Button
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="SUBMIT"
-       android:background="@color/white"
-       android:elevation="8dp"
-       android:shadowColor="#000"
-       android:id="@+id/submit"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUBMIT"
+            android:background="@color/white"
+            android:elevation="8dp"
+            android:shadowColor="#000"
+            android:id="@+id/submit"/>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

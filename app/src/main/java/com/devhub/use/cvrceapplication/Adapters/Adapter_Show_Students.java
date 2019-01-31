@@ -42,13 +42,14 @@ public class Adapter_Show_Students extends RecyclerView.Adapter<Adapter_Show_Stu
         try {
             Log.d("position", "onBindViewHolder: " + position);
             String first_name = objects.get(position).getString("first_name");
+            String last_name = objects.get(position).getString("last_name");
             String contact = objects.get(position).getString("contact");
             String registrationId = objects.get(position).getString("REGID");
-            Log.d("items", "onBindViewHolder: " + first_name);
+            Log.d("items", "onBindViewHolder: " + first_name+" "+last_name );
             Log.d("size", "onBindViewHolder: " + objects.size());
             holder.contactTextView.setText(contact);
             holder.regidTextView.setText(registrationId);
-            holder.nameTextView.setText(first_name);
+            holder.nameTextView.setText(first_name+" "+last_name);
         }catch (Exception e){
             Log.d("could be", "onBindViewHolder: " + e.getMessage());
         }

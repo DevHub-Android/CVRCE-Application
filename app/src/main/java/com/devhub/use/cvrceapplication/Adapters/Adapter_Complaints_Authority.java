@@ -170,7 +170,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
     @Override
     public void onBindViewHolder(final Adapter_Complaints_Authority.ViewHolder holder, int position) {
         // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+        // - replace the contents of the uview with that element
         final Data_Model_Complaints item =  ComplaintsData.get(position);
         String a = "At: "+item.date;
         String b = "By: "+item.name;
@@ -230,6 +230,8 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         holder.forward.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View view) {
+
+            // forwardComplaint(item);
              if(item.priority<=item.max_priority){
                  final AlertDialog.Builder builder;
                  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -250,6 +252,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
                                      public void onResponse(JSONObject response) {
                                          Log.e("pass ho gaya na",response.toString());
                                          Toast.makeText(context,"Complaint is passed on to the higher authority",Toast.LENGTH_SHORT).show();
+                                         item.priority+=1;
                                      }
                                  }, new Response.ErrorListener() {
                                      @Override
@@ -546,6 +549,7 @@ public class Adapter_Complaints_Authority extends RecyclerView.Adapter<Adapter_C
         updateAsync.execute();
 
     }
+
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {

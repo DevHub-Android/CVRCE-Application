@@ -5,12 +5,13 @@ package com.devhub.use.cvrceapplication.models;
  */
 
 public class UserModel {
-    private  String regid,username,first_name,last_name,email,branch,hostel,password;
+    private  String mentorid,regid,username,first_name,last_name,email,branch,hostel,password;
    public static String REGID;
     public UserModel(){
 
     }
-    public UserModel(String regid, String username,String first_name,String last_name,String email,String branch,String hostel,String password) {
+
+    public UserModel(String regid, String username,String first_name,String last_name,String email,String branch,String hostel,String password,String mentorid) {
         this.regid = regid;
         this.username = username;
         this.first_name = first_name;
@@ -19,6 +20,22 @@ public class UserModel {
         this.branch=branch;
         this.hostel=hostel;
         this.password= password;
+        this.mentorid = mentorid;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    public String getMentorid() {
+        return mentorid;
+    }
+
+
+    public void setMentorid(String mentorid) {
+        this.mentorid = mentorid;
     }
 
     public String getRegid() {

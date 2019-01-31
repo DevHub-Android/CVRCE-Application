@@ -98,8 +98,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
        // public ImageButton forward;
         public ViewHolder(final View v) {
             super(v);
-            title = (TextView) v.findViewById(R.id.complaint_title);
-            description = (TextView) v.findViewById(R.id.complaint_description);
+            title = v.findViewById(R.id.complaint_title);
+            description =  v.findViewById(R.id.complaint_description);
             postedBy = (TextView) v.findViewById(R.id.complaint_posted_by);
             createdAt = (TextView) v.findViewById(R.id.complaint_created_at);
             cardView = (CardView) v.findViewById(R.id.complaint_card_view);
@@ -119,7 +119,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                                                             int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.element_complaints, parent, false);
+                .inflate(R.layout.element_complaint_new, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -130,7 +130,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final Data_Model_Complaints item =  ComplaintsData.get(position);
-        String a = "At: "+item.date;
+        String a = "On: "+item.date;
         String b = "By: "+item.name;
 
         String c = String.valueOf(item.up_vote);
@@ -139,7 +139,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         holder.createdAt.setText(a);
         holder.postedBy.setText(b);
 
-        holder.description.setText(item.description);
+        holder.description.setText("Dear sir/ma'am \n\n"+item.description);
         holder.complaint_id_view.setText("Complaint id: "+item.complaint_id);
         int is_resolved = item.isresolved;
         int is_seen_mentor = item.mentor_seen;
@@ -198,7 +198,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Marke resolved Error",error.toString());
+                        Log.e("Marked resolved Error",error.toString());
 
 
                     }
@@ -218,7 +218,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             holder.mentor_seen_checkbox.setEnabled(false);
         }
 
-        holder.position_seen_textview.setText("position: " + item.positon_seen);
+        holder.position_seen_textview.setText("Position: " + item.positon_seen);
 
 
 

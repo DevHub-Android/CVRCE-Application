@@ -190,9 +190,7 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
                 .concat(last_name);
         url_add_comment = url_add_comment.replaceAll("\\s+","%20");
         Log.e("@Complaint Activity 231",url_add_comment);
-        Log.e("@Complaint Activity 231",url_add_comment);
-        Log.e("@Complaint Activity 231",url_add_comment);
-        Log.e("@Complaint Activity 231",url_add_comment);
+
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_add_comment,null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -200,16 +198,38 @@ public class ComplaintsAuthorityActivity extends AppCompatActivity {
 
                 //complaintDetails = response;
                 Log.e("asfasf",response.toString());
-                mAdapter = new Adapter_Comment(complaintDetails);
-                mRecyclerView.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
-                //restartActivity();
+
+                String url_complaints_detail = serverAddress.concat("/public/comment_details.php?complaint_id=").
+                        concat(String.valueOf(id));
+                JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,url_complaints_detail,
+                        null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("Came","here");
+                        complaintDetails = response;
+                        mAdapter = new Adapter_Comment(complaintDetails);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }) ;
+                myQueue.add(request1);
+
+
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("ERROR IN POST COMMENT",error.toString());
+                Log.e("ERROR IN POST COMMENT",error.getMessage());
                 Toast toast = Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_LONG);
                 toast.show();
             }

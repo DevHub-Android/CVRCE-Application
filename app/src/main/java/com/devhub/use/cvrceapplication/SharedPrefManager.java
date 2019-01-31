@@ -3,6 +3,7 @@ package com.devhub.use.cvrceapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.devhub.use.cvrceapplication.models.UserModel;
 
@@ -21,6 +22,7 @@ public class SharedPrefManager {
     private static final String KEY_BRANCH="keybranch";
     private static final String KEY_HOSTEL="keyhostel";
     private static final String KEY_PASSWORD="keypassword";
+    private static final String KEY_MENTORID = "keymentorid";
     private static SharedPrefManager mInstance;
     private static Context mCtx;
     private  SharedPrefManager (Context context){
@@ -44,11 +46,13 @@ public class SharedPrefManager {
         editor.putString(KEY_BRANCH,user.getBranch());
         editor.putString(KEY_HOSTEL,user.getHostel());
         editor.putString(KEY_PASSWORD,user.getPassword());
+        editor.putString(KEY_MENTORID,user.getMentorid());
         editor.apply();
 
     }
     public boolean isLoggedIn(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+      //  Log.e("shared pref",sharedPreferences.getString(KEY_REGID,null));
         return sharedPreferences.getString(KEY_REGID,null)!=null;
     }
     public UserModel getUser(){
@@ -61,7 +65,8 @@ public class SharedPrefManager {
                 sharedPreferences.getString(KEY_EMAIL,null),
                 sharedPreferences.getString(KEY_BRANCH,null),
                 sharedPreferences.getString(KEY_HOSTEL,null),
-                sharedPreferences.getString(KEY_PASSWORD,null)
+                sharedPreferences.getString(KEY_PASSWORD,null),
+                sharedPreferences.getString(KEY_MENTORID,null)
         );
     }
     public void logout(){

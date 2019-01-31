@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.devhub.use.cvrceapplication.models.UserModel;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -142,8 +143,9 @@ public class AddComplaint extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),response.getString("message"),Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getApplicationContext(),response.getString("message"),Toast.LENGTH_SHORT).show();
+                        finish();
                     }
-                }catch (Exception e)
+                }catch (JSONException e)
                 {
                     e.printStackTrace();
                 }

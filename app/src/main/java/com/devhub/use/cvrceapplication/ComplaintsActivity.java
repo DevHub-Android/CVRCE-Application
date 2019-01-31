@@ -180,17 +180,33 @@ public class ComplaintsActivity extends AppCompatActivity {
             Log.e("last_name",user.getLast_name());
         url_add_comment = url_add_comment.replaceAll("\\s+","%20");
         Log.e("@Complaint Activity 231",url_add_comment);
-
+       final  String url_complaints_detail = serverAddress.concat("/public/comment_details.php?complaint_id=").
+                concat(String.valueOf(id));
         JsonObjectRequest request0 = new JsonObjectRequest(Request.Method.GET,url_add_comment,null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
+                JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET,url_complaints_detail,
+                        null, new Response.Listener<JSONObject>() {
 
-                //complaintDetails = response;
-                mAdapter = new Adapter_Comment(complaintDetails);
-                mRecyclerView.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
-                //restartActivity();
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.e("Came","here");
+                        complaintDetails = response;
+                        mAdapter = new Adapter_Comment(complaintDetails);
+                        mRecyclerView.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();
+
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }) ;
+                myQueue.add(request1);
 
             }
         }, new Response.ErrorListener() {

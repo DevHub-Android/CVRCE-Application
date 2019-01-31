@@ -1,20 +1,20 @@
 package com.devhub.use.cvrceapplication;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
-public class addCommentAuthorityFragment  extends android.support.v4.app.DialogFragment implements TextView.OnEditorActionListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+public class addCommentAuthorityFragment  extends android.support.v4.app.DialogFragment  {
     private EditText mEditText;
-
+    private Button sendBtn;
+    private ImageButton closeBtn;
     public addCommentAuthorityFragment() {
         // Required empty public constructor
     }
@@ -35,26 +35,27 @@ public class addCommentAuthorityFragment  extends android.support.v4.app.DialogF
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_comment, container, false);
-        view.setMinimumHeight(300);
-        view.setMinimumWidth(1000);
-        mEditText = (EditText) view.findViewById(R.id.add_comment);
-        getDialog().setTitle("Comment");
-        mEditText.requestFocus();
-        getDialog().getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        mEditText.setOnEditorActionListener(this);
+        mEditText = (EditText) view.findViewById(R.id.entComment);
+        sendBtn = view.findViewById(R.id.addComment);
+        closeBtn = view.findViewById(R.id.btnclose);
+        sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!TextUtils.isEmpty(mEditText.getText()))
+                {
+                    postComment(mEditText.getText().toString());
+                }else{
+                    mEditText.setError("Write Something!");
+                    mEditText.requestFocus();
+                }
+            }
+        });
         return view;
     }
 
-    @Override
-    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (EditorInfo.IME_ACTION_DONE == actionId) {
-            // Return input text to activity
-            ComplaintsAuthorityActivity activity = (ComplaintsAuthorityActivity) getActivity();
-            activity.onFinishEditDialog(mEditText.getText().toString());
-            this.dismiss();
-            return true;
-        }
-        return false;
+    public void postComment(String comment){
+        ComplaintsAuthorityActivity activity = (ComplaintsAuthorityActivity) getActivity();
+        activity.onFinishEditDialog(comment);
+        this.dismiss();
     }
 }

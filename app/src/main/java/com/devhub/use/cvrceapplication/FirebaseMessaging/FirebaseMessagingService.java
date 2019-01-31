@@ -39,7 +39,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"my_channel")
 
-                .setContentTitle("New Complaint")
+                .setContentTitle("CVRCE GRIEVANCE")
                 .setContentText(message)
                 .setSmallIcon(R.drawable.add)
                 .setContentIntent(pendingIntent);

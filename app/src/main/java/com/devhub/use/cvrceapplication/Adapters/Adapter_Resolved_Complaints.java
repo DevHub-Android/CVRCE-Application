@@ -47,7 +47,7 @@ public class Adapter_Resolved_Complaints extends RecyclerView.Adapter<Adapter_Re
             title = items.get(position).getString("title");
             issued_by = "Name: " + items.get(position).getString("first_name").concat(" " + items.get(position).getString("last_name"));
             solved_by = "solved by: " + items.get(position).getString("solved_by");
-            solved_at = "resolve date: " + items.get(position).getString("solved_at");
+            solved_at = "Resolve date: " + items.get(position).getString("solved_at");
             reg_id = "Reg id: " + items.get(position).getString("issued_by");
             complaint_id = "Complaint id: " + items.get(position).getString("complaint_id");
 

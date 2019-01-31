@@ -57,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         super.onCreate(savedInstanceState);
         progressDialog = new ProgressDialog(this);
+        progressDialog.setCanceledOnTouchOutside(false);
         setContentView(R.layout.activity_register_new);
 
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);

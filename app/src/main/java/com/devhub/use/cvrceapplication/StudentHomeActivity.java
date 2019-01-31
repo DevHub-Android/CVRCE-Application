@@ -39,7 +39,7 @@ public class StudentHomeActivity extends AppCompatActivity {
     private JSONObject userComplains, hostelComplains, instiComplains, notificationData, foodComplains, examComplains, placementComplains,academicsComplains;
     String choose;
 
-    EditText password, regId;
+    EditText  regId;
     Button login;
     TextView register;
     ProgressDialog progressDialog;

@@ -94,7 +94,7 @@ public class Data_Model_Complaints {
         ArrayList<Data_Model_Complaints> gradesData = new ArrayList<>();
 
         Log.e("Comming here","IN ARRAY LIST ");
-        if(object1!=null||object2!=null)
+        if(object1!=null&&object2!=null)
         {
 
             Log.e("Coming inside loop","IN ARRAY LIST ");

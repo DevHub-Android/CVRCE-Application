@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
                                 userJson.getString("email"),
                                 userJson.getString("branch"),
                                 userJson.getString("hostel"),
-                                userJson.getString("password")
+                                userJson.getString("password"),
+                                userJson.getString("mentor_id")
                         );
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
                         successCallback();

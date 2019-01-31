@@ -14,14 +14,11 @@
 
     <string name="choose">CHOOSE</string>
     <string-array name="typeOfProblem">
-        <item>Hostel</item>
-        <item>Food</item>
         <item>Exam</item>
-        <item>Placement</item>
         <item>DSW</item>
         <item>Academics</item>
 
-        <item>Other</item>
+
     </string-array>
     <integer name="swing_anim_time">1000</integer>
 
@@ -138,11 +135,11 @@
         Thank you.
     </string>
     <string-array name="domainlist">
-        <item>Hostel</item>
+
         <item>DSW</item>
-        <item>Food</item>
+
         <item>Placement</item>
         <item>Exam</item>
-        <item>Others</item>
+
     </string-array>
 </resources>
