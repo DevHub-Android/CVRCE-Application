@@ -37,25 +37,25 @@ public class Adapter_Developer extends RecyclerView.Adapter<Adapter_Developer.Im
                 holder.name.setText("Name : Rakesh Swain");
                 holder.branch.setText("Branch : CSE");
                 holder.email.setText("Email : swain.rakesh131@gmail.com");
-                holder.phone.setText("Phone : 7008916802");
+               // holder.phone.setText("Phone : 7008916802");
 
             }else if(image_id==R.drawable.sonali){
                 holder.name.setText("Name : Sonali Dash");
                 holder.branch.setText("Branch : CSE");
                 holder.email.setText("Email : sonali031998@gmail.com");
-                holder.phone.setText("Phone : 9398888408");
+             //   holder.phone.setText("Phone : 9398888408");
         }else if(image_id==R.drawable.jitu)
             {
                 holder.name.setText("Name : Jitu Nayak");
                 holder.branch.setText("Branch : CSE");
                 holder.email.setText("Email :jitunayak715@gmail.com ");
-                holder.phone.setText("Phone : 9658463402");
+             //   holder.phone.setText("Phone : 9658463402");
             }else if (image_id == R.drawable.akash)
             {
                 holder.name.setText("Name : Aakash Kumar Nanda");
                 holder.branch.setText("Branch : CSE");
                 holder.email.setText("Email : aakash.nanda99@gmail.com");
-                holder.phone.setText("Phone : 7008313332");
+              //  holder.phone.setText("Phone : 7008313332");
             }
     }
 
@@ -65,14 +65,14 @@ public class Adapter_Developer extends RecyclerView.Adapter<Adapter_Developer.Im
     }
     public static class ImageHolder extends RecyclerView.ViewHolder{
         ImageView devPhoto;
-        TextView name,branch,email,phone;
+        TextView name,branch,email;
         public ImageHolder(View itemView) {
             super(itemView);
             devPhoto = itemView.findViewById(R.id.devPhoto);
             name = itemView.findViewById(R.id.devName);
             branch = itemView.findViewById(R.id.devBranch);
             email = itemView.findViewById(R.id.devEmail);
-            phone =  itemView.findViewById(R.id.devPhone);
+          //  phone =  itemView.findViewById(R.id.devPhone);
 
         }
     }

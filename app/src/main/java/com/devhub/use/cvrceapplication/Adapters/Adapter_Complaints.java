@@ -2,6 +2,7 @@ package com.devhub.use.cvrceapplication.Adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -51,6 +52,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
     //we pass the complaints_data to the next activity
     JSONObject complaint_details;
     Activity parent;
+    ProgressDialog mProgressDialog;
 
     private ArrayList<Data_Model_Complaints> ComplaintsData ;
 
@@ -130,6 +132,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         final Data_Model_Complaints item =  ComplaintsData.get(position);
+        mProgressDialog = new ProgressDialog(context);
         String a = "On: "+item.date;
         String b = "By: "+item.name;
 
@@ -230,6 +233,8 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                mProgressDialog.setMessage("Fetching data...");
+                mProgressDialog.show();
                 String cidText = holder.complaint_id_view.getText().toString();
                 final  String cid = cidText.substring(cidText.lastIndexOf(':')+2);
                 Log.i("haggaxx","getting here1");
@@ -241,6 +246,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        mProgressDialog.dismiss();
                         complaint_details = response;
                         Intent intent = new Intent(v.getContext(),ComplaintsActivity.class);
                         Bundle bundle = new Bundle();
@@ -258,8 +264,10 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
 
                     }
                 }, new Response.ErrorListener() {
+
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        mProgressDialog.dismiss();
                         Toast toast = Toast.makeText(context,"Network Error", duration);
                         toast.show();
                     }

@@ -69,7 +69,7 @@ public class ComplaintsActivity extends AppCompatActivity {
 
         }
 
-        setContentView(R.layout.activity_complaints);
+        setContentView(R.layout.activity_complaints_new);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.comment_recycler_view);

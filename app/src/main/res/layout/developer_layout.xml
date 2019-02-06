@@ -55,13 +55,7 @@
                     android:padding="7dp"
                     android:text="Email"
                     android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/devPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="7dp"
-                    android:text="Phone "
-                    android:textStyle="bold"/>
+
             </LinearLayout>
 
         </LinearLayout>

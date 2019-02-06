@@ -27,7 +27,7 @@ public class ResultFragment extends Fragment {
         View v=inflater.inflate(R.layout.content_main, container, false);
         mWebView = (WebView) v.findViewById(R.id.webview_id);
         //mWebView.loadUrl("http://googleweblight.com/?lite_url=http://cvrce.edu.in/");
-        mWebView.loadUrl("http://googleweblight.com/i?u=http://111.93.173.86:8080/CVRCEResult/");
+        mWebView.loadUrl("http://googleweblight.com/i?u=http://136.232.6.238:8080/CVRCEResult/");
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient());
