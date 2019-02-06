@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.devhub.use.cvrceapplication.MainActivity"
+    tools:context="com.devhub.official.cvrceapplication.MainActivity"
     android:background="@color/colorPrimary"
     android:theme="@style/CustomAppTheme">
 

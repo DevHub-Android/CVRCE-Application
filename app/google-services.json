@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "980124767255",
+    "firebase_url": "https://cvrcebeta.firebaseio.com",
+    "project_id": "cvrcebeta",
+    "storage_bucket": "cvrcebeta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980124767255:android:de45b6cf412fc919",
+        "android_client_info": {
+          "package_name": "com.devhub.official.cvrceapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980124767255-fsci7m999o42q36mbe0jujf0qbskf64l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devhub.official.cvrceapplication",
+            "certificate_hash": "32129a8cae9c69d2343221d3bd03318ba47173b2"
+          }
+        },
+        {
+          "client_id": "980124767255-nr748nqelqgftaqhco8f6j3ebloqfk2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB10ylD5OfFnKPcCmcusOKQCLxsgxT7Z4I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980124767255-nr748nqelqgftaqhco8f6j3ebloqfk2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
