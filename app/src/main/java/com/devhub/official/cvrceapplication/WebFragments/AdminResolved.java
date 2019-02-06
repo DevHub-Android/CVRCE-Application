@@ -28,7 +28,7 @@ public class AdminResolved extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.admin_resolve,container,false);
         mWebView = view.findViewById(R.id.webview_id);
-        mWebView.loadUrl("https://engigyan.com/cvrce/www/public/superUser.php");
+     //   mWebView.loadUrl("https://engigyan.com/cvrce/www/public/superUser.php");
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient());

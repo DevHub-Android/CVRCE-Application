@@ -9,15 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.DownloadListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.devhub.official.cvrceapplication.R;
 
 
 public class ResultFragment extends Fragment {
     WebView mWebView;
+    //private ProgressBar progressBar;
     public ResultFragment() {
         // Required empty public constructor
     }
@@ -29,8 +32,18 @@ public class ResultFragment extends Fragment {
         //mWebView.loadUrl("http://googleweblight.com/?lite_url=http://cvrce.edu.in/");
         mWebView.loadUrl("http://googleweblight.com/i?u=http://136.232.6.238:8080/CVRCEResult/");
         WebSettings webSettings = mWebView.getSettings();
+       // progressBar = v.findViewById(R.id.progressBar);
+
         webSettings.setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+
+                mWebView.loadUrl("javascript:(function() { " +
+                        "var head = document.getElementsByClassName('wl-hdr')[0].style.display='none'; " +
+                        "})()");
+            }
+        });
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         mWebView.setDownloadListener(new DownloadListener() {
             @Override
@@ -38,6 +51,7 @@ public class ResultFragment extends Fragment {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(s)));
             }
         });
+
         return v;
 
     }
