@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     private CircleImageView studentImageView,teacherImageView,parentImageView;
 
     FrameLayout studentFrameLayout, teacherFrameLayout,parentFrameLayout;
-
+    private  Spinner spinnerHostel;
 
     LinearLayout linearLayout;
     String livesInHostel;
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         progressDialog = new ProgressDialog(this);
         progressDialog.setCanceledOnTouchOutside(false);
         setContentView(R.layout.activity_register_new);
-
+        spinnerHostel = findViewById(R.id.spinnerHostel);
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
 
         mSpinner = findViewById(R.id.spinnerBranch);
@@ -102,7 +102,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(dataAdapter);
 
+        List<String> hostel = new ArrayList<String>();
+        hostel.add("Select Your Hostel");
+        hostel.add("Boys Hostel");
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, hostel);
 
+        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerHostel.setAdapter(dataAdapter);
 
 
         regBtn.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     //lives in hostel
 
                     livesInHostel ="yes";
+                    regBtn.setEnabled(true);
 
 
                 }
@@ -125,6 +132,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 {
                     //doesn't live in hostel
                     livesInHostel="no";
+                    regBtn.setEnabled(false);
 
                 }
 

@@ -30,7 +30,7 @@ import org.json.JSONObject;
 
 public class HodGrid extends AppCompatActivity {
     private LinearLayout logout,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
-            placementComplaints,examComplaints,academics;
+            placementComplaints,examComplaints,academics,resetPassword;
 
     Bundle bundle;
     Intent cardIntent;
@@ -48,7 +48,7 @@ public class HodGrid extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hod_grid);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         mentorId=intent.getStringExtra("empId");
         department=intent.getStringExtra("department");
         Log.e("deparment",department);
@@ -65,7 +65,7 @@ public class HodGrid extends AppCompatActivity {
         placementComplaints = findViewById(R.id.placementCard);
         academics=findViewById(R.id.academicsCard);
         logout = findViewById(R.id.logout_btn);
-
+        resetPassword = findViewById(R.id.reset_btn);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         context = this;
         global = (Globals)this.getApplication();
@@ -141,7 +141,14 @@ public class HodGrid extends AppCompatActivity {
                 startActivity(cardIntent);
             }
         });
-
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pendingIntent = new Intent(HodGrid.this,ForgetPasswordAuthority.class);
+                pendingIntent.putExtra("type","hod");
+                startActivity(pendingIntent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

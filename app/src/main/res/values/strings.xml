@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CVRCE OFFICIAL</string>
+    <string name="app_name">CVRCE GRIEVANCE</string>
 
 
     <string name="nav_header_title">Android Studio</string>
@@ -17,7 +17,9 @@
         <item>Exam</item>
         <item>DSW</item>
         <item>Academics</item>
-
+        <item>Placement</item>
+        <item>Hostel</item>
+        <item>Food</item>
 
     </string-array>
     <integer name="swing_anim_time">1000</integer>

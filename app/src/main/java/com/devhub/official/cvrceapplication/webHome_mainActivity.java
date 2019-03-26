@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.devhub.official.cvrceapplication.WebFragments.Admission;
 import com.devhub.official.cvrceapplication.WebFragments.GalleryFragment;
+import com.devhub.official.cvrceapplication.WebFragments.GrievanceHome;
 import com.devhub.official.cvrceapplication.WebFragments.HomePage;
 import com.devhub.official.cvrceapplication.WebFragments.NoticeFragment;
 import com.devhub.official.cvrceapplication.WebFragments.ResearchAndDevelopement;
@@ -27,35 +28,7 @@ public class webHome_mainActivity extends AppCompatActivity
 
     TextView mTextMessage;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    HomePage fragment = new HomePage();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.webview_id, fragment).commit();
-                    return true;
-                case R.id.navigation_dashboard:
-                    Admission admission_fragment =new Admission();
-                    FragmentManager fragmentManager1 = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                    fragmentTransaction1.replace(R.id.webview_id, admission_fragment).commit();
-                    return true;
-                case R.id.navigation_notifications:
-                    NoticeFragment noticeFragment =new NoticeFragment();
-                    FragmentManager fragmentManager2 = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
-                    fragmentTransaction2.replace(R.id.webview_id, noticeFragment);
-                    fragmentTransaction2.addToBackStack(null);
-                    fragmentTransaction2.commit();
-                    return true;
-            }
-            return false;
-        }
-    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,21 +38,20 @@ public class webHome_mainActivity extends AppCompatActivity
 
 
         //mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        HomePage fragment = new HomePage();
+
+        GrievanceHome grievanceHome = new GrievanceHome();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.webview_id, fragment).commit();
+        fragmentTransaction.replace(R.id.webview_id, grievanceHome).commit();
     }
 
     @Override
@@ -108,14 +80,22 @@ public class webHome_mainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         } else if(id == R.id.student_login){
-            Intent intent = new Intent(getApplicationContext(),StudentGrid.class);
-            startActivity(intent);
+
+            GrievanceHome fragment = new GrievanceHome();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         }else if(id == R.id.Faculty_Login){
-            Intent intent = new Intent(getApplicationContext(),MentorGrid.class);
-            startActivity(intent);
+            HomePage fragment = new HomePage();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         }else if(id == R.id.admin_Login)
         {
-            startActivity(new Intent(getApplicationContext(),AuthorityTypeCheck.class));
+            NoticeFragment fragment = new NoticeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         }
         else if(id==R.id.developers)
         {
@@ -123,7 +103,10 @@ public class webHome_mainActivity extends AppCompatActivity
         }
         else if(id==R.id.hod_Login)
         {
-            startActivity(new Intent(getApplicationContext(),HodLoginNew.class));
+            Admission fragment = new Admission();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.webview_id, fragment).commit();
         }
         else if(id==R.id.result)
         {

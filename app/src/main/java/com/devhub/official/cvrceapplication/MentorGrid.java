@@ -30,7 +30,7 @@ import org.json.JSONObject;
 
 public class MentorGrid extends AppCompatActivity {
     private LinearLayout logout,resolvedComplaints, addStudents,myStudents,hostelComplaints,foodComplaints,otherComplaints,dswComplaints,
-            placementComplaints,examComplaints,pending,academics;
+            placementComplaints,examComplaints,pending,academics,resetPassword;
 
     Bundle bundle;
     Intent cardIntent;
@@ -60,6 +60,7 @@ public class MentorGrid extends AppCompatActivity {
         pending=findViewById(R.id.pending);
         academics=findViewById(R.id.academicsCard);
         logout = findViewById(R.id.logout);
+        resetPassword = findViewById(R.id.reset_password);
 
          Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         context = this;
@@ -178,6 +179,14 @@ public class MentorGrid extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 SharedPrefMentor.getmInstance(getApplicationContext()).logout();
+            }
+        });
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pendingIntent = new Intent(MentorGrid.this,ForgetPasswordAuthority.class);
+                intent.putExtra("type","mentor");
+                startActivity(pendingIntent);
             }
         });
     }

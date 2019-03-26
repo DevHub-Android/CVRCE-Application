@@ -3,6 +3,7 @@ package com.devhub.official.cvrceapplication;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -271,7 +272,11 @@ public class HostelAuthorityActivity extends AppCompatActivity {
            finish();
            SharedPrefEmployee.getmInstance(getApplicationContext()).logout();
            return true;
-       }
+       }if(item.getItemId()==R.id.reset_password){
+            Intent pendingIntent = new Intent(HostelAuthorityActivity.this,ForgetPasswordAuthority.class);
+            pendingIntent.putExtra("type","authority");
+            startActivity(pendingIntent);
+        }
        return super.onOptionsItemSelected(item);
 
     }

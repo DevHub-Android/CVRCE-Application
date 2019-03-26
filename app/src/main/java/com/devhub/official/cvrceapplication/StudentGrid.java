@@ -161,10 +161,11 @@ public class StudentGrid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                bundle.putString("choose","hostel");
-//                cardIntent.putExtras(bundle);
+                bundle.putString("choose","hostel");
+                cardIntent.putExtras(bundle);
+                startActivity(cardIntent);
 //
-                Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
             }
         });
         dswComplaints.setOnClickListener(new View.OnClickListener() {
@@ -179,9 +180,9 @@ public class StudentGrid extends AppCompatActivity {
         otherComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                bundle.putString("choose","other");
-//                cardIntent.putExtras(bundle);
-//                startActivity(cardIntent);
+               // bundle.putString("choose","other");
+                //cardIntent.putExtras(bundle);
+                //startActivity(cardIntent);
                 Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
             }
         });
@@ -197,9 +198,9 @@ public class StudentGrid extends AppCompatActivity {
         placementComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                bundle.putString("choose","placement");
-//                cardIntent.putExtras(bundle);
-//                startActivity(cardIntent);
+                bundle.putString("choose","placement");
+                cardIntent.putExtras(bundle);
+                startActivity(cardIntent);
                 Toast.makeText(StudentGrid.this,"Feature to be added!",Toast.LENGTH_SHORT).show();
             }
         });

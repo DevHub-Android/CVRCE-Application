@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
     JSONObject complaint_details;
     Activity parent;
     ProgressDialog mProgressDialog;
+    //LinearLayout complaint;
 
     private ArrayList<Data_Model_Complaints> ComplaintsData ;
 
@@ -96,6 +98,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
         public CheckBox mentor_seen_checkbox;
         public TextView position_seen_textview;
         public TextView complaint_id_view;
+        public LinearLayout complaint;
 
        // public ImageButton forward;
         public ViewHolder(final View v) {
@@ -109,6 +112,7 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
             mentor_seen_checkbox = (CheckBox)v.findViewById(R.id.seen_mentor_box);
             position_seen_textview = (TextView)v.findViewById(R.id.position_seen_textview);
             complaint_id_view = (TextView)v.findViewById(R.id.complaint_id);
+            complaint = v.findViewById(R.id.element_complaint_layout);
 
 
            // forward = v.findViewById(R.id.forward);
@@ -275,6 +279,13 @@ public class Adapter_Complaints extends RecyclerView.Adapter<Adapter_Complaints.
                 //Add_the_first_request_in_the_queue
                 Log.i("yo", "getting here2");
                 myQueue.add(request0);
+            }
+        });
+        holder.description.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
             }
         });
 

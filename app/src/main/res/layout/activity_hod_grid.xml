@@ -344,6 +344,31 @@
                     android:text="Logout from\nthe application"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/reset_btn"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:background="@color/white"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/logout_new"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reset Password"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="Reset your password."/>
+
+            </LinearLayout>
 
 
 
