@@ -185,7 +185,7 @@ public class MentorGrid extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent pendingIntent = new Intent(MentorGrid.this,ForgetPasswordAuthority.class);
-                intent.putExtra("type","mentor");
+                pendingIntent.putExtra("type","mentor");
                 startActivity(pendingIntent);
             }
         });

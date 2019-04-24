@@ -366,7 +366,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
-                        android:text="Students \nunder you"/>
+                        android:text="Students \under you"/>
 
                 </LinearLayout>
                 <!--Row 0,Col 2 -->
@@ -422,7 +422,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12dp"
-                        android:text="Pending grievances "/>
+                        android:text="Pending grievances"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -466,7 +466,7 @@
                     <ImageView
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
-                        android:src="@drawable/logout_new"/>
+                        android:src="@drawable/reset_password"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

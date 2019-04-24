@@ -44,11 +44,11 @@ public class ForgetPasswordAuthority extends AppCompatActivity {
         myQueue = global.getVolleyQueue();
         //String urlCheck = serverAddress.concat("/admin/checkStatus.php");
         context = this;
-        if(getIntent().getSerializableExtra("type").equals("mentor"))
+        if(getIntent().getStringExtra("type").equals("mentor"))
         {
           server_url = URLs.SERVER_ADDR+"/public/forget_password_faculty.php";
 
-        }else if (getIntent().getSerializableExtra("type").equals("hod")){
+        }else if (getIntent().getStringExtra("type").equals("hod")){
             server_url = URLs.SERVER_ADDR+"/public/forget_password_hod.php";
 
         }else {
