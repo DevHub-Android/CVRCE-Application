@@ -1,6 +1,7 @@
 package com.devhub.official.cvrceapplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -123,7 +124,12 @@ public class webHome_mainActivity extends AppCompatActivity
         }else if(id==R.id.admin)
         {
             startActivity(new Intent(getApplicationContext(),AdminLogin.class));
+        }else if(id==R.id.privacy_policy)
+        {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://devhub.co.in/privacy_policy"));
+            startActivity(browserIntent);
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
